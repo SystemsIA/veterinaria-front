@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import VeterinariaApp from './VeterinariaApp';
 import reportWebVitals from './reportWebVitals';
 
 const elDOM = document.getElementById('veterinaria-app');
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <VeterinariaApp />
   </React.StrictMode>,
   elDOM
 );
