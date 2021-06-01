@@ -1,28 +1,39 @@
-import React, { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+
+// Components
+import {
+  AppBar,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core';
+
+// Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { Menu, MenuItem, useMediaQuery } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
-import { Link, NavLink } from 'react-router-dom';
-import { linksNAV, PERFIL } from '../routes';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import { linksNAV, LOGIN, PERFIL } from '../routes';
+
+import logoApp from '../assets/img/logo-app.png';
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -48,9 +59,11 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    backgroundColor: '#F3F3F1',
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#F3F3F1',
   },
   drawerHeader: {
     display: 'flex',
@@ -81,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
   navLogo: {
     cursor: 'pointer',
     textDecoration: 'none',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   activeClassName: {
@@ -88,12 +104,29 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     backgroundColor: '#F3F3F1',
   },
+
+  sizeLogoImg: {
+    maxWidth: '54px',
+    maxHeight: '48px',
+    display: 'inline-block',
+    padding: theme.spacing(1),
+  },
+
+  sideBarLinks: {
+    cursor: 'pointer',
+    textDecoration: 'none',
+  },
+
+  menuLinks: {
+    '& > a': {
+      textDecoration: 'none',
+    },
+  },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar({ setOpen, open }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,7 +136,7 @@ export default function MenuAppBar() {
     setOpen(false);
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const openLogin = Boolean(anchorEl);
 
   const handleMenu = (event) => {
@@ -114,7 +147,48 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
-  const isQueryMobile = useMediaQuery('(min-width:730px)');
+  const isQueryMobile = useMediaQuery('(min-width:870px)');
+  let isLogin = true;
+  const ButtonAuthLogin = (
+    <Fragment>
+      <IconButton
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={handleMenu}
+        color="inherit"
+      >
+        <AccountCircleIcon />
+      </IconButton>
+      {openLogin ? (
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={openLogin}
+          onClose={handleClose}
+        >
+          {isLogin ? (
+            <MenuItem className={classes.menuLinks}>
+              <Link to={LOGIN}>Iniciar Sesión</Link>
+            </MenuItem>
+          ) : null}
+          <MenuItem onClick={handleClose} className={classes.menuLinks}>
+            <Link to={PERFIL}>Perfil</Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
+        </Menu>
+      ) : null}
+    </Fragment>
+  );
 
   return (
     <Fragment>
@@ -124,7 +198,7 @@ export default function MenuAppBar() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-        elevation={1}
+        elevation={0}
       >
         <Toolbar className={classes.navMobile}>
           {isQueryMobile ? null : (
@@ -139,11 +213,16 @@ export default function MenuAppBar() {
             </IconButton>
           )}
 
-          <Typography variant="h4" noWrap>
-            <Link to="/" className={classes.navLogo}>
+          <Link to="/" className={classes.navLogo}>
+            <img
+              src={logoApp}
+              alt="Logo Veterinaria"
+              className={classes.sizeLogoImg}
+            />
+            <Typography variant="h4" noWrap>
               APPVET
-            </Link>
-          </Typography>
+            </Typography>
+          </Link>
 
           <div className={classes.navMobile}>
             {isQueryMobile ? (
@@ -151,8 +230,8 @@ export default function MenuAppBar() {
                 {linksNAV.map((link, index) => (
                   <NavLink
                     activeClassName={classes.activeClassName}
+                    exact
                     to={link.path}
-                    underline="none"
                     key={index}
                     className={classes.linkNav}
                   >
@@ -168,37 +247,7 @@ export default function MenuAppBar() {
                 ))}
               </Fragment>
             ) : null}
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            {openLogin ? (
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={openLogin}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>
-                  <Link to={PERFIL}>Perfil</Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
-              </Menu>
-            ) : null}
+            {ButtonAuthLogin}
           </div>
         </Toolbar>
       </AppBar>
@@ -227,7 +276,11 @@ export default function MenuAppBar() {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={link.name} />
+              <ListItemText>
+                <Link to={link.path} className={classes.sideBarLinks}>
+                  {link.name}
+                </Link>
+              </ListItemText>
             </ListItem>
           ))}
         </List>

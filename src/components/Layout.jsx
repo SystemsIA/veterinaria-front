@@ -1,17 +1,11 @@
 import { makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 import { useEffect } from 'react';
-import Main from './Main';
-import MenuAppBar from './MenuAppBar';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
   content: {
     flexGrow: 1,
-    background: '#F3F3F1',
-    height: '100vh',
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -36,17 +30,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Layout({ children, title = 'Inicio' }) {
+export default function Layout({ children, title = 'Inicio', open = true }) {
   const classes = useStyles();
 
   useEffect(() => {
     document.title = title;
+
+    return () => {};
   }, [title]);
 
   return (
-    <div className={classes.root}>
-      <MenuAppBar />
-      <Main classes={classes}>{children}</Main>
-    </div>
+    <main
+      className={clsx(classes.content, {
+        [classes.contentShift]: open,
+      })}
+    >
+      <div className={classes.drawerHeader} />
+      {children}
+    </main>
   );
 }

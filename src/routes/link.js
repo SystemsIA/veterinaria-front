@@ -1,4 +1,4 @@
-export const INICIO = '/' || '/inicio';
+export const INICIO = '/';
 export const CATALOGO = '/catalogo';
 export const VETSANLOR = '/veterinaria-san-lorenzo';
 export const SERVICIOS = '/servicios';

@@ -24,5 +24,5 @@
 
 5. Acceder al proyecto
    ```bash
-   >  Local:http://localhost:3000
+   > http://localhost:3000
    ```

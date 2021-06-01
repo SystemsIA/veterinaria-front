@@ -1,14 +1,15 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { LinearProgress, makeStyles } from '@material-ui/core';
 
-import { CATALOGO, INICIO, SERVICIOS, VETSANLOR } from './link';
+import * as LINKS from './link';
 
 // Pages - Components
 const InicioPage = lazy(() => import('../pages/InicioPage'));
 const CatalogoPage = lazy(() => import('../pages/CatalogoPage'));
 const VeterinariaPage = lazy(() => import('../pages/VeterinariaPage'));
 const ServicioPage = lazy(() => import('../pages/ServicioPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,15 +31,14 @@ const Fallback = () => {
 
 export function AppRoutes() {
   return (
-    <BrowserRouter basename={INICIO}>
+    <Suspense fallback={<Fallback />}>
       <Switch>
-        <Suspense fallback={<Fallback />}>
-          <Route path={CATALOGO} component={CatalogoPage} />
-          <Route path={VETSANLOR} component={VeterinariaPage} />
-          <Route path={SERVICIOS} component={ServicioPage} />
-          <Route exact path={INICIO} component={InicioPage} />
-        </Suspense>
+        <Route exact path={LINKS.INICIO} component={InicioPage} />
+        <Route path={LINKS.LOGIN} component={LoginPage} />
+        <Route path={LINKS.CATALOGO} component={CatalogoPage} />
+        <Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
+        <Route path={LINKS.SERVICIOS} component={ServicioPage} />
       </Switch>
-    </BrowserRouter>
+    </Suspense>
   );
 }
