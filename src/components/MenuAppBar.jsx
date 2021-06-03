@@ -29,27 +29,12 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import { linksNAV, LOGIN, PERFIL } from '../routes';
+import { INICIO, linksNAV, LOGIN, PERFIL } from '../routes';
 
 import logoApp from '../assets/img/logo-app.png';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    backgroundColor: '#fff',
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
   menuButton: {
     marginRight: theme.spacing(0),
   },
@@ -96,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   activeClassName: {
@@ -192,14 +177,7 @@ export default function MenuAppBar({ setOpen, open }) {
 
   return (
     <Fragment>
-      <AppBar
-        position="fixed"
-        color="default"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        elevation={0}
-      >
+      <AppBar position="fixed" color="default" elevation={0}>
         <Toolbar className={classes.navMobile}>
           {isQueryMobile ? null : (
             <IconButton
@@ -213,7 +191,7 @@ export default function MenuAppBar({ setOpen, open }) {
             </IconButton>
           )}
 
-          <Link to="/" className={classes.navLogo}>
+          <Link to={INICIO} className={classes.navLogo}>
             <img
               src={logoApp}
               alt="Logo Veterinaria"
@@ -261,6 +239,16 @@ export default function MenuAppBar({ setOpen, open }) {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Link to={INICIO} className={classes.navLogo}>
+            <img
+              src={logoApp}
+              alt="Logo Veterinaria"
+              className={classes.sizeLogoImg}
+            />
+            <Typography variant="h5" noWrap>
+              APPVET
+            </Typography>
+          </Link>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />

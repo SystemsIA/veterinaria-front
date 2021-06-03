@@ -1,6 +1,9 @@
+import { useEffect, Fragment } from 'react';
+
 import { makeStyles } from '@material-ui/core';
+
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import Footer from './Footer';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -40,13 +43,16 @@ export default function Layout({ children, title = 'Inicio', open = true }) {
   }, [title]);
 
   return (
-    <main
-      className={clsx(classes.content, {
-        [classes.contentShift]: open,
-      })}
-    >
-      <div className={classes.drawerHeader} />
-      {children}
-    </main>
+    <Fragment>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        {children}
+      </main>
+      <Footer />
+    </Fragment>
   );
 }

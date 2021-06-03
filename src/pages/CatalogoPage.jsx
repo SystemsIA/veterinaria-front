@@ -28,11 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contentImage: {
-    display: 'block',
     margin: '1.8rem 2rem',
     '& > img': {
-      maxWidth: 280,
-      minWidth: 120,
+      maxWidth: 180,
+      minWidth: 50,
     },
   },
 }));
@@ -103,10 +102,12 @@ export default function CatalogoPage() {
                     className={classes.withoutFlexBasis}
                   />
                 ))}
-                <Grid item sm={3} className={classes.withoutFlexBasis}>
-                  <div className={classes.contentImage}>
-                    <img src={gatoLibro} alt="gatoLibro" />
-                  </div>
+                <Grid
+                  item
+                  sm={3}
+                  className={`${classes.withoutFlexBasis} ${classes.contentImage}`}
+                >
+                  <img src={gatoLibro} alt="gatoLibro" />
                 </Grid>
               </Grid>
             </Fragment>

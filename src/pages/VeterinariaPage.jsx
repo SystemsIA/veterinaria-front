@@ -3,12 +3,12 @@ import Layout from '../components/Layout';
 
 export default function VeterinariaPage() {
   return (
-    <Layout title="-----">
+    <Layout title="Veterinaria San Lorenzo">
       <Container>
-        <Typography variant="h4" align="center">
-          Veterinario
+        <Typography variant="h4" align="right">
+          Veterinaria San Lorenzo
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" align="justify">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos
           laudantium repellendus, voluptatibus aliquam totam placeat perferendis
           odit laboriosam, possimus natus rerum, distinctio quidem!

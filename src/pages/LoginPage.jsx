@@ -91,7 +91,12 @@ function LoginPage() {
       <div className={classes.root}>
         <Grid container spacing={2}>
           {isMobileSize ? (
-            <Grid container item xs={12} direction="row">
+            <Grid
+              container
+              item
+              xs={12}
+              direction={isMobileSize ? 'row' : 'column'}
+            >
               <Grid item xs={6} className={classes.imgPageLogin}>
                 <img src={gatoPensativo} alt="Gato Pensativo" />
               </Grid>

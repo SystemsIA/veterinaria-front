@@ -14,13 +14,15 @@ const useStyles = makeStyles((theme) => ({
 
   withoutFlexBasis: {
     flexBasis: 'auto',
+    '& img': {
+      maxWidth: 350,
+    },
   },
 
   paper: {
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
   },
-  sizeImg: { width: '450px', zIndex: 100 },
   sizeImgMobile: {
     width: '240px',
   },
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InicioPage() {
   const classes = useStyles();
 
-  const isMobile = useMediaQuery('(min-width:370px)');
+  const isMobile = useMediaQuery('(min-width:470px)');
 
   return (
     <Layout title="Inicio">

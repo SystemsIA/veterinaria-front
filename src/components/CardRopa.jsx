@@ -22,8 +22,10 @@ const useStyles = makeStyles({
       maxWidth: 280,
       minWidth: 120,
       borderRadius: '12px',
+      padding: '0 1rem',
     },
   },
+
   cardActions: {
     display: 'flex',
     flexDirection: 'column',
@@ -55,6 +57,7 @@ function CardRopa(props) {
       <CardMedia className={classes.media} title="Image of animal">
         <img src={props.image} alt="animal" />
       </CardMedia>
+
       <CardContent className={classes.cardContent}>
         <Typography variant="h5" color="textSecondary">
           Ropa Animal
