@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     transition: '0.3s ease',
     textDecoration: 'none',
     color: '#5e5c5c',
+    fontWeight: theme.typography.fontWeightRegular,
     '&:hover': {
       color: '#b35f97eb',
     },

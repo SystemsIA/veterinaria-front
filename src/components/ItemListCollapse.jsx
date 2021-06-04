@@ -10,20 +10,17 @@ import React from 'react';
 const useStyles = makeStyles((theme) => ({
   sizeImg: {
     '& img': {
-      maxWidth: 38,
-      minWidth: 20,
+      maxWidth: 30,
+      minWidth: 15,
     },
   },
   textSize: {
     '& span': {
-      fontSize: 24,
+      fontSize: 20,
     },
   },
   activeItem: {
-    background: theme.palette.primary.light,
-    '&:hover': {
-      background: theme.palette.primary.light,
-    },
+    backgroundColor: theme.palette.primary.light,
   },
 }));
 

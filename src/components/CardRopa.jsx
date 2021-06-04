@@ -50,13 +50,13 @@ const useStyles = makeStyles({
   },
 });
 
-function CardRopa(props) {
+function CardRopa({ image, content }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root} elevation={3}>
       <CardMedia className={classes.media} title="Image of animal">
-        <img src={props.image} alt="animal" />
+        <img src={image} alt="animal" />
       </CardMedia>
 
       <CardContent className={classes.cardContent}>
@@ -64,7 +64,7 @@ function CardRopa(props) {
           Ropa Animal
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.content}
+          {content}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>

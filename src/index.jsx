@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import VeterinariaApp from './VeterinariaApp';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+import './styles/index.css';
 
 const elDOM = document.getElementById('veterinaria-app');
 

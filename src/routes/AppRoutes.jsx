@@ -4,6 +4,7 @@ import { LinearProgress, makeStyles } from '@material-ui/core';
 
 import * as LINKS from './link';
 import MenuAppBar from '../components/MenuAppBar';
+import Error404 from '../pages/errors/Error404';
 
 // Pages
 
@@ -46,19 +47,15 @@ export function AppRoutes() {
         <Route path={LINKS.CATALOGO} component={CatalogoPage} />
         <Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
         <Route path={LINKS.SERVICIOS} component={ServicioPage} />
-        <Route
-          path={LINKS.MEDICO_INICIO}
-          render={() => (
-            <>
-              <Route
-                exact
-                path={LINKS.MEDICO_INICIO}
-                component={MedicoInicioPage}
-              />
-              <Route path={LINKS.MEDICO_TAREAS} component={MedicoTaskPage} />
-            </>
-          )}
-        />
+        <Route path={LINKS.MEDICO_INICIO}>
+          <Route
+            exact
+            path={LINKS.MEDICO_INICIO}
+            component={MedicoInicioPage}
+          />
+          <Route exact path={LINKS.MEDICO_TAREAS} component={MedicoTaskPage} />
+        </Route>
+        <Route path="*" component={Error404} />
       </Switch>
     </Suspense>
   );

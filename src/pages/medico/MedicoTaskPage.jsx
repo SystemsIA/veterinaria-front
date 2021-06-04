@@ -1,20 +1,32 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Components
 import Layout from '../../components/Layout';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import ItemListCollapse from '../../components/ItemListCollapse';
+import TaskTable from '../../components/TaskTable';
 import AppLogoLink from '../../components/AppLogoLink';
-import { Box, ListItemIcon } from '@material-ui/core';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Paper,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
 
 // Icons
 import StarBorder from '@material-ui/icons/StarBorder';
+import MenuIcon from '@material-ui/icons/Menu';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 
 // Routes
 import { MEDICO_INICIO } from '../../routes';
@@ -23,8 +35,8 @@ import { MEDICO_INICIO } from '../../routes';
 import dogFlower from '../../assets/img/perritoFlores.png';
 import imgTask from '../../assets/img/imag4.png';
 import imgClient from '../../assets/img/imag3.png';
-import ItemListCollapse from '../../components/ItemListCollapse';
-import TaskTable from '../../components/TaskTable';
+import imgMore from '../../assets/img/iconMas.png';
+import imgBone from '../../assets/img/iconHuesito.png';
 
 const drawerWidth = 240;
 
@@ -82,14 +94,43 @@ const useStyles = makeStyles((theme) => ({
   },
   imgSize: {
     '& img': {
-      maxWidth: 50,
+      maxWidth: 40,
+      minWidth: 15,
     },
+  },
+
+  paper: {
+    padding: 20,
+  },
+  toolbar: {
+    padding: 0,
+    justifyContent: 'space-between',
   },
 }));
 
 function MedicoTaskPage() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const MenuOptions = (
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>Profile</MenuItem>
+      <MenuItem onClick={handleClose}>My account</MenuItem>
+      <MenuItem onClick={handleClose}>Logout</MenuItem>
+    </Menu>
+  );
   return (
     <div className={classes.root}>
       <AppBar
@@ -98,8 +139,26 @@ function MedicoTaskPage() {
         color="inherit"
         elevation={1}
       >
-        <Toolbar style={{ padding: 0 }}>
-          <AppLogoLink to={MEDICO_INICIO} nameLink="Veterinaria | Médico" />
+        <Toolbar className={classes.toolbar}>
+          <AppLogoLink to={MEDICO_INICIO} nameLink="Veterinaria | Médico" small>
+            <Button
+              onClick={handleClick}
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+            >
+              <MenuIcon />
+            </Button>
+            {anchorEl ? MenuOptions : null}
+          </AppLogoLink>
+
+          <div>
+            <Button className={classes.imgSize}>
+              <img src={imgBone} alt="Hueso Imagen" />
+            </Button>
+            <Button>
+              <SettingsOutlinedIcon fontSize="large" />
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -113,7 +172,7 @@ function MedicoTaskPage() {
         <div className={classes.drawerContainer}>
           <div className={classes.nameDoctorLogo}>
             <div className={classes.roundedLogo}>
-              <img src={dogFlower} alt="" />
+              <img src={dogFlower} alt="Perro Flores" />
             </div>
             <h1>Doctor</h1>
           </div>
@@ -168,19 +227,23 @@ function MedicoTaskPage() {
       <Layout title="Medico | Dr. Doctor">
         <Toolbar />
         <div className={classes.gridRoot}>
-          <Box
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between"
-          >
-            <div>
-              <Typography variant="h4">Buen Día Doctor</Typography>
-              <span>Estas son sus tareas pendientes</span>
-            </div>
-            <div className={classes.imgSize}>
-              <img src={imgTask} alt="Tareas Doctor" />
-            </div>
-          </Box>
+          <Paper className={classes.paper}>
+            <Container>
+              <Box
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+              >
+                <div>
+                  <Typography variant="h4">Buen Día Doctor</Typography>
+                  <span>Estas son sus tareas pendientes</span>
+                </div>
+                <Button color="primary" className={classes.imgSize}>
+                  <img src={imgMore} alt="Tareas Doctor" />
+                </Button>
+              </Box>
+            </Container>
+          </Paper>
           <br />
           <Box justifyContent="center">
             <TaskTable />
@@ -190,4 +253,5 @@ function MedicoTaskPage() {
     </div>
   );
 }
+
 export default MedicoTaskPage;

@@ -9,4 +9,11 @@ export const theme = createMuiTheme({
       main: '#ff4081',
     },
   },
+  typography: {
+    fontFamily: ['"Assistant"', 'sans-serif'].join(','),
+    fontSize: 15,
+    fontWeightMedium: 'bold',
+    fontWeightRegular: 'bold',
+    fontWeightLight: 'normal',
+  },
 });
