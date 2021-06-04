@@ -1,7 +1,7 @@
 import { Container, Typography } from '@material-ui/core';
 import Layout from '../components/Layout';
 
-export default function PerfilPage() {
+function PerfilPage() {
   return (
     <Layout title="Mi - Perfil">
       <Container>
@@ -17,3 +17,4 @@ export default function PerfilPage() {
     </Layout>
   );
 }
+export default PerfilPage;

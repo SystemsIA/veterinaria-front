@@ -1,0 +1,58 @@
+import { Fragment, useState } from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import { Collapse, ListItemIcon, makeStyles } from '@material-ui/core';
+import ListItemText from '@material-ui/core/ListItemText';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import List from '@material-ui/core/List';
+
+import React from 'react';
+const useStyles = makeStyles((theme) => ({
+  sizeImg: {
+    '& img': {
+      maxWidth: 38,
+      minWidth: 20,
+    },
+  },
+  textSize: {
+    '& span': {
+      fontSize: 24,
+    },
+  },
+  activeItem: {
+    background: theme.palette.primary.light,
+    '&:hover': {
+      background: theme.palette.primary.light,
+    },
+  },
+}));
+
+function ItemListCollapse({ nameItem = '', image, children }) {
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
+  const handleClick = () => {
+    setOpen(!open);
+  };
+  return (
+    <Fragment>
+      <ListItem
+        button
+        onClick={handleClick}
+        className={open ? classes.activeItem : ''}
+      >
+        <ListItemIcon className={classes.sizeImg}>
+          <img src={image} alt={nameItem} />
+        </ListItemIcon>
+        <ListItemText className={classes.textSize} primary={nameItem} />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          {children}
+        </List>
+      </Collapse>
+    </Fragment>
+  );
+}
+
+export default ItemListCollapse;

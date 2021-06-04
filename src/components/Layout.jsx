@@ -3,13 +3,12 @@ import { useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import clsx from 'clsx';
-import Footer from './Footer';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -26,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(0, 2),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
 }));
 
-export default function Layout({ children, title = 'Inicio', open = true }) {
+function Layout({ children, title = 'Inicio', open = true }) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -44,15 +43,15 @@ export default function Layout({ children, title = 'Inicio', open = true }) {
 
   return (
     <Fragment>
+      <div className={classes.drawerHeader} />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
         {children}
       </main>
-      <Footer />
     </Fragment>
   );
 }
+export default Layout;

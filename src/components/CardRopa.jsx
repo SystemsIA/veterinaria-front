@@ -25,8 +25,8 @@ const useStyles = makeStyles({
       padding: '0 1rem',
     },
   },
-
   cardActions: {
+    marginBottom: '1rem',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -39,8 +39,9 @@ const useStyles = makeStyles({
     color: '#fff',
     boxSizing: 'border-box',
     transition: '.5s',
+    border: '1px solid #EB537C',
     '& > span': {
-      fontSize: '10px',
+      fontSize: '12px',
     },
     '&:hover': {
       backgroundColor: '#fff',
@@ -53,7 +54,7 @@ function CardRopa(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={3}>
       <CardMedia className={classes.media} title="Image of animal">
         <img src={props.image} alt="animal" />
       </CardMedia>
@@ -67,7 +68,7 @@ function CardRopa(props) {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" className={classes.bgButton}>
+        <Button variant="outlined" size="small" className={classes.bgButton}>
           Compartir
         </Button>
       </CardActions>

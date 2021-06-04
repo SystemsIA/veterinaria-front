@@ -7,4 +7,6 @@ export {
   SERVICIOS,
   linksNAV,
   PERFIL,
+  MEDICO_INICIO,
+  MEDICO_TAREAS,
 } from './link';

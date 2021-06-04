@@ -5,8 +5,10 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 // Components
+import AppLogoLink from './AppLogoLink';
 import {
   AppBar,
+  Button,
   Divider,
   Drawer,
   IconButton,
@@ -17,9 +19,11 @@ import {
   Menu,
   MenuItem,
   Toolbar,
-  Typography,
   useMediaQuery,
 } from '@material-ui/core';
+
+// Routes
+import { INICIO, linksNAV, LOGIN, PERFIL } from '../routes';
 
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -29,14 +33,10 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import { INICIO, linksNAV, LOGIN, PERFIL } from '../routes';
-
-import logoApp from '../assets/img/logo-app.png';
-
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   menuButton: {
-    marginRight: theme.spacing(0),
+    marginRight: theme.spacing(1),
   },
   hide: {
     display: 'none',
@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-
   navMobile: {
     display: 'flex',
     flex: 'row',
@@ -66,50 +65,40 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   linkNav: {
-    color: '#000',
-    padding: theme.spacing(2),
+    padding: theme.spacing(1, 2),
     cursor: 'pointer',
     transition: '0.3s ease',
     textDecoration: 'none',
+    color: '#5e5c5c',
     '&:hover': {
       color: '#b35f97eb',
     },
   },
-
-  navLogo: {
-    cursor: 'pointer',
-    textDecoration: 'none',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
   activeClassName: {
-    color: '#000000',
-    fontWeight: 'bold',
-    backgroundColor: '#F3F3F1',
+    color: '#b35f97eb',
   },
-
-  sizeLogoImg: {
-    maxWidth: '54px',
-    maxHeight: '48px',
-    display: 'inline-block',
-    padding: theme.spacing(1),
-  },
-
   sideBarLinks: {
     cursor: 'pointer',
+    color: '#b35f97eb',
     textDecoration: 'none',
   },
-
   menuLinks: {
     '& > a': {
       textDecoration: 'none',
+      color: '#b35f97eb',
+    },
+  },
+  btnLogout: {
+    transition: '0.3s ease-out',
+    '&:hover': {
+      backgroundColor: '#ff7961',
+      color: '#fff',
     },
   },
 }));
 
-export default function MenuAppBar({ setOpen, open }) {
+function MenuAppBar() {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const theme = useTheme();
 
@@ -169,7 +158,9 @@ export default function MenuAppBar({ setOpen, open }) {
           <MenuItem onClick={handleClose} className={classes.menuLinks}>
             <Link to={PERFIL}>Perfil</Link>
           </MenuItem>
-          <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
+          <MenuItem className={classes.btnLogout} onClick={handleClose}>
+            <span>Cerrar Sesión</span>
+          </MenuItem>
         </Menu>
       ) : null}
     </Fragment>
@@ -191,37 +182,25 @@ export default function MenuAppBar({ setOpen, open }) {
             </IconButton>
           )}
 
-          <Link to={INICIO} className={classes.navLogo}>
-            <img
-              src={logoApp}
-              alt="Logo Veterinaria"
-              className={classes.sizeLogoImg}
-            />
-            <Typography variant="h4" noWrap>
-              APPVET
-            </Typography>
-          </Link>
+          <AppLogoLink to={INICIO} nameLink="Veterinaria" />
 
           <div className={classes.navMobile}>
             {isQueryMobile ? (
               <Fragment>
                 {linksNAV.map((link, index) => (
-                  <NavLink
+                  <Button
+                    key={index}
+                    display="inline"
+                    align="center"
+                    size="medium"
                     activeClassName={classes.activeClassName}
+                    className={classes.linkNav}
                     exact
                     to={link.path}
-                    key={index}
-                    className={classes.linkNav}
+                    component={NavLink}
                   >
-                    <Typography
-                      variant="h6"
-                      noWrap
-                      display="inline"
-                      align="center"
-                    >
-                      {link.name}
-                    </Typography>
-                  </NavLink>
+                    {link.name}
+                  </Button>
                 ))}
               </Fragment>
             ) : null}
@@ -239,16 +218,7 @@ export default function MenuAppBar({ setOpen, open }) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Link to={INICIO} className={classes.navLogo}>
-            <img
-              src={logoApp}
-              alt="Logo Veterinaria"
-              className={classes.sizeLogoImg}
-            />
-            <Typography variant="h5" noWrap>
-              APPVET
-            </Typography>
-          </Link>
+          <AppLogoLink small to={INICIO} nameLink="Veterinaria" />
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
@@ -276,3 +246,5 @@ export default function MenuAppBar({ setOpen, open }) {
     </Fragment>
   );
 }
+
+export default MenuAppBar;

@@ -1,5 +1,11 @@
 // Components
-import { Grid, makeStyles, Paper, useMediaQuery } from '@material-ui/core';
+import {
+  Grid,
+  makeStyles,
+  Paper,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core';
 import Layout from '../components/Layout';
 import perroMain from '../assets/img/perroMain.png';
 import perroTasa from '../assets/img/perritoTasa.png';
@@ -11,14 +17,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexGrow: 1,
   },
-
   withoutFlexBasis: {
     flexBasis: 'auto',
     '& img': {
       maxWidth: 350,
     },
   },
-
   paper: {
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
@@ -28,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InicioPage() {
+function InicioPage() {
   const classes = useStyles();
 
-  const isMobile = useMediaQuery('(min-width:470px)');
+  const isMobile = useMediaQuery('(min-width:550px)');
 
   return (
     <Layout title="Inicio">
@@ -49,25 +53,13 @@ export default function InicioPage() {
             >
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Itaque ea nulla quisquam sit in deleniti non dolor quidem
-                  accusantium, incidunt assumenda odit, eius quae illo a labore
-                  ullam consequatur! Maxime consequatur distinctio animi sint
-                  placeat! Praesentium consequuntur eum cupiditate nesciunt nemo
-                  unde exercitationem! Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Itaque ea nulla quisquam sit in deleniti non
-                  dolor quidem accusantium, incidunt assumenda odit, eius quae
-                  illo a labore ullam consequatur! Maxime consequatur distinctio
-                  animi sint placeat! Praesentium consequuntur eum cupiditate
-                  nesciunt nemo unde exercitationem!
+                  <Typography variant="h2" align="center" color="secondary">
+                    Veterinaria San Lorenzo
+                  </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={6} className={classes.withoutFlexBasis}>
-                <img
-                  src={perroMain}
-                  alt="Perrito Main"
-                  className={classes.sizeImg}
-                />
+                <img src={perroMain} alt="Perrito Main" />
               </Grid>
             </Grid>
             <Grid
@@ -81,11 +73,7 @@ export default function InicioPage() {
               wrap="wrap"
             >
               <Grid item xs={6} className={classes.withoutFlexBasis}>
-                <img
-                  src={perroTasa}
-                  alt="Perrito Main"
-                  className={classes.sizeImg}
-                />
+                <img src={perroTasa} alt="Perrito Main" />
               </Grid>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
@@ -160,3 +148,4 @@ export default function InicioPage() {
     </Layout>
   );
 }
+export default InicioPage;

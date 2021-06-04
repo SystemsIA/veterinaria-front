@@ -1,7 +1,6 @@
 import { Container, Typography } from '@material-ui/core';
 import Layout from '../components/Layout';
-
-export default function ServicioPage() {
+function ServicioPage() {
   return (
     <Layout title="Servicios">
       <Container>
@@ -17,3 +16,5 @@ export default function ServicioPage() {
     </Layout>
   );
 }
+
+export default ServicioPage;

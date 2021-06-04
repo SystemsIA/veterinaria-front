@@ -1,7 +1,7 @@
 import { Container, Typography } from '@material-ui/core';
 import Layout from '../components/Layout';
 
-export default function VeterinariaPage() {
+function VeterinariaPage() {
   return (
     <Layout title="Veterinaria San Lorenzo">
       <Container>
@@ -17,3 +17,4 @@ export default function VeterinariaPage() {
     </Layout>
   );
 }
+export default VeterinariaPage;

@@ -4,17 +4,15 @@ import { makeStyles } from '@material-ui/core';
 import phone from '../assets/img/imag6.png';
 import plate from '../assets/img/plato.png';
 
-// TODO: Implement styles
 const useStyles = makeStyles(() => ({
   footer: {
     display: 'block',
-    position: 'relative',
+
     bottom: '0',
     '& > *': {
       padding: '0.5rem 2rem',
     },
   },
-
   content: {
     display: 'flex',
     flexDirection: 'row',
@@ -28,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Footer() {
+function Footer() {
   const classes = useStyles();
 
   return (
@@ -40,3 +38,4 @@ export default function Footer() {
     </footer>
   );
 }
+export default Footer;

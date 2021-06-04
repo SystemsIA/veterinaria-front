@@ -1,22 +1,24 @@
+// Components
 import {
   Button,
   FormControl,
   Grid,
-  Input,
   InputLabel,
   makeStyles,
+  OutlinedInput,
   useMediaQuery,
 } from '@material-ui/core';
-
 import Layout from '../components/Layout';
 
+// Icons
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import LockIcon from '@material-ui/icons/Lock';
-//Image
+
+// Image
 import perroFlower from '../assets/img/perritoFlores.png';
 import gatoPensativo from '../assets/img/gatitoPensativo.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -60,6 +62,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
 
   formControl: {
@@ -67,22 +72,16 @@ const useStyles = makeStyles(() => ({
   },
 
   inputLabel: {
-    width: 300,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   btnLogin: {
-    fontWeight: 'bold',
-    backgroundColor: '#F2D852',
-    color: '#383631',
     width: '100%',
-    '&:hover': {
-      color: '#383631',
-    },
   },
 }));
+
 function LoginPage() {
   const classes = useStyles();
   const isMobileSize = useMediaQuery('(min-width:580px)');
@@ -105,18 +104,34 @@ function LoginPage() {
                   <img src={perroFlower} alt="Perro con flores" />
                 </div>
                 <form className={classes.form}>
-                  <FormControl margin="normal">
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                    color="primary"
+                  >
                     <InputLabel
-                      color="secondary"
-                      htmlFor="username"
+                      htmlFor="username-outlined"
                       className={classes.inputLabel}
                     >
                       <PermIdentityIcon /> <span>Nombre de usuario</span>
                     </InputLabel>
-                    <Input id="username" aria-describedby="Nombre de usuario" />
+                    <OutlinedInput
+                      id="username-outlined"
+                      aria-describedby="Nombre de usuario"
+                      label={
+                        <>
+                          <PermIdentityIcon />
+                          Nombre de usuario
+                        </>
+                      }
+                    />
                   </FormControl>
 
-                  <FormControl margin="normal">
+                  <FormControl
+                    variant="outlined"
+                    color="primary"
+                    className={classes.formControl}
+                  >
                     <InputLabel
                       htmlFor="password"
                       className={classes.inputLabel}
@@ -124,15 +139,22 @@ function LoginPage() {
                       <LockIcon />
                       <span>Contraseña de usuario</span>
                     </InputLabel>
-                    <Input
+                    <OutlinedInput
                       id="password"
                       aria-describedby="Contraseña"
                       type="password"
+                      label={
+                        <>
+                          <LockIcon />
+                          Contraseña de usuario
+                        </>
+                      }
                     />
                   </FormControl>
 
                   <Button
                     className={classes.btnLogin}
+                    color="primary"
                     size="large"
                     variant="contained"
                   >
@@ -148,17 +170,32 @@ function LoginPage() {
                   <img src={perroFlower} alt="Perro con flores" />
                 </div>
                 <form>
-                  <FormControl margin="normal" className={classes.formControl}>
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                  >
                     <InputLabel
-                      color="secondary"
                       htmlFor="username"
                       className={classes.inputLabel}
                     >
                       <PermIdentityIcon /> <span>Nombre de usuario</span>
                     </InputLabel>
-                    <Input id="username" aria-describedby="Nombre de usuario" />
+                    <OutlinedInput
+                      id="username"
+                      aria-describedby="Nombre de usuario"
+                      label={
+                        <>
+                          <PermIdentityIcon />
+                          Nombre de usuario
+                        </>
+                      }
+                    />
                   </FormControl>
-                  <FormControl margin="normal" className={classes.formControl}>
+
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                  >
                     <InputLabel
                       htmlFor="password"
                       className={classes.inputLabel}
@@ -166,10 +203,16 @@ function LoginPage() {
                       <LockIcon />
                       <span>Contraseña de usuario</span>
                     </InputLabel>
-                    <Input
+                    <OutlinedInput
                       id="password"
                       aria-describedby="Contraseña"
                       type="password"
+                      label={
+                        <>
+                          <LockIcon />
+                          Contraseña de usuario
+                        </>
+                      }
                     />
                   </FormControl>
 

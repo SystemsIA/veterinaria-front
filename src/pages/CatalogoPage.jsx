@@ -8,16 +8,16 @@ import gatoLibro from '../assets/img/gatitoLibro.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     flexGrow: 1,
+    flexDirection: 'column',
+    '& > *': {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
-
   withoutFlexBasis: {
     flexBasis: 'auto',
   },
-
   paper: {
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
@@ -26,23 +26,25 @@ const useStyles = makeStyles((theme) => ({
   sizeImgMobile: {
     width: '240px',
   },
-
   contentImage: {
-    margin: '1.8rem 2rem',
+    textAlign: 'center',
     '& > img': {
-      maxWidth: 180,
+      maxWidth: 345,
       minWidth: 50,
     },
   },
+  minWidthImg: {
+    width: 220,
+  },
 }));
 
-export default function CatalogoPage() {
+function CatalogoPage() {
   const classes = useStyles();
   const isMobileSize = useMediaQuery('(min-width:580px)');
   return (
     <Layout title="Catálogo">
       <div className={classes.root}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{ margin: 0 }}>
           {isMobileSize ? (
             <Fragment>
               <Grid
@@ -51,52 +53,35 @@ export default function CatalogoPage() {
                 xs={12}
                 spacing={2}
                 direction="row"
+                wrap="wrap"
                 justify="space-evenly"
               >
-                {[...Array(6).keys()].map((index) => (
-                  <ViewMobile
+                {[...Array(8).keys()].map((index) => (
+                  <ViewCardMobile
                     key={index}
                     xs={4}
                     className={classes.withoutFlexBasis}
                   />
                 ))}
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                spacing={2}
-                direction="row"
-                justify="space-evenly"
-              >
                 <Grid item xs={4} className={classes.withoutFlexBasis}>
                   <div className={classes.contentImage}>
                     <img src={gatoLibro} alt="gatoLibro" />
                   </div>
                 </Grid>
-                {[...Array(2).keys()].map((index) => (
-                  <ViewMobile
-                    key={index}
-                    xs={4}
-                    className={classes.withoutFlexBasis}
-                  />
-                ))}
               </Grid>
             </Fragment>
           ) : (
             <Fragment>
-              <Grid container item sm={6} spacing={2} direction="column">
-                {[...Array(6).keys()].map((index) => (
-                  <ViewMobile
-                    key={index}
-                    sm={3}
-                    className={classes.withoutFlexBasis}
-                  />
-                ))}
-              </Grid>
-              <Grid container item sm={6} spacing={2} direction="column">
-                {[...Array(2).keys()].map((index) => (
-                  <ViewMobile
+              <Grid
+                container
+                item
+                sm={6}
+                spacing={2}
+                direction="column"
+                alignItems="center"
+              >
+                {[...Array(8).keys()].map((index) => (
+                  <ViewCardMobile
                     key={index}
                     sm={3}
                     className={classes.withoutFlexBasis}
@@ -107,7 +92,11 @@ export default function CatalogoPage() {
                   sm={3}
                   className={`${classes.withoutFlexBasis} ${classes.contentImage}`}
                 >
-                  <img src={gatoLibro} alt="gatoLibro" />
+                  <img
+                    className={`${isMobileSize ? '' : classes.minWidthImg}`}
+                    src={gatoLibro}
+                    alt="gatoLibro"
+                  />
                 </Grid>
               </Grid>
             </Fragment>
@@ -118,7 +107,7 @@ export default function CatalogoPage() {
   );
 }
 
-const ViewMobile = ({ sm, xs, className }) =>
+const ViewCardMobile = ({ sm, xs, className }) =>
   sm ? (
     <Grid item sm={sm} className={className}>
       <CardRopa />
@@ -128,3 +117,5 @@ const ViewMobile = ({ sm, xs, className }) =>
       <CardRopa />
     </Grid>
   ) : null;
+
+export default CatalogoPage;

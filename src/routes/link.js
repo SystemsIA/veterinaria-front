@@ -1,9 +1,9 @@
-export const INICIO = '/';
-export const CATALOGO = '/catalogo';
-export const VETSANLOR = '/veterinaria-san-lorenzo';
-export const SERVICIOS = '/servicios';
-export const LOGIN = '/login';
-export const PERFIL = '/perfil';
+export const INICIO = '/',
+  CATALOGO = '/catalogo',
+  VETSANLOR = '/veterinaria-san-lorenzo',
+  SERVICIOS = '/servicios',
+  LOGIN = '/login',
+  PERFIL = '/perfil';
 
 export const linksNAV = [
   { name: 'Inicio', path: INICIO },
@@ -11,3 +11,7 @@ export const linksNAV = [
   { name: 'Veterinaria San Lorenzo', path: VETSANLOR },
   { name: 'Nuestros Servicios', path: SERVICIOS },
 ];
+
+// Links Médico
+export const MEDICO_TAREAS = '/medico/tareas',
+  MEDICO_INICIO = '/medico';
