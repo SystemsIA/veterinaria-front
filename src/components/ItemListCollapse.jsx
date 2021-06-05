@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { Collapse, ListItemIcon, makeStyles } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -30,6 +30,7 @@ function ItemListCollapse({ nameItem = '', image, children }) {
   const handleClick = () => {
     setOpen(!open);
   };
+  const wrapperRef = useRef();
   return (
     <Fragment>
       <ListItem
@@ -44,7 +45,7 @@ function ItemListCollapse({ nameItem = '', image, children }) {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List component="div" disablePadding innerRef={wrapperRef}>
           {children}
         </List>
       </Collapse>

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CatalogoPage() {
   const classes = useStyles();
-  const isMobileSize = useMediaQuery('(min-width:780px)');
+  const isMobileSize = useMediaQuery('(min-width:520px)');
   return (
     <Layout title="Catálogo">
       <div className={classes.root}>

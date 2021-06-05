@@ -1,6 +1,10 @@
+import { Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 // Components
 import {
   Button,
+  CircularProgress,
+  Container,
   FormControl,
   Grid,
   InputLabel,
@@ -17,6 +21,9 @@ import LockIcon from '@material-ui/icons/Lock';
 // Image
 import perroFlower from '../assets/img/perritoFlores.png';
 import gatoPensativo from '../assets/img/gatitoPensativo.png';
+import { useForm } from '../hooks/useForm';
+import { useAuth } from '../context/AuthContext';
+import AlertCustom from '../components/AlertCustom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
 
   inputLabel: {
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
   },
 
@@ -82,20 +88,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LoginPage() {
+function isValidCredentials(user) {
+  const userLogin = {
+    username: 'user',
+    password: '123',
+  };
+  if (
+    user.username === userLogin.username &&
+    user.password === userLogin.password
+  ) {
+    return true;
+  }
+}
+
+function LoginPage(props) {
+  const { formData, handleChange } = useForm({ username: '', password: '' });
+  const { state, handleLogin, handleError } = useAuth();
+
   const classes = useStyles();
+
   const isMobileSize = useMediaQuery('(min-width:580px)');
+
+  const handleSubmitLogin = (e) => {
+    e.preventDefault();
+    if (isValidCredentials(formData)) {
+      handleLogin(formData);
+    } else {
+      handleError('Error en las credenciales');
+    }
+  };
+
+  if (state.isLogin) {
+    return <Redirect to={props.history.goBack() || '/'} />;
+  }
+
   return (
     <Layout title="Iniciar sesión">
       <div className={classes.root}>
         <Grid container spacing={2}>
           {isMobileSize ? (
-            <Grid
-              container
-              item
-              xs={12}
-              direction={isMobileSize ? 'row' : 'column'}
-            >
+            <Grid container item xs={12} direction="row">
               <Grid item xs={6} className={classes.imgPageLogin}>
                 <img src={gatoPensativo} alt="Gato Pensativo" />
               </Grid>
@@ -103,64 +135,80 @@ function LoginPage() {
                 <div className={classes.imgLogin}>
                   <img src={perroFlower} alt="Perro con flores" />
                 </div>
-                <form className={classes.form}>
-                  <FormControl
-                    variant="outlined"
-                    className={classes.formControl}
-                    color="primary"
-                  >
-                    <InputLabel
-                      htmlFor="username-outlined"
-                      className={classes.inputLabel}
+                <Container>
+                  <form className={classes.form} onSubmit={handleSubmitLogin}>
+                    {state.loading ? (
+                      <CircularProgress color="primary" />
+                    ) : state.isError ? (
+                      <AlertCustom
+                        typeAlert="error"
+                        variant="outlined"
+                        message={state.message}
+                      />
+                    ) : null}
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
+                      color="primary"
                     >
-                      <PermIdentityIcon /> <span>Nombre de usuario</span>
-                    </InputLabel>
-                    <OutlinedInput
-                      id="username-outlined"
-                      aria-describedby="Nombre de usuario"
-                      label={
-                        <>
-                          <PermIdentityIcon />
-                          Nombre de usuario
-                        </>
-                      }
-                    />
-                  </FormControl>
+                      <InputLabel
+                        htmlFor="username-outlined"
+                        className={classes.inputLabel}
+                      >
+                        <PermIdentityIcon /> <span>Nombre de usuario</span>
+                      </InputLabel>
+                      <OutlinedInput
+                        onChange={handleChange}
+                        id="username-outlined"
+                        aria-describedby="Nombre de usuario"
+                        name="username"
+                        label={
+                          <Fragment>
+                            <PermIdentityIcon />
+                            Nombre de usuario
+                          </Fragment>
+                        }
+                      />
+                    </FormControl>
 
-                  <FormControl
-                    variant="outlined"
-                    color="primary"
-                    className={classes.formControl}
-                  >
-                    <InputLabel
-                      htmlFor="password"
-                      className={classes.inputLabel}
+                    <FormControl
+                      variant="outlined"
+                      color="primary"
+                      className={classes.formControl}
                     >
-                      <LockIcon />
-                      <span>Contraseña de usuario</span>
-                    </InputLabel>
-                    <OutlinedInput
-                      id="password"
-                      aria-describedby="Contraseña"
-                      type="password"
-                      label={
-                        <>
-                          <LockIcon />
-                          Contraseña de usuario
-                        </>
-                      }
-                    />
-                  </FormControl>
+                      <InputLabel
+                        htmlFor="password"
+                        className={classes.inputLabel}
+                      >
+                        <LockIcon />
+                        <span>Contraseña de usuario</span>
+                      </InputLabel>
+                      <OutlinedInput
+                        id="password"
+                        aria-describedby="Contraseña"
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        label={
+                          <Fragment>
+                            <LockIcon />
+                            Contraseña de usuario
+                          </Fragment>
+                        }
+                      />
+                    </FormControl>
 
-                  <Button
-                    className={classes.btnLogin}
-                    color="primary"
-                    size="large"
-                    variant="contained"
-                  >
-                    Ingresar
-                  </Button>
-                </form>
+                    <Button
+                      className={classes.btnLogin}
+                      color="primary"
+                      size="large"
+                      variant="contained"
+                      type="submit"
+                    >
+                      Ingresar
+                    </Button>
+                  </form>
+                </Container>
               </Grid>
             </Grid>
           ) : (
@@ -169,61 +217,63 @@ function LoginPage() {
                 <div className={classes.imgLogin}>
                   <img src={perroFlower} alt="Perro con flores" />
                 </div>
-                <form>
-                  <FormControl
-                    variant="outlined"
-                    className={classes.formControl}
-                  >
-                    <InputLabel
-                      htmlFor="username"
-                      className={classes.inputLabel}
+                <Container>
+                  <form className={classes.form}>
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
                     >
-                      <PermIdentityIcon /> <span>Nombre de usuario</span>
-                    </InputLabel>
-                    <OutlinedInput
-                      id="username"
-                      aria-describedby="Nombre de usuario"
-                      label={
-                        <>
-                          <PermIdentityIcon />
-                          Nombre de usuario
-                        </>
-                      }
-                    />
-                  </FormControl>
+                      <InputLabel
+                        htmlFor="username"
+                        className={classes.inputLabel}
+                      >
+                        <PermIdentityIcon /> <span>Nombre de usuario</span>
+                      </InputLabel>
+                      <OutlinedInput
+                        id="username"
+                        aria-describedby="Nombre de usuario"
+                        label={
+                          <Fragment>
+                            <PermIdentityIcon />
+                            Nombre de usuario
+                          </Fragment>
+                        }
+                      />
+                    </FormControl>
 
-                  <FormControl
-                    variant="outlined"
-                    className={classes.formControl}
-                  >
-                    <InputLabel
-                      htmlFor="password"
-                      className={classes.inputLabel}
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
                     >
-                      <LockIcon />
-                      <span>Contraseña de usuario</span>
-                    </InputLabel>
-                    <OutlinedInput
-                      id="password"
-                      aria-describedby="Contraseña"
-                      type="password"
-                      label={
-                        <>
-                          <LockIcon />
-                          Contraseña de usuario
-                        </>
-                      }
-                    />
-                  </FormControl>
+                      <InputLabel
+                        htmlFor="password"
+                        className={classes.inputLabel}
+                      >
+                        <LockIcon />
+                        <span>Contraseña de usuario</span>
+                      </InputLabel>
+                      <OutlinedInput
+                        id="password"
+                        aria-describedby="Contraseña"
+                        type="password"
+                        label={
+                          <Fragment>
+                            <LockIcon />
+                            Contraseña de usuario
+                          </Fragment>
+                        }
+                      />
+                    </FormControl>
 
-                  <Button
-                    className={classes.btnLogin}
-                    size="large"
-                    variant="contained"
-                  >
-                    Ingresar
-                  </Button>
-                </form>
+                    <Button
+                      className={classes.btnLogin}
+                      size="large"
+                      variant="contained"
+                    >
+                      Ingresar
+                    </Button>
+                  </form>
+                </Container>
                 <div className={classes.imgLogin}>
                   <img src={gatoPensativo} alt="Gato Pensativo" />
                 </div>

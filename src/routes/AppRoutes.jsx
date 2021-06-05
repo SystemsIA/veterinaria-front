@@ -4,11 +4,11 @@ import { LinearProgress, makeStyles } from '@material-ui/core';
 
 import * as LINKS from './link';
 import MenuAppBar from '../components/MenuAppBar';
-import Error404 from '../pages/errors/Error404';
 
 // Pages
+import Error404 from '../pages/errors/Error404';
 
-// PagesLazy
+// Pages - Lazy
 const InicioPage = lazy(() => import('../pages/InicioPage'));
 const CatalogoPage = lazy(() => import('../pages/CatalogoPage'));
 const VeterinariaPage = lazy(() => import('../pages/VeterinariaPage'));

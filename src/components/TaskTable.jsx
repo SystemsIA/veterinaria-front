@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 function TaskTable() {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -40,7 +40,7 @@ function TaskTable() {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} elevation={0}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -60,20 +60,18 @@ function TaskTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.orden}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+              .map((row) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.orden}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

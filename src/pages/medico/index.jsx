@@ -1,22 +1,28 @@
 import Layout from '../../components/Layout';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography, useMediaQuery } from '@material-ui/core';
 import { MEDICO_TAREAS } from '../../routes';
 
-function index() {
+function Index() {
+  const isMobileSize = useMediaQuery('(min-width:400px)');
   return (
     <Layout title="Inicio Tareas">
-      <Typography align="center" variant="h4">
-        Inicio Página
-      </Typography>
-      <Typography variant="h1" color="primary" align="center">
-        Bienvenido Doctor
-      </Typography>
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
       >
+        <Typography align="center" variant="h4">
+          Inicio Página
+        </Typography>
+        <Typography
+          variant={isMobileSize ? 'h1' : 'h4'}
+          color="primary"
+          align="center"
+        >
+          Bienvenido Doctor
+        </Typography>
+
         <Button color="secondary" variant="contained" href={MEDICO_TAREAS}>
           Revisar tareas
         </Button>
@@ -25,4 +31,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

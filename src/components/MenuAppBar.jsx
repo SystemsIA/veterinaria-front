@@ -16,14 +16,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Menu,
-  MenuItem,
   Toolbar,
   useMediaQuery,
 } from '@material-ui/core';
 
 // Routes
-import { INICIO, linksNAV, LOGIN, PERFIL } from '../routes';
+import { INICIO, linksNAV } from '../routes';
 
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -31,7 +29,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MenuBtnUser from './MenuBtnUser';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -83,19 +81,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#b35f97eb',
     textDecoration: 'none',
   },
-  menuLinks: {
-    '& > a': {
-      textDecoration: 'none',
-      color: '#b35f97eb',
-    },
-  },
-  btnLogout: {
-    transition: '0.3s ease-out',
-    '&:hover': {
-      backgroundColor: '#ff7961',
-      color: '#fff',
-    },
-  },
 }));
 
 function MenuAppBar() {
@@ -111,61 +96,7 @@ function MenuAppBar() {
     setOpen(false);
   };
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openLogin = Boolean(anchorEl);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const isQueryMobile = useMediaQuery('(min-width:870px)');
-  let isLogin = true;
-  const ButtonAuthLogin = (
-    <Fragment>
-      <IconButton
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenu}
-        color="inherit"
-      >
-        <AccountCircleIcon />
-      </IconButton>
-      {openLogin ? (
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={openLogin}
-          onClose={handleClose}
-        >
-          {isLogin ? (
-            <MenuItem className={classes.menuLinks}>
-              <Link to={LOGIN}>Iniciar Sesión</Link>
-            </MenuItem>
-          ) : null}
-          <MenuItem onClick={handleClose} className={classes.menuLinks}>
-            <Link to={PERFIL}>Perfil</Link>
-          </MenuItem>
-          <MenuItem className={classes.btnLogout} onClick={handleClose}>
-            <span>Cerrar Sesión</span>
-          </MenuItem>
-        </Menu>
-      ) : null}
-    </Fragment>
-  );
 
   return (
     <Fragment>
@@ -205,7 +136,7 @@ function MenuAppBar() {
                 ))}
               </Fragment>
             ) : null}
-            {ButtonAuthLogin}
+            <MenuBtnUser isUser />
           </div>
         </Toolbar>
       </AppBar>

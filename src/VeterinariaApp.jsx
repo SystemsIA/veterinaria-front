@@ -4,15 +4,18 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 
 import { theme } from './mui/theme';
 import { AppRoutes, INICIO } from './routes';
+import { AuthProvider } from './context/AuthContext';
 
 function VeterinariaApp() {
   return (
-    <BrowserRouter basename={INICIO}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppRoutes />
-      </ThemeProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter basename={INICIO}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <AppRoutes />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

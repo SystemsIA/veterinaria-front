@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Components
@@ -7,26 +6,24 @@ import ItemListCollapse from '../../components/ItemListCollapse';
 import TaskTable from '../../components/TaskTable';
 import AppLogoLink from '../../components/AppLogoLink';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   AppBar,
-  Box,
   Button,
-  Container,
   Drawer,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Menu,
-  MenuItem,
-  Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
 
 // Icons
 import StarBorder from '@material-ui/icons/StarBorder';
-import MenuIcon from '@material-ui/icons/Menu';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 // Routes
 import { MEDICO_INICIO } from '../../routes';
@@ -37,6 +34,8 @@ import imgTask from '../../assets/img/imag4.png';
 import imgClient from '../../assets/img/imag3.png';
 import imgMore from '../../assets/img/iconMas.png';
 import imgBone from '../../assets/img/iconHuesito.png';
+import MenuBtnUser from '../../components/MenuBtnUser';
+import RegisterUserForm from '../../components/task-doctor/RegisterUserForm';
 
 const drawerWidth = 240;
 
@@ -110,27 +109,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MedicoTaskPage() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const MenuOptions = (
-    <Menu
-      id="simple-menu"
-      anchorEl={anchorEl}
-      keepMounted
-      open={Boolean(anchorEl)}
-      onClose={handleClose}
-    >
-      <MenuItem onClick={handleClose}>Profile</MenuItem>
-      <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem>
-    </Menu>
-  );
   return (
     <div className={classes.root}>
       <AppBar
@@ -141,14 +120,7 @@ function MedicoTaskPage() {
       >
         <Toolbar className={classes.toolbar}>
           <AppLogoLink to={MEDICO_INICIO} nameLink="Veterinaria | Médico" small>
-            <Button
-              onClick={handleClick}
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-            >
-              <MenuIcon />
-            </Button>
-            {anchorEl ? MenuOptions : null}
+            <MenuBtnUser side="left" />
           </AppLogoLink>
 
           <div>
@@ -196,21 +168,9 @@ function MedicoTaskPage() {
             <ItemListCollapse nameItem="Clientes" image={imgClient}>
               <ListItem button className={classes.nested}>
                 <ListItemIcon>
-                  <StarBorder />
+                  <PersonAddIcon />
                 </ListItemIcon>
-                <ListItemText primary="Starred" />
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
+                <ListItemText primary="Registrar cliente" />
               </ListItem>
             </ItemListCollapse>
             <ItemListCollapse nameItem="Inventario" image={imgTask}>
@@ -227,27 +187,40 @@ function MedicoTaskPage() {
       <Layout title="Medico | Dr. Doctor">
         <Toolbar />
         <div className={classes.gridRoot}>
-          <Paper className={classes.paper}>
-            <Container>
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-between"
-              >
-                <div>
-                  <Typography variant="h4">Buen Día Doctor</Typography>
-                  <span>Estas son sus tareas pendientes</span>
-                </div>
+          <Accordion>
+            <AccordionSummary
+              aria-controls="view-task"
+              id="view-task"
+              expandIcon={
                 <Button color="primary" className={classes.imgSize}>
                   <img src={imgMore} alt="Tareas Doctor" />
                 </Button>
-              </Box>
-            </Container>
-          </Paper>
-          <br />
-          <Box justifyContent="center">
-            <TaskTable />
-          </Box>
+              }
+            >
+              <Typography variant="h6">
+                Buen Día Doctor <br /> Estas son sus tareas pendientes
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <TaskTable />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              aria-controls="create-task"
+              id="create-task"
+              expandIcon={
+                <Button color="primary" className={classes.imgSize}>
+                  <img src={imgMore} alt="Tareas Doctor" />
+                </Button>
+              }
+            >
+              <Typography variant="h6">Crear tareas</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <RegisterUserForm />
+            </AccordionDetails>
+          </Accordion>
         </div>
       </Layout>
     </div>
