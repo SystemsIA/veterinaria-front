@@ -1,40 +1,42 @@
 @import './font.css';
+
 *,
 ::before,
 ::after {
-  font-family: 'Assistant', sans-serif;
+	font-family: 'Assistant', sans-serif;
 }
+
 body {
-  background: #f3f3f1;
-  height: 100vh;
+	background: #f3f3f1;
+	height: 100vh;
 }
 
 .perr__elipse {
-  position: absolute;
-  width: 1001px;
-  height: 528px;
-  right: -502.38px;
-  border-radius: 60%;
-  top: 70px;
-  background: #f2d852;
+	position: absolute;
+	width: 1001px;
+	height: 528px;
+	right: -502.38px;
+	border-radius: 60%;
+	top: 70px;
+	background: #f2d852;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+	background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 50px;
+	background: #888;
+	border-radius: 50px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #f2d852;
+	background: #f2d852;
 }
