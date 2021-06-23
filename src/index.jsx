@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import VeterinariaApp from './VeterinariaApp';
-import reportWebVitals from './reportWebVitals';
-import './styles/index.css';
+import VeterinariaApp from 'VeterinariaApp';
+import reportWebVitals from 'reportWebVitals';
+import 'styles/index.css';
 
-const elDOM = document.getElementById('veterinaria-app');
+const rootDOM = document.getElementById('veterinaria-app');
 
 const AppRoot = (
-  <React.StrictMode>
-    <VeterinariaApp />
-  </React.StrictMode>
+	<React.StrictMode>
+		<VeterinariaApp />
+	</React.StrictMode>
 );
 
-if (elDOM.hasChildNodes()) ReactDOM.hydrate(AppRoot, elDOM);
-else ReactDOM.render(AppRoot, elDOM);
+ReactDOM.render(AppRoot, rootDOM);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

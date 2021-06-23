@@ -1,22 +1,21 @@
 import { BrowserRouter } from 'react-router-dom';
-
+import { AppRoutes, INICIO } from 'routes';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 
-import { theme } from './mui/theme';
-import { AppRoutes, INICIO } from './routes';
-import { AuthProvider } from './context/AuthContext';
+import theme from 'mui/theme';
+
+import MenuAppBar from 'components/MenuAppBar';
 
 function VeterinariaApp() {
-  return (
-    <AuthProvider>
-      <BrowserRouter basename={INICIO}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <AppRoutes />
-        </ThemeProvider>
-      </BrowserRouter>
-    </AuthProvider>
-  );
+	return (
+		<BrowserRouter basename={INICIO}>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+				<MenuAppBar />
+				<AppRoutes />
+			</ThemeProvider>
+		</BrowserRouter>
+	);
 }
 
 export default VeterinariaApp;
