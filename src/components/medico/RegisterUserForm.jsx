@@ -30,8 +30,6 @@ function RegisterUserForm({ width }) {
 		console.log(formData);
 	};
 
-	console.log(formData);
-
 	return (
 		<form
 			onChange={handleChange}
