@@ -8,7 +8,6 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		width: '100%',
 		'& > * + *': {
 			marginTop: theme.spacing(2),
 		},
@@ -23,36 +22,36 @@ function AlertCustom({
 	variant = 'filled',
 	message = '',
 	handler = undefined,
+	children,
 }) {
 	const classes = useStyles();
 	const [open, setOpen] = useState(true);
 
 	return (
-		<div className={classes.root}>
-			<Collapse in={open}>
-				<Alert
-					severity={typeAlert}
-					variant={variant}
-					color={typeAlert}
-					className={classes.textColor}
-					action={
-						<IconButton
-							aria-label="close"
-							color="inherit"
-							size="small"
-							onClick={() => {
-								setOpen(!open);
-								handler?.();
-							}}
-						>
-							<CloseIcon fontSize="inherit" />
-						</IconButton>
-					}
-				>
-					{message}
-				</Alert>
-			</Collapse>
-		</div>
+		<Collapse in={open}>
+			<Alert
+				severity={typeAlert}
+				variant={variant}
+				color={typeAlert}
+				className={classes.textColor}
+				action={
+					<IconButton
+						aria-label="close"
+						color="inherit"
+						size="small"
+						onClick={() => {
+							setOpen(!open);
+							handler?.();
+						}}
+					>
+						<CloseIcon fontSize="inherit" />
+					</IconButton>
+				}
+			>
+				{message}
+				{children}
+			</Alert>
+		</Collapse>
 	);
 }
 

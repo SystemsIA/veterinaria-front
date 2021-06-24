@@ -18,5 +18,6 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
+		marginRight: 15,
 	},
 }));

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 
-import logoApp from '../assets/img/logo-app.png';
+import logoApp from 'assets/img/logo-app.png';
 
 // Styles
 import useStyles from './AppLogoLink.styles';

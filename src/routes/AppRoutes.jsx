@@ -1,13 +1,15 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { LinearProgress, makeStyles } from '@material-ui/core';
+import { Route, Switch, useLocation } from 'react-router-dom';
 
-import * as LINKS from 'routes';
+// Components
+import MenuAppBar from 'components/MenuAppBar';
+import Fallback from 'components/Fallback';
 
 // Routes
 import MedicoRoutes from 'routes/MedicoRoutes';
 import UserRoutes from 'routes/UserRoutes';
 import ProtectedRoute from 'routes/ProtectedRoute';
+import * as LINKS from 'routes';
 
 // Pages
 import NotFoundPage from 'pages/errors/NotFoundPage';
@@ -21,30 +23,14 @@ const VeterinariaPage = lazy(() => import('pages/VeterinariaPage'));
 const ServicioPage = lazy(() => import('pages/ServicioPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 
-// Custom Styles
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: '100%',
-		position: 'fixed',
-		top: 0,
-		'& > * + *': {
-			marginTop: theme.spacing(2),
-		},
-	},
-}));
-
-const Fallback = () => {
-	const classes = useStyles();
-	return (
-		<div className={classes.root}>
-			<LinearProgress color="primary" />
-		</div>
-	);
-};
-
 export function AppRoutes() {
+	const location = useLocation();
+
 	return (
 		<Suspense fallback={<Fallback />}>
+			{location.pathname === `/medico${LINKS.MEDICO_TAREAS}` ? null : (
+				<MenuAppBar />
+			)}
 			<Switch>
 				<Route exact path={LINKS.INICIO} component={InicioPage} />
 				<Route path={LINKS.CATALOGO} component={CatalogoPage} />

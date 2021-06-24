@@ -1,21 +1,18 @@
-import { Fragment } from 'react';
-
 import { Redirect } from 'react-router-dom';
 
 import * as LINKS from 'routes';
 // Components
+import InputForm from 'components/InputForm';
+import AlertCustom from 'components/AlertCustom';
+import Layout from 'components/Layout';
 import {
 	Button,
 	CircularProgress,
 	Container,
-	FormControl,
 	Grid,
-	InputLabel,
 	OutlinedInput,
 	useMediaQuery,
 } from '@material-ui/core';
-import AlertCustom from 'components/AlertCustom';
-import Layout from 'components/Layout';
 
 // Icons
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
@@ -31,25 +28,10 @@ import useStyles from './LoginPage.styles';
 // Images
 import perroFlower from 'assets/img/perritoFlores.png';
 import gatoPensativo from 'assets/img/gatitoPensativo.png';
-
-const u = {
-	username: 'user',
-	password: '123',
-};
-const m = {
-	username: 'medico',
-	password: '123',
-};
-
-function isValidCredentials(user) {
-	if (user.username === u.username && user.password === u.password) return true;
-	else return user.username === m.username && user.password === m.password;
-}
-const isDoctor = (r) => r === 'medico';
-
+const isDoctor = (r) => r !== 'CLIENTE';
 function LoginPage() {
 	const { formData, handleChange } = useFormInput({
-		username: '',
+		email: '',
 		password: '',
 	});
 	const auth = useAuth();
@@ -58,17 +40,8 @@ function LoginPage() {
 
 	const handleSubmitLogin = (e) => {
 		e.preventDefault();
-		if (isValidCredentials(formData)) {
-			let u = {
-				token: 'my-token',
-				role: isDoctor(formData.username) ? 'medico' : 'user',
-				username: formData.username,
-				email: 'user@mail.com',
-			};
-			auth.loginAction(u);
-		} else {
-			auth.errorAction('Error en las credenciales');
-		}
+
+		auth.loginAction(formData);
 	};
 
 	if (auth.isLogin) {
@@ -76,7 +49,7 @@ function LoginPage() {
 			<Redirect
 				exact
 				from={LINKS.LOGIN}
-				to={isDoctor(auth?.user?.role) ? LINKS.MEDICO_INICIO : LINKS.USER}
+				to={isDoctor(auth.user?.tipoUsuario) ? LINKS.MEDICO_INICIO : LINKS.USER}
 			/>
 		);
 	}
@@ -91,6 +64,7 @@ function LoginPage() {
 						xs={12}
 						sm={isMobileSize ? 12 : 6}
 						direction={isMobileSize ? 'row' : 'column'}
+						justify="center"
 					>
 						<Grid
 							item
@@ -100,12 +74,22 @@ function LoginPage() {
 						>
 							<img src={gatoPensativo} alt="Gato Pensativo" />
 						</Grid>
-						<Grid item xs={isMobileSize ? 6 : 12} sm={isMobileSize ? 6 : 3}>
+						<Grid
+							item
+							xs={isMobileSize ? 6 : 12}
+							md={isMobileSize ? 6 : 12}
+							sm={isMobileSize ? 6 : 3}
+						>
 							<div className={classes.imgLogin}>
 								<img src={perroFlower} alt="Perro con flores" />
 							</div>
 							<Container>
-								<form className={classes.form} onSubmit={handleSubmitLogin}>
+								<form
+									autoComplete="off"
+									className={classes.form}
+									onChange={handleChange}
+									onSubmit={handleSubmitLogin}
+								>
 									{auth.loading ? (
 										<CircularProgress color="primary" />
 									) : auth.isError ? (
@@ -116,60 +100,28 @@ function LoginPage() {
 											handler={auth.resetAction}
 										/>
 									) : null}
-									<FormControl
-										variant="outlined"
-										className={classes.formControl}
-										color="primary"
-									>
-										<InputLabel
-											htmlFor="username-outlined"
-											className={classes.inputLabel}
-										>
-											<PermIdentityIcon /> <span>Nombre de usuario</span>
-										</InputLabel>
-										<OutlinedInput
-											onChange={handleChange}
-											id="username-outlined"
-											aria-describedby="Nombre de usuario"
-											name="username"
-											label={
-												<Fragment>
-													<PermIdentityIcon />
-													Nombre de usuario
-												</Fragment>
-											}
-										/>
-									</FormControl>
 
-									<FormControl
-										variant="outlined"
-										color="primary"
-										className={classes.formControl}
-									>
-										<InputLabel
-											htmlFor="password"
-											className={classes.inputLabel}
-										>
-											<LockIcon />
-											<span>Contraseña de usuario</span>
-										</InputLabel>
-										<OutlinedInput
-											id="password"
-											aria-describedby="Contraseña"
-											type="password"
-											name="password"
-											onChange={handleChange}
-											autoComplete="false"
-											label={
-												<Fragment>
-													<LockIcon />
-													Contraseña de usuario
-												</Fragment>
-											}
-										/>
-									</FormControl>
+									<InputForm
+										as={OutlinedInput}
+										required
+										idName="email-outlined"
+										type="email"
+										name="email"
+										icon={PermIdentityIcon}
+										label="Correo de usuario"
+									/>
+
+									<InputForm
+										as={OutlinedInput}
+										required
+										type="password"
+										idName="password-outlined"
+										name="password"
+										icon={LockIcon}
+										label="Contraseña de usuario"
+									/>
+
 									<Button
-										className={classes.btnLogin}
 										color="primary"
 										size="large"
 										variant="contained"

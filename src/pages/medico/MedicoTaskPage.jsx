@@ -14,7 +14,7 @@ import {
 // Images
 import imgMore from 'assets/img/iconMas.png';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	imgSize: {
 		'& img': {
 			maxWidth: 40,
@@ -56,7 +56,7 @@ function MedicoTaskPage() {
 						</Button>
 					}
 				>
-					<Typography variant="h6">Crear tareas</Typography>
+					<Typography variant="h6">Registrar nuevo Cliente</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
 					<RegisterUserForm />

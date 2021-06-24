@@ -12,11 +12,14 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
+// Colors
+import * as colors from '@material-ui/core/colors';
+
 const useStyles = makeStyles(() => ({
 	menuLinks: {
 		'& > a': {
 			textDecoration: 'none',
-			color: '#b35f97eb',
+			color: colors.purple['700'],
 			display: 'block',
 			width: '100%',
 		},
@@ -24,20 +27,22 @@ const useStyles = makeStyles(() => ({
 	btnLogout: {
 		transition: '0.3s ease-out',
 		'&:hover': {
-			backgroundColor: '#ff7961',
+			backgroundColor: colors.red['400'],
 			color: '#fff',
 		},
 	},
 }));
 
-function MenuBtnUser({ isUser, side = 'right' }) {
-	const { isLogin, logoutAction } = useAuth();
+const isDoctor = (r) => r !== 'CLIENTE';
+
+function MenuBtnUser({ isUser, side = 'right', as: CI, ...rest }) {
+	const auth = useAuth();
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const openLogin = Boolean(anchorEl);
 
-	const handleMenu = (event) => {
-		setAnchorEl(event.currentTarget);
+	const handleMenu = (e) => {
+		setAnchorEl(e.currentTarget);
 	};
 
 	const handleClose = () => {
@@ -53,7 +58,7 @@ function MenuBtnUser({ isUser, side = 'right' }) {
 				onClick={handleMenu}
 				color="inherit"
 			>
-				{isUser ? <AccountCircleIcon /> : <MenuIcon />}
+				{isUser ? <AccountCircleIcon /> : CI ? <CI {...rest} /> : <MenuIcon />}
 			</IconButton>
 
 			<Menu
@@ -71,19 +76,23 @@ function MenuBtnUser({ isUser, side = 'right' }) {
 				open={openLogin}
 				onClose={handleClose}
 			>
-				{isLogin ? (
+				{auth.isLogin ? (
 					<div>
 						<MenuItem onClick={handleClose} className={classes.menuLinks}>
 							<Link to={LINKS.PERFIL}>Perfil</Link>
 						</MenuItem>
-						<MenuItem className={classes.menuLinks}>
-							<Link to="/medico">Revisar tareas</Link>
-						</MenuItem>
+						{isDoctor(auth.user?.tipoUsuario) ? (
+							<MenuItem className={classes.menuLinks}>
+								<Link to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_TAREAS}`}>
+									Revisar tareas
+								</Link>
+							</MenuItem>
+						) : null}
 						<MenuItem
 							className={classes.btnLogout}
 							onClick={() => {
 								handleClose();
-								logoutAction();
+								auth.logoutAction();
 							}}
 						>
 							<span>Cerrar Sesión</span>

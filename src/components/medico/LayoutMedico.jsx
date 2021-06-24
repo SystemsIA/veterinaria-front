@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import clsx from 'clsx';
 import {
 	Toolbar,
 	AppBar,
@@ -7,14 +9,21 @@ import {
 	ListItemIcon,
 	Drawer,
 	List,
+	IconButton,
+	useTheme,
 } from '@material-ui/core';
 import AppLogoLink from 'components/AppLogoLink';
-import MenuBtnUser from 'components/MenuBtnUser';
 
 import StarBorder from '@material-ui/icons/StarBorder';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
+// Icons
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+// Styles
 import dogFlower from 'assets/img/perritoFlores.png';
 import imgTask from 'assets/img/imag4.png';
 import imgClient from 'assets/img/imag3.png';
@@ -22,20 +31,35 @@ import imgBone from 'assets/img/iconHuesito.png';
 
 import * as LINKS from 'routes';
 import ItemListCollapse from 'components/ItemListCollapse';
-import Layout from 'components/Layout';
 
 // Styles
 import useStyles from './LayoutMedico.styles';
+import useTitleDocument from 'hooks/useTitleDocument';
+import MenuBtnUser from 'components/MenuBtnUser';
 
 function LayoutMedico({ title = 'Dr. Doctor', children }) {
 	const classes = useStyles();
+	const theme = useTheme();
+
+	useTitleDocument(title);
+
+	const [open, setOpen] = useState(false);
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
 	return (
 		<div className={classes.root}>
 			<AppBar
 				position="fixed"
-				className={classes.appBar}
 				color="inherit"
 				elevation={1}
+				className={clsx(classes.appBar, {
+					[classes.appBarShift]: open,
+				})}
 			>
 				<Toolbar className={classes.toolbar}>
 					<AppLogoLink
@@ -43,27 +67,43 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 						nameLink="Veterinaria | Médico"
 						small
 					>
-						<MenuBtnUser side="left" />
+						<IconButton
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							className={clsx(classes.menuButton, open && classes.hide)}
+						>
+							<MenuIcon />
+						</IconButton>
 					</AppLogoLink>
 
 					<div>
 						<Button className={classes.imgSize}>
 							<img src={imgBone} alt="Hueso Imagen" />
 						</Button>
-						<Button>
-							<SettingsOutlinedIcon fontSize="large" />
-						</Button>
+						<MenuBtnUser as={SettingsOutlinedIcon} fontSize="large" />
 					</div>
 				</Toolbar>
 			</AppBar>
 			<Drawer
 				className={classes.drawer}
-				variant="permanent"
+				variant="persistent"
+				anchor="left"
+				open={open}
 				classes={{
 					paper: classes.drawerPaper,
 				}}
 			>
-				<Toolbar />
+				<div className={classes.drawerHeader}>
+					<IconButton onClick={handleDrawerClose}>
+						{theme.direction === 'ltr' ? (
+							<ChevronLeftIcon />
+						) : (
+							<ChevronRightIcon />
+						)}
+					</IconButton>
+				</div>
 				<div className={classes.drawerContainer}>
 					<div className={classes.nameDoctorLogo}>
 						<div className={classes.roundedLogo}>
@@ -107,10 +147,14 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 					</List>
 				</div>
 			</Drawer>
-			<Layout title={`Medico | ${title}`}>
-				<Toolbar />
-				<div className={classes.contentChildren}>{children}</div>
-			</Layout>
+			<main
+				className={clsx(classes.content, {
+					[classes.contentShift]: open,
+				})}
+			>
+				<div className={classes.drawerHeader} />
+				{children}
+			</main>
 		</div>
 	);
 }

@@ -15,7 +15,7 @@ function CatalogoPage() {
 	return (
 		<Layout title="Catálogo">
 			<div className={classes.root}>
-				<Grid container spacing={2} style={{ margin: 0 }}>
+				<Grid container>
 					<Fragment>
 						<Grid
 							container
@@ -32,7 +32,7 @@ function CatalogoPage() {
 								<Grid
 									item
 									key={index}
-									xs={4}
+									xs={isNotMobileSize ? 6 : 12}
 									sm={isNotMobileSize ? 6 : 3}
 									className={classes.withoutFlexBasis}
 								>
@@ -41,7 +41,7 @@ function CatalogoPage() {
 							))}
 							<Grid
 								item
-								xs={4}
+								xs={isNotMobileSize ? 6 : 12}
 								sm={isNotMobileSize ? 6 : 3}
 								className={`${classes.withoutFlexBasis} ${classes.contentImage}`}
 							>

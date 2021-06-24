@@ -2,7 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 import * as LINKS from 'routes';
 
-const isDoctor = (r) => r === 'medico';
+const isDoctor = (r) => r !== 'CLIENTE';
 
 function ProtectedRoute({
 	component: Component,
@@ -17,7 +17,10 @@ function ProtectedRoute({
 			render={(props) => {
 				if (!auth.isLogin) {
 					return <Redirect exact to={LINKS.LOGIN} />;
-				} else if (options.isRouteDoctor && !isDoctor(auth?.user?.role)) {
+				} else if (
+					options.isRouteDoctor &&
+					!isDoctor(auth?.user?.tipoUsuario)
+				) {
 					return (
 						<Redirect
 							exact

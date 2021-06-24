@@ -4,6 +4,7 @@ const drawerWidth = 240;
 export default makeStyles((theme) => ({
 	content: {
 		flexGrow: 1,
+		flexBasis: 'auto',
 		padding: theme.spacing(2),
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
@@ -21,7 +22,7 @@ export default makeStyles((theme) => ({
 	drawerHeader: {
 		display: 'flex',
 		alignItems: 'center',
-		padding: theme.spacing(0, 0),
+		padding: theme.spacing(0),
 		// necessary for content to be below app bar
 		...theme.mixins.toolbar,
 		justifyContent: 'flex-end',

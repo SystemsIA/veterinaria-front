@@ -1,6 +1,9 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 
 import clsx from 'clsx';
+
+// Hooks
+import useTitleDocument from 'hooks/useTitleDocument';
 
 // Styles
 import useStyles from './Layout.styles';
@@ -8,9 +11,7 @@ import useStyles from './Layout.styles';
 function Layout({ children, title = 'Inicio', open = true }) {
 	const classes = useStyles();
 
-	useEffect(() => {
-		document.title = title;
-	}, [title]);
+	useTitleDocument(title);
 
 	return (
 		<Fragment>

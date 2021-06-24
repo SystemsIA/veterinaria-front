@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
 		'& > *': {
 			justifyContent: 'center',
 			alignItems: 'center',

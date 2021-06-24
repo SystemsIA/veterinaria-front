@@ -28,11 +28,7 @@ export default makeStyles((theme) => ({
 	},
 
 	imgPageLogin: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		position: 'relative',
+		textAlign: 'center',
 		'& > img': {
 			maxWidth: (props) => (props.isMobileSize ? '400px' : '200px'),
 			maxHeight: (props) => (props.isMobileSize ? '400px' : '200px'),
@@ -41,24 +37,12 @@ export default makeStyles((theme) => ({
 	},
 
 	form: {
+		width: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		'& > *': {
 			margin: theme.spacing(1),
 		},
-	},
-
-	formControl: {
-		width: '100%',
-	},
-
-	inputLabel: {
-		display: 'flex',
-		alignItems: 'center',
-	},
-
-	btnLogin: {
-		width: '100%',
 	},
 }));

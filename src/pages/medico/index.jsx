@@ -1,7 +1,3 @@
-import { Redirect } from 'react-router-dom';
-
-// Hooks
-import useAuth from 'hooks/useAuth';
 // Components
 import Layout from 'components/Layout';
 import { Box, Button, Typography, useMediaQuery } from '@material-ui/core';
@@ -12,11 +8,7 @@ import * as LINKS from 'routes';
 function Index(props) {
 	const url = props.match.url;
 	const isMobileSize = useMediaQuery('(min-width:400px)');
-	const { isLogin } = useAuth();
 
-	if (!isLogin) {
-		return <Redirect to={props.history.goBack() || '/'} exact />;
-	}
 	return (
 		<Layout title="Inicio Tareas">
 			<Box

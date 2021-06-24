@@ -7,7 +7,24 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 	},
 	appBar: {
-		zIndex: theme.zIndex.drawer + 1,
+		transition: theme.transitions.create(['margin', 'width'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+	},
+	appBarShift: {
+		width: `calc(100% - ${drawerWidth}px)`,
+		marginLeft: drawerWidth,
+		transition: theme.transitions.create(['margin', 'width'], {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	hide: {
+		display: 'none',
 	},
 	drawer: {
 		width: drawerWidth,
@@ -17,21 +34,46 @@ export default makeStyles((theme) => ({
 		width: drawerWidth,
 		backgroundColor: '#95D1D8',
 	},
-	drawerContainer: {
-		overflow: 'auto',
+	drawerHeader: {
+		display: 'flex',
+		alignItems: 'center',
+		padding: theme.spacing(0, 1),
+		// necessary for content to be below app bar
+		...theme.mixins.toolbar,
+		justifyContent: 'flex-end',
 	},
 	content: {
 		flexGrow: 1,
 		padding: theme.spacing(3),
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		marginLeft: -drawerWidth,
 	},
-	nameDoctorLogo: {
-		marginTop: '2rem',
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+	contentShift: {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		marginLeft: 0,
+	},
+	nested: {
+		paddingLeft: theme.spacing(4),
+	},
+	rootList: {
+		width: '100%',
+	},
+
+	imgSize: {
 		'& img': {
-			maxHeight: 140,
+			maxWidth: 40,
+			minWidth: 15,
 		},
+	},
+	toolbar: {
+		padding: 0,
+		justifyContent: 'space-between',
 	},
 	roundedLogo: {
 		height: 150,
@@ -43,31 +85,16 @@ export default makeStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-
-	rootList: {
-		width: '100%',
-	},
-	nested: {
-		paddingLeft: theme.spacing(4),
-	},
-
-	imgSize: {
+	nameDoctorLogo: {
+		marginTop: '2rem',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
 		'& img': {
-			maxWidth: 40,
-			minWidth: 15,
+			maxHeight: 140,
 		},
 	},
-
-	paper: {
-		padding: 20,
-	},
-	toolbar: {
-		padding: 0,
-		justifyContent: 'space-between',
-	},
-
-	contentChildren: {
-		flexGrow: 1,
-		flexDirection: 'column',
+	drawerContainer: {
+		overflow: 'auto',
 	},
 }));

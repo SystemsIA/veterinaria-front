@@ -3,16 +3,20 @@ import useFormInput from 'hooks/useFormInput';
 
 const useStyles = makeStyles((theme) => ({
 	textField: {
-		margin: theme.spacing(2),
+		margin: theme.spacing(1),
 	},
 
 	btnSubmit: {
-		margin: theme.spacing(2),
+		margin: theme.spacing(1),
+	},
+
+	form: {
+		width: (props) => (props.width ? props.width : '45%'),
 	},
 }));
 
-function RegisterUserForm() {
-	const classes = useStyles();
+function RegisterUserForm({ width }) {
+	const classes = useStyles({ width });
 
 	const { formData, handleChange } = useFormInput({
 		name: '',
@@ -21,11 +25,20 @@ function RegisterUserForm() {
 		phone: '',
 	});
 
+	const handleRegisterSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
+	};
+
 	console.log(formData);
 
 	return (
-		<form onChange={handleChange}>
-			<Box display="flex" justifyContent="space-between" alignItems="center">
+		<form
+			onChange={handleChange}
+			onSubmit={handleRegisterSubmit}
+			className={classes.form}
+		>
+			<Box display="flex" flexDirection="column" justifyContent="space-between">
 				<TextField
 					id="name-user"
 					name="name"
@@ -59,14 +72,19 @@ function RegisterUserForm() {
 					className={classes.textField}
 				/>
 
-				<Button
-					className={classes.btnSubmit}
-					type="submit"
-					color="primary"
-					variant="contained"
-				>
-					Registrar cliente
-				</Button>
+				<div>
+					<Button
+						className={classes.btnSubmit}
+						type="submit"
+						color="primary"
+						variant="contained"
+					>
+						Registrar cliente
+					</Button>
+					<Button type="reset" className={classes.btnSubmit} color="secondary">
+						Limpiar
+					</Button>
+				</div>
 			</Box>
 		</form>
 	);

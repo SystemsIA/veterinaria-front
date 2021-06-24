@@ -1,8 +1,9 @@
+import { fetchLlogout, fetchLogin, fetchUserDetail } from 'api/userApi';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
 const store = persist(
-	(set) => ({
+	(set, get) => ({
 		user: {},
 		loading: false,
 		isLogin: false,
@@ -10,20 +11,33 @@ const store = persist(
 		message: '',
 
 		// Mutations
-		loginAction(user = { token: '', role: '', email: '', username: '' }) {
+		async loginAction(u = { email: '', password: '' }) {
 			set({ loading: true });
-			setTimeout(() => {
+			const resLogin = await fetchLogin(u);
+
+			if (resLogin.status === 400) {
 				set({
-					user,
+					isLogin: false,
+					message: resLogin.data.nonFieldErrors[0],
+					loading: false,
+					isError: true,
+				});
+			} else {
+				const resDetail = await fetchUserDetail(resLogin.data.key);
+				set({
+					user: {
+						...resDetail.data,
+					},
 					isLogin: true,
 					message: '',
 					loading: false,
 					isError: false,
 				});
-			}, 2000);
+			}
 		},
 
-		logoutAction() {
+		async logoutAction() {
+			await fetchLlogout(get().user?.token);
 			set({
 				user: {},
 				isLogin: false,
@@ -56,5 +70,6 @@ const store = persist(
 );
 
 const useAuthStore = create(store);
-export const AUTH_TOKEN = useAuthStore.getState().user?.token || '';
 export default useAuthStore;
+
+export const AUTH_TOKEN = useAuthStore.getState().user?.token || '';
