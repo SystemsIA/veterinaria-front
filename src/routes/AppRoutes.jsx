@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, Fragment } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 
 // Components
@@ -27,28 +27,28 @@ export function AppRoutes() {
 	const location = useLocation();
 
 	return (
-		<Suspense fallback={<Fallback />}>
-			{location.pathname === `/medico${LINKS.MEDICO_TAREAS}` ? null : (
-				<MenuAppBar />
-			)}
-			<Switch>
-				<Route exact path={LINKS.INICIO} component={InicioPage} />
-				<Route path={LINKS.CATALOGO} component={CatalogoPage} />
-				<Route path={LINKS.LOGIN} component={LoginPage} />
-				<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
-				<Route path={LINKS.SERVICIOS} component={ServicioPage} />
+		<Fragment>
+			{location.pathname.includes('/medico') ? null : <MenuAppBar />}
+			<Suspense fallback={<Fallback />}>
+				<Switch>
+					<Route exact path={LINKS.INICIO} component={InicioPage} />
+					<Route path={LINKS.CATALOGO} component={CatalogoPage} />
+					<Route path={LINKS.LOGIN} component={LoginPage} />
+					<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
+					<Route path={LINKS.SERVICIOS} component={ServicioPage} />
 
-				<ProtectedRoute path={LINKS.USER} component={UserRoutes} />
-				<ProtectedRoute
-					options={{ isRouteDoctor: true }}
-					path={LINKS.MEDICO_INICIO}
-					component={MedicoRoutes}
-				/>
+					<ProtectedRoute path={LINKS.USER_HOME} component={UserRoutes} />
+					<ProtectedRoute
+						options={{ isRouteDoctor: true }}
+						path={LINKS.MEDICO_INICIO}
+						component={MedicoRoutes}
+					/>
 
-				<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
-				<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
-				<Route path="/:rest*" component={NotFoundPage} />
-			</Switch>
-		</Suspense>
+					<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
+					<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
+					<Route path="/:rest*" component={NotFoundPage} />
+				</Switch>
+			</Suspense>
+		</Fragment>
 	);
 }

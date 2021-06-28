@@ -2,11 +2,6 @@ import { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { useTheme } from '@material-ui/core/styles';
-
-// Styles
-import useStyles from './MenuAppBar.styles';
-
 // Components
 import AppLogoLink from './AppLogoLink';
 import {
@@ -26,13 +21,17 @@ import {
 // Routes
 import { INICIO, LINKS_NAV_APP } from 'routes';
 
+// Styles
+import { useTheme } from '@material-ui/core/styles';
+import useStyles from './MenuAppBar.styles';
+
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import MenuBtnUser from './MenuBtnUser';
+import MenuButtonUser from './MenuButtonUser';
 
 function MenuAppBar() {
 	const [open, setOpen] = useState(false);
@@ -47,13 +46,13 @@ function MenuAppBar() {
 		setOpen(false);
 	};
 
-	const isQueryMobile = useMediaQuery('(min-width:870px)');
+	const isNotQueryMobile = useMediaQuery('(min-width:870px)');
 
 	return (
 		<Fragment>
 			<AppBar position="fixed" color="default" elevation={0}>
 				<Toolbar className={classes.navMobile}>
-					{isQueryMobile ? null : (
+					{isNotQueryMobile ? null : (
 						<IconButton
 							color="inherit"
 							aria-label="open drawer"
@@ -65,14 +64,18 @@ function MenuAppBar() {
 						</IconButton>
 					)}
 
-					<AppLogoLink to={INICIO} nameLink="Veterinaria" />
+					<AppLogoLink
+						small={!isNotQueryMobile}
+						to={INICIO}
+						nameLink="Veterinaria San Lorenzo"
+					/>
 
 					<div className={classes.navMobile}>
-						{isQueryMobile ? (
+						{isNotQueryMobile ? (
 							<Fragment>
 								{LINKS_NAV_APP.map((link, index) => (
 									<Button
-										key={index}
+										key={`${link.name}-${index}`}
 										display="inline"
 										align="center"
 										size="medium"
@@ -87,7 +90,7 @@ function MenuAppBar() {
 								))}
 							</Fragment>
 						) : null}
-						<MenuBtnUser isUser />
+						<MenuButtonUser isUser />
 					</div>
 				</Toolbar>
 			</AppBar>
@@ -101,7 +104,7 @@ function MenuAppBar() {
 				}}
 			>
 				<div className={classes.drawerHeader}>
-					<AppLogoLink small to={INICIO} nameLink="Veterinaria" />
+					<AppLogoLink small={true} to={INICIO} nameLink="Veterinaria" />
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === 'ltr' ? (
 							<ChevronLeftIcon />

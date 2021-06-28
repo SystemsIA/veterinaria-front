@@ -39,15 +39,15 @@ export default makeStyles((theme) => ({
 		color: '#5e5c5c',
 		fontWeight: theme.typography.fontWeightRegular,
 		'&:hover': {
-			color: '#b35f97eb',
+			color: theme.palette.secondary.light,
 		},
 	},
 	activeClassName: {
-		color: '#b35f97eb',
+		color: theme.palette.secondary.light,
 	},
 	sideBarLinks: {
 		cursor: 'pointer',
-		color: '#b35f97eb',
+		color: theme.palette.grey[900],
 		textDecoration: 'none',
 	},
 }));

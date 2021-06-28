@@ -12,7 +12,7 @@ function AppLogoLink({ small = false, to, nameLink = '', children }) {
 		<div className={classes.root}>
 			<Link to={to} className={classes.navLogo}>
 				<img src={logoApp} alt={nameLink} className={classes.sizeLogoImg} />
-				<Typography variant={small ? 'h6' : 'h4'} noWrap>
+				<Typography variant={small ? 'subtitle1' : 'h4'} noWrap>
 					{nameLink}
 				</Typography>
 			</Link>

@@ -6,8 +6,8 @@ import NotFoundPage from 'pages/errors/NotFoundPage';
 function UserRoutes() {
 	return (
 		<Switch>
-			<Redirect exact from={LINKS.USER} to={LINKS.PERFIL} />
-			<Route path={LINKS.PERFIL} component={UserPerfilPage} />
+			<Redirect exact from={LINKS.USER_HOME} to={LINKS.USER_PERFIL} />
+			<Route path={LINKS.USER_PERFIL} component={UserPerfilPage} />
 			<Route path="/:rest*" component={NotFoundPage} />
 		</Switch>
 	);

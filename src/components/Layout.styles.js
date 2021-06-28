@@ -18,6 +18,7 @@ export default makeStyles((theme) => ({
 			duration: theme.transitions.duration.enteringScreen,
 		}),
 		marginLeft: 0,
+		marginBottom: '4rem',
 	},
 	drawerHeader: {
 		display: 'flex',

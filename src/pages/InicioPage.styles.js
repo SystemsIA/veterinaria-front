@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles((theme) => ({
 	root: {
+		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -9,7 +10,9 @@ export default makeStyles((theme) => ({
 	},
 	withoutFlexBasis: {
 		flexBasis: 'auto',
-		'& img': {
+		flexDirection: 'column',
+		alignItems: 'center',
+		'& > img': {
 			maxWidth: 350,
 		},
 	},

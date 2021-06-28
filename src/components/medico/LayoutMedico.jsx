@@ -1,47 +1,49 @@
 import { useState } from 'react';
 import clsx from 'clsx';
+import * as LINKS from 'routes';
 import {
 	Toolbar,
 	AppBar,
 	Button,
-	ListItem,
-	ListItemText,
-	ListItemIcon,
 	Drawer,
 	List,
 	IconButton,
 	useTheme,
 } from '@material-ui/core';
 import AppLogoLink from 'components/AppLogoLink';
-
-import StarBorder from '@material-ui/icons/StarBorder';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import MenuButtonUser from 'components/MenuButtonUser';
+import ItemListLink from 'components/ItemListLink';
 
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-// Styles
-import dogFlower from 'assets/img/perritoFlores.png';
-import imgTask from 'assets/img/imag4.png';
-import imgClient from 'assets/img/imag3.png';
-import imgBone from 'assets/img/iconHuesito.png';
+// Hooks
+import useAuth from 'hooks/useAuth';
+import useDocumentTitle from 'hooks/useDocumentTitle';
 
-import * as LINKS from 'routes';
-import ItemListCollapse from 'components/ItemListCollapse';
+// Images
+import imgPerroFlores from 'assets/img/perritoFlores.png';
+import imgTarea from 'assets/img/imag4.png';
+import imgMascota from 'assets/img/imag3.png';
+import imgHueso from 'assets/img/iconHuesito.png';
+import imgCasa from 'assets/img/imag1.png';
+import imgAcc from 'assets/img/imag2.png';
 
 // Styles
 import useStyles from './LayoutMedico.styles';
-import useTitleDocument from 'hooks/useTitleDocument';
-import MenuBtnUser from 'components/MenuBtnUser';
+
+// PropTypes
+import PropTypes from 'prop-types';
 
 function LayoutMedico({ title = 'Dr. Doctor', children }) {
 	const classes = useStyles();
 	const theme = useTheme();
+	const auth = useAuth();
 
-	useTitleDocument(title);
+	useDocumentTitle(title);
 
 	const [open, setOpen] = useState(false);
 	const handleDrawerOpen = () => {
@@ -80,9 +82,9 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 
 					<div>
 						<Button className={classes.imgSize}>
-							<img src={imgBone} alt="Hueso Imagen" />
+							<img src={imgHueso} alt="Hueso Imagen" />
 						</Button>
-						<MenuBtnUser as={SettingsOutlinedIcon} fontSize="large" />
+						<MenuButtonUser as={SettingsOutlinedIcon} fontSize="large" />
 					</div>
 				</Toolbar>
 			</AppBar>
@@ -107,9 +109,9 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 				<div className={classes.drawerContainer}>
 					<div className={classes.nameDoctorLogo}>
 						<div className={classes.roundedLogo}>
-							<img src={dogFlower} alt="Perro Flores" />
+							<img src={imgPerroFlores} alt="Perro Flores" />
 						</div>
-						<h1>Doctor</h1>
+						<h3>{auth.user?.email}</h3>
 					</div>
 
 					<List
@@ -117,33 +119,26 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 						aria-labelledby="nested-list-subheader"
 						className={classes.rootList}
 					>
-						<ItemListCollapse nameItem="Tareas" image={imgTask}>
-							<ListItem button className={classes.nested}>
-								<ListItemText primary="Citas" />
-							</ListItem>
-							<ListItem button className={classes.nested}>
-								<ListItemText primary="Cirugías" />
-							</ListItem>
-							<ListItem button className={classes.nested}>
-								<ListItemText primary="Vacunas" />
-							</ListItem>
-						</ItemListCollapse>
-						<ItemListCollapse nameItem="Clientes" image={imgClient}>
-							<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<PersonAddIcon />
-								</ListItemIcon>
-								<ListItemText primary="Registrar cliente" />
-							</ListItem>
-						</ItemListCollapse>
-						<ItemListCollapse nameItem="Inventario" image={imgTask}>
-							<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<StarBorder />
-								</ListItemIcon>
-								<ListItemText primary="Starred" />
-							</ListItem>
-						</ItemListCollapse>
+						<ItemListLink
+							nameItem="Inicio"
+							image={imgCasa}
+							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_TAREAS}`}
+						/>
+						<ItemListLink
+							nameItem="Mascota"
+							image={imgMascota}
+							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_MASCOTAS}`}
+						/>
+						<ItemListLink
+							nameItem="Catálogo"
+							image={imgAcc}
+							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CATALOGO}`}
+						/>
+						<ItemListLink
+							nameItem="Citas"
+							image={imgTarea}
+							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CITAS}`}
+						/>
 					</List>
 				</div>
 			</Drawer>
@@ -158,5 +153,10 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 		</div>
 	);
 }
+
+LayoutMedico.propTypes = {
+	title: PropTypes.string,
+	children: PropTypes.node,
+};
 
 export default LayoutMedico;
