@@ -1,6 +1,6 @@
-import { fetchLlogout, fetchLogin, fetchUserDetail } from 'api/userApi';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { fetchLlogout, fetchLogin, fetchUserDetail } from 'api/userApi';
 
 const store = persist(
 	(set, get) => ({
@@ -18,7 +18,7 @@ const store = persist(
 			if (resLogin.status === 400) {
 				set({
 					isLogin: false,
-					message: resLogin.data.nonFieldErrors[0],
+					message: resLogin.data?.nonFieldErrors[0],
 					loading: false,
 					isError: true,
 				});

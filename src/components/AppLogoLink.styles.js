@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-import * as colors from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
 	root: {
@@ -14,7 +13,7 @@ export default makeStyles((theme) => ({
 		padding: theme.spacing(1),
 	}),
 	navLogo: {
-		color: colors.purple[500],
+		color: theme.palette.secondary.light,
 		cursor: 'pointer',
 		textDecoration: 'none',
 		display: 'flex',

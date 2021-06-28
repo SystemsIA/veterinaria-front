@@ -6,9 +6,9 @@
 	font-family: 'Assistant', sans-serif;
 }
 
-body {
-	background: #f3f3f1;
+.body {
 	height: 100vh;
+	background: #f3f3f3;
 }
 
 .perr__elipse {

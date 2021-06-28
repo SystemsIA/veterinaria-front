@@ -7,8 +7,13 @@ export default createMuiTheme({
 		},
 		secondary: {
 			main: '#ff4081',
+			contrastText: '#fff',
+		},
+		info: {
+			main: '#96D2D9',
 		},
 	},
+
 	typography: {
 		fontFamily: ['"Assistant"', 'sans-serif'].join(','),
 		fontSize: 15,

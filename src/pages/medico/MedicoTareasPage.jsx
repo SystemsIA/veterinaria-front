@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 //Components
 import LayoutMedico from 'components/medico/LayoutMedico';
 import RegisterUserForm from 'components/medico/RegisterUserForm';
-import TaskTable from 'components/TaskTable';
+import TaskTable from 'components/table/TaskTable';
 import {
 	Accordion,
 	AccordionDetails,
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function MedicoTaskPage() {
+function MedicoTareasPage() {
 	const classes = useStyles();
 
 	return (
@@ -66,4 +66,4 @@ function MedicoTaskPage() {
 	);
 }
 
-export default MedicoTaskPage;
+export default MedicoTareasPage;

@@ -15,11 +15,11 @@ import { IconButton, Menu, MenuItem } from '@material-ui/core';
 // Colors
 import * as colors from '@material-ui/core/colors';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 	menuLinks: {
 		'& > a': {
 			textDecoration: 'none',
-			color: colors.purple['700'],
+			color: theme.palette.secondary.light,
 			display: 'block',
 			width: '100%',
 		},
@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 
 const isDoctor = (r) => r !== 'CLIENTE';
 
-function MenuBtnUser({ isUser, side = 'right', as: CI, ...rest }) {
+function MenuButtonUser({ isUser, side = 'right', as: CI, ...rest }) {
 	const auth = useAuth();
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -79,7 +79,7 @@ function MenuBtnUser({ isUser, side = 'right', as: CI, ...rest }) {
 				{auth.isLogin ? (
 					<div>
 						<MenuItem onClick={handleClose} className={classes.menuLinks}>
-							<Link to={LINKS.PERFIL}>Perfil</Link>
+							<Link to={LINKS.USER_PERFIL}>Perfil</Link>
 						</MenuItem>
 						{isDoctor(auth.user?.tipoUsuario) ? (
 							<MenuItem className={classes.menuLinks}>
@@ -99,7 +99,7 @@ function MenuBtnUser({ isUser, side = 'right', as: CI, ...rest }) {
 						</MenuItem>
 					</div>
 				) : (
-					<MenuItem className={classes.menuLinks}>
+					<MenuItem className={classes.menuLinks} onClick={handleClose}>
 						<Link to={LINKS.LOGIN}>Iniciar Sesión</Link>
 					</MenuItem>
 				)}
@@ -108,4 +108,4 @@ function MenuBtnUser({ isUser, side = 'right', as: CI, ...rest }) {
 	);
 }
 
-export default MenuBtnUser;
+export default MenuButtonUser;

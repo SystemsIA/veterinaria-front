@@ -28,7 +28,9 @@ import useStyles from './LoginPage.styles';
 // Images
 import perroFlower from 'assets/img/perritoFlores.png';
 import gatoPensativo from 'assets/img/gatitoPensativo.png';
+
 const isDoctor = (r) => r !== 'CLIENTE';
+
 function LoginPage() {
 	const { formData, handleChange } = useFormInput({
 		email: '',
@@ -49,7 +51,11 @@ function LoginPage() {
 			<Redirect
 				exact
 				from={LINKS.LOGIN}
-				to={isDoctor(auth.user?.tipoUsuario) ? LINKS.MEDICO_INICIO : LINKS.USER}
+				to={
+					isDoctor(auth.user?.tipoUsuario)
+						? LINKS.MEDICO_INICIO
+						: LINKS.USER_HOME
+				}
 			/>
 		);
 	}
@@ -90,9 +96,7 @@ function LoginPage() {
 									onChange={handleChange}
 									onSubmit={handleSubmitLogin}
 								>
-									{auth.loading ? (
-										<CircularProgress color="primary" />
-									) : auth.isError ? (
+									{auth.isError ? (
 										<AlertCustom
 											typeAlert="error"
 											variant="outlined"
@@ -126,7 +130,11 @@ function LoginPage() {
 										size="large"
 										variant="contained"
 										type="submit"
+										disabled={auth.loading}
 									>
+										{auth.loading ? (
+											<CircularProgress size="50px" color="primary" />
+										) : null}
 										Ingresar
 									</Button>
 								</form>
