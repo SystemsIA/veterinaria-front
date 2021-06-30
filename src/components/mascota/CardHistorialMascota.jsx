@@ -31,13 +31,13 @@ function CardHistorialMascota(props) {
 				<Box display="flex" className={classes.bgContent}>
 					<div className={classes.contentInfoMascota}>
 						<p>
-							<b>Descripcion:</b> {dataMascota.descripcion}
+							<b>Descripción:</b> {dataMascota.descripcion}
 						</p>
 						<p>
-							<b>Medico:</b> {dataMascota.medico}
+							<b>Médico:</b> {dataMascota.medico}
 						</p>
 						<p>
-							<b>Tipodetarearealizada:</b> {dataMascota.tipoTarea}
+							<b>Tipo de tarea realizada:</b> {dataMascota.tipoTarea}
 						</p>
 						<Divider />
 						<Typography variant="h6">DATOS DE LA MASCOTA</Typography>
@@ -54,10 +54,10 @@ function CardHistorialMascota(props) {
 							<b>Pulso:</b> {dataMascota.pulso}
 						</p>
 						<p>
-							<b>Estadodelamascota:</b> {dataMascota.estado}
+							<b>Estado de la mascota:</b> {dataMascota.estado}
 						</p>
 						<p>
-							<b>Examenesrealizados:</b> {dataMascota.examenes}
+							<b>Exámenes realizados:</b> {dataMascota.examenes}
 						</p>
 					</div>
 				</Box>

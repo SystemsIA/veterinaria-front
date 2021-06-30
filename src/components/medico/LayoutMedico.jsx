@@ -10,10 +10,10 @@ import {
 	IconButton,
 	useTheme,
 } from '@material-ui/core';
-import AppLogoLink from 'components/AppLogoLink';
+import AppLogoLink from 'components/ui/AppLogoLink';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import MenuButtonUser from 'components/MenuButtonUser';
-import ItemListLink from 'components/ItemListLink';
+import MenuButtonUser from 'components/ui/MenuButtonUser';
+import ItemListLink from 'components/ui/ItemListLink';
 
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -37,8 +37,10 @@ import useStyles from './LayoutMedico.styles';
 
 // PropTypes
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
+import { Container } from '@material-ui/core';
 
-function LayoutMedico({ title = 'Dr. Doctor', children }) {
+function LayoutMedico({ title = 'Dr. Doctor', container = false, children }) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const auth = useAuth();
@@ -142,14 +144,17 @@ function LayoutMedico({ title = 'Dr. Doctor', children }) {
 					</List>
 				</div>
 			</Drawer>
-			<main
+
+			<motion.main
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
 				})}
+				animate="animate"
+				exit={{ opacity: 0 }}
 			>
 				<div className={classes.drawerHeader} />
-				{children}
-			</main>
+				{container ? <Container>{children}</Container> : children}
+			</motion.main>
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 
-function DoctorTaskVaccine() {
+function MedicoTareaVacuna() {
 	return (
 		<form>
 			<TextField
@@ -31,4 +31,4 @@ function DoctorTaskVaccine() {
 	);
 }
 
-export default DoctorTaskVaccine;
+export default MedicoTareaVacuna;

@@ -1,8 +1,9 @@
 import { lazy, Suspense, Fragment } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 // Components
-import MenuAppBar from 'components/MenuAppBar';
+import MenuAppBar from 'components/ui/MenuAppBar';
 import Fallback from 'components/Fallback';
 
 // Routes
@@ -30,24 +31,26 @@ export function AppRoutes() {
 		<Fragment>
 			{location.pathname.includes('/medico') ? null : <MenuAppBar />}
 			<Suspense fallback={<Fallback />}>
-				<Switch>
-					<Route exact path={LINKS.INICIO} component={InicioPage} />
-					<Route path={LINKS.CATALOGO} component={CatalogoPage} />
-					<Route path={LINKS.LOGIN} component={LoginPage} />
-					<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
-					<Route path={LINKS.SERVICIOS} component={ServicioPage} />
+				<AnimatePresence exitBeforeEnter>
+					<Switch location={location} key={location.pathname}>
+						<Route exact path={LINKS.INICIO} component={InicioPage} />
+						<Route path={LINKS.CATALOGO} component={CatalogoPage} />
+						<Route path={LINKS.LOGIN} component={LoginPage} />
+						<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
+						<Route path={LINKS.SERVICIOS} component={ServicioPage} />
 
-					<ProtectedRoute path={LINKS.USER_HOME} component={UserRoutes} />
-					<ProtectedRoute
-						options={{ isRouteDoctor: true }}
-						path={LINKS.MEDICO_INICIO}
-						component={MedicoRoutes}
-					/>
+						<ProtectedRoute path={LINKS.USER_HOME} component={UserRoutes} />
+						<ProtectedRoute
+							options={{ isRouteDoctor: true }}
+							path={LINKS.MEDICO_INICIO}
+							component={MedicoRoutes}
+						/>
 
-					<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
-					<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
-					<Route path="/:rest*" component={NotFoundPage} />
-				</Switch>
+						<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
+						<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
+						<Route path="/:rest*" component={NotFoundPage} />
+					</Switch>
+				</AnimatePresence>
 			</Suspense>
 		</Fragment>
 	);

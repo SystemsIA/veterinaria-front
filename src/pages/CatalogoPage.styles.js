@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
 	},
 	withoutFlexBasis: {
 		flexBasis: 'auto',
+		maxWidth: '100%',
 	},
 	paper: {
 		padding: theme.spacing(2),

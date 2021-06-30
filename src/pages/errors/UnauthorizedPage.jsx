@@ -1,6 +1,6 @@
 import Layout from 'components/Layout';
 import { Box, Typography } from '@material-ui/core';
-import ButtonBack from 'components/ButtonBack';
+import ButtonBack from 'components/ui/ButtonBack';
 
 function UnauthorizedPage() {
 	return (
@@ -10,7 +10,7 @@ function UnauthorizedPage() {
 					No esta autorizado para ingresar a este sitio
 				</Typography>
 
-				<ButtonBack />
+				<ButtonBack color="secondary" variant="contained" />
 			</Box>
 		</Layout>
 	);

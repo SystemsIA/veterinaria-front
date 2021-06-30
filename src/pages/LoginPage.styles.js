@@ -13,26 +13,12 @@ export default makeStyles((theme) => ({
 	},
 
 	loginContent: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-	},
-
-	imgLogin: {
+		maxWidth: '100%',
 		textAlign: 'center',
-		'& > img': {
+		'& img': {
 			margin: '1rem auto',
 			maxWidth: '222px',
 			maxHeight: '212px',
-		},
-	},
-
-	imgPageLogin: {
-		textAlign: 'center',
-		'& > img': {
-			maxWidth: (props) => (props.isMobileSize ? '400px' : '200px'),
-			maxHeight: (props) => (props.isMobileSize ? '400px' : '200px'),
-			minWidth: (props) => (props.isMobileSize ? 200 : 100),
 		},
 	},
 

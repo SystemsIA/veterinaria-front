@@ -69,8 +69,7 @@ function RegisterUserForm({ width }) {
 					color="secondary"
 					className={classes.textField}
 				/>
-
-				<div>
+				<Box display="flex" justifyContent="space-between">
 					<Button
 						className={classes.btnSubmit}
 						type="submit"
@@ -82,7 +81,7 @@ function RegisterUserForm({ width }) {
 					<Button type="reset" className={classes.btnSubmit} color="secondary">
 						Limpiar
 					</Button>
-				</div>
+				</Box>
 			</Box>
 		</form>
 	);

@@ -18,6 +18,7 @@ function InputForm({
 	color = 'primary',
 	name = '',
 	required,
+	...rest
 }) {
 	const classes = useStyles();
 	return (
@@ -30,6 +31,7 @@ function InputForm({
 				aria-describedby={label}
 				name={name}
 				type={type}
+				{...rest}
 				label={
 					<Fragment>
 						{Icon ? <Icon /> : null}

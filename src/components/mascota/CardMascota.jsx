@@ -23,7 +23,6 @@ import useStyles from './CardMascota.styles';
 function CardMascota(props) {
 	let dataMascota = props?.dataMascota;
 	const url = useRouteMatch().url;
-
 	const classes = useStyles();
 
 	return (

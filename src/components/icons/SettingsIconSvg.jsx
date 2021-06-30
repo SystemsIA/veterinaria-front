@@ -1,4 +1,5 @@
 import SvgIcon from '@material-ui/core/SvgIcon';
+
 function SettingsIconSvg() {
 	return (
 		<SvgIcon>

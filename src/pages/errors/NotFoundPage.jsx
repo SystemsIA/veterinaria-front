@@ -1,6 +1,6 @@
 import Layout from 'components/Layout';
 import { Box, Typography } from '@material-ui/core';
-import ButtonBack from 'components/ButtonBack';
+import ButtonBack from 'components/ui/ButtonBack';
 
 import lucasImage from 'assets/img/lucas.png';
 
@@ -33,7 +33,7 @@ function NotFoundPage(props) {
 					<img src={lucasImage} alt="Lucas" width="50%" />
 					<Typography align="center">No te vayas 😘</Typography>
 				</Box>
-				<ButtonBack />
+				<ButtonBack color="secondary" variant="contained" />
 			</Box>
 		</Layout>
 	);

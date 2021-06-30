@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		width: '100%',
 		position: 'fixed',
-		top: 0,
+		top: '4rem',
 		'& > * + *': {
 			marginTop: theme.spacing(2),
 		},

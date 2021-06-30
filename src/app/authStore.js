@@ -13,7 +13,7 @@ const store = persist(
 		// Mutations
 		async loginAction(u = { email: '', password: '' }) {
 			set({ loading: true });
-			const resLogin = await fetchLogin(u);
+			let resLogin = await fetchLogin(u);
 
 			if (resLogin.status === 400) {
 				set({
@@ -23,10 +23,10 @@ const store = persist(
 					isError: true,
 				});
 			} else {
-				const resDetail = await fetchUserDetail(resLogin.data.key);
+				let userDetail = await fetchUserDetail(resLogin.data.key);
 				set({
 					user: {
-						...resDetail.data,
+						...userDetail.data,
 					},
 					isLogin: true,
 					message: '',
@@ -43,13 +43,6 @@ const store = persist(
 				isLogin: false,
 				isError: false,
 			});
-		},
-
-		errorAction(message = '') {
-			set({ message, isError: true });
-			setTimeout(() => {
-				set({ message: '', isError: false });
-			}, [1500]);
 		},
 
 		resetAction() {

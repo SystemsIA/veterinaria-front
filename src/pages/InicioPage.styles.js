@@ -4,16 +4,13 @@ export default makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
 		flexGrow: 1,
 	},
 	withoutFlexBasis: {
 		flexBasis: 'auto',
 		flexDirection: 'column',
-		alignItems: 'center',
 		'& > img': {
-			maxWidth: 350,
+			maxWidth: 250,
 		},
 	},
 	paper: {
@@ -22,5 +19,8 @@ export default makeStyles((theme) => ({
 	},
 	sizeImgMobile: {
 		width: '240px',
+	},
+	content: {
+		maxWidth: '100%',
 	},
 }));

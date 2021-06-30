@@ -1,24 +1,37 @@
-import { Grid } from '@material-ui/core';
-import CardHistorialMascota from 'components/mascota/CardHistorialMascota';
+import { Box, Grid, Typography } from '@material-ui/core';
 import LayoutMedico from 'components/medico/LayoutMedico';
+import CardHistorialMascota from 'components/mascota/CardHistorialMascota';
+import ArrowBack from 'components/icons/ArrowBack';
+import ButtonBack from 'components/ui/ButtonBack';
 
 function MascotaHistorialPage(props) {
-	let params = props.match.params;
 	// TODO: Fetch Data a History
-	console.log(params);
 	return (
-		<LayoutMedico>
-			<h1>Historial mascota</h1>
+		<LayoutMedico container>
+			<Box display="flex" alignItems="center" justifyContent="space-between">
+				<Typography variant="h3" component="h3" color="textPrimary">
+					{props.nameMascota}
+				</Typography>
+				<ButtonBack
+					variant="outlined"
+					startIcon={<ArrowBack />}
+					color="primary"
+				/>
+			</Box>
 
 			<Grid container spacing={2}>
 				{[1, 2, 3, 4].map((item) => (
-					<Grid item xs={12} sm={6}>
-						<CardHistorialMascota key={item} />
+					<Grid key={item} item xs={12} sm={6}>
+						<CardHistorialMascota />
 					</Grid>
 				))}
 			</Grid>
 		</LayoutMedico>
 	);
 }
+
+MascotaHistorialPage.defaultProps = {
+	nameMascota: `Mascota ${Math.floor(Math.random() * 100)}`,
+};
 
 export default MascotaHistorialPage;

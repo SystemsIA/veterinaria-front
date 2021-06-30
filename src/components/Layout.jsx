@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { motion } from 'framer-motion';
 
 import clsx from 'clsx';
 
@@ -17,15 +18,17 @@ function Layout({ children, title = 'Inicio', open = true }) {
 
 	return (
 		<Fragment>
-			<main
-				className={clsx(classes.content, {
-					[classes.contentShift]: open,
-				})}
-			>
-				<div className={classes.drawerHeader} />
-				{children}
-			</main>
-			<Footer />
+			<motion.div animate="animate" exit={{ opacity: 0 }}>
+				<main
+					className={clsx(classes.content, {
+						[classes.contentShift]: open,
+					})}
+				>
+					<div className={classes.drawerHeader} />
+					{children}
+				</main>
+				<Footer />
+			</motion.div>
 		</Fragment>
 	);
 }

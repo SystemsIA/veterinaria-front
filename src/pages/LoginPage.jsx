@@ -2,7 +2,7 @@ import { Redirect } from 'react-router-dom';
 
 import * as LINKS from 'routes';
 // Components
-import InputForm from 'components/InputForm';
+import InputForm from 'components/ui/InputForm';
 import AlertCustom from 'components/AlertCustom';
 import Layout from 'components/Layout';
 import {
@@ -37,13 +37,13 @@ function LoginPage() {
 		password: '',
 	});
 	const auth = useAuth();
-	const isMobileSize = useMediaQuery('(min-width:580px)');
-	const classes = useStyles({ isMobileSize });
+	const isNotMobileSize = useMediaQuery('(min-width:580px)');
+	const classes = useStyles();
 
 	const handleSubmitLogin = (e) => {
 		e.preventDefault();
-
 		auth.loginAction(formData);
+		if (auth?.isLogin) window.location.reload();
 	};
 
 	if (auth.isLogin) {
@@ -63,83 +63,79 @@ function LoginPage() {
 	return (
 		<Layout title="Iniciar sesión">
 			<div className={classes.root}>
-				<Grid container spacing={2}>
+				<Grid
+					container
+					item
+					xs={12}
+					sm={isNotMobileSize ? 12 : 6}
+					direction={isNotMobileSize ? 'row' : 'column-reverse'}
+					justify="center"
+				>
 					<Grid
-						container
 						item
-						xs={12}
-						sm={isMobileSize ? 12 : 6}
-						direction={isMobileSize ? 'row' : 'column'}
-						justify="center"
+						xs={isNotMobileSize ? 12 : 6}
+						sm={isNotMobileSize ? 6 : 3}
+						className={classes.loginContent}
 					>
-						<Grid
-							item
-							xs={isMobileSize ? 6 : 9}
-							sm={isMobileSize ? 6 : 3}
-							className={classes.imgPageLogin}
-						>
-							<img src={gatoPensativo} alt="Gato Pensativo" />
-						</Grid>
-						<Grid
-							item
-							xs={isMobileSize ? 6 : 12}
-							md={isMobileSize ? 6 : 12}
-							sm={isMobileSize ? 6 : 3}
-						>
-							<div className={classes.imgLogin}>
-								<img src={perroFlower} alt="Perro con flores" />
-							</div>
-							<Container>
-								<form
+						<img src={gatoPensativo} alt="Gato Pensativo" />
+					</Grid>
+					<Grid
+						className={classes.loginContent}
+						item
+						xs={isNotMobileSize ? 12 : 6}
+						sm={isNotMobileSize ? 6 : 3}
+					>
+						<img src={perroFlower} alt="Perro con flores" />
+
+						<Container>
+							<form
+								autoComplete="off"
+								className={classes.form}
+								onSubmit={handleSubmitLogin}
+								onChange={handleChange}
+							>
+								{auth.isError ? (
+									<AlertCustom
+										typeAlert="error"
+										variant="outlined"
+										message={auth.message}
+										handler={auth.resetAction}
+									/>
+								) : null}
+
+								<InputForm
+									as={OutlinedInput}
+									required
+									idName="email-outlined"
+									type="email"
+									name="email"
+									icon={PermIdentityIcon}
+									label="Correo de usuario"
+								/>
+
+								<InputForm
+									as={OutlinedInput}
+									required
+									type="password"
+									idName="password-outlined"
+									name="password"
+									icon={LockIcon}
+									label="Contraseña de usuario"
 									autoComplete="off"
-									className={classes.form}
-									onChange={handleChange}
-									onSubmit={handleSubmitLogin}
+								/>
+
+								<Button
+									color="primary"
+									size="large"
+									variant="contained"
+									type="submit"
+									disabled={auth.loading}
 								>
-									{auth.isError ? (
-										<AlertCustom
-											typeAlert="error"
-											variant="outlined"
-											message={auth.message}
-											handler={auth.resetAction}
-										/>
-									) : null}
-
-									<InputForm
-										as={OutlinedInput}
-										required
-										idName="email-outlined"
-										type="email"
-										name="email"
-										icon={PermIdentityIcon}
-										label="Correo de usuario"
-									/>
-
-									<InputForm
-										as={OutlinedInput}
-										required
-										type="password"
-										idName="password-outlined"
-										name="password"
-										icon={LockIcon}
-										label="Contraseña de usuario"
-									/>
-
-									<Button
-										color="primary"
-										size="large"
-										variant="contained"
-										type="submit"
-										disabled={auth.loading}
-									>
-										{auth.loading ? (
-											<CircularProgress size="50px" color="primary" />
-										) : null}
-										Ingresar
-									</Button>
-								</form>
-							</Container>
-						</Grid>
+									{auth.loading ? <CircularProgress size="1.5rem" /> : null}
+									Ingresar
+								</Button>
+							</form>
+						</Container>
 					</Grid>
 				</Grid>
 			</div>

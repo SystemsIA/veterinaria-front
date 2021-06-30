@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //Components
 import LayoutMedico from 'components/medico/LayoutMedico';
 import RegisterUserForm from 'components/medico/RegisterUserForm';
-import TaskTable from 'components/table/TaskTable';
 import {
 	Accordion,
 	AccordionDetails,
@@ -43,7 +42,9 @@ function MedicoTareasPage() {
 					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<TaskTable />
+					<Typography variant="h6">
+						Buen Día Doctor <br /> Estas son sus tareas pendientes
+					</Typography>
 				</AccordionDetails>
 			</Accordion>
 			<Accordion>

@@ -17,6 +17,7 @@ import {
 	Toolbar,
 	useMediaQuery,
 } from '@material-ui/core';
+import MenuButtonUser from './MenuButtonUser';
 
 // Routes
 import { INICIO, LINKS_NAV_APP } from 'routes';
@@ -31,7 +32,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import MenuButtonUser from './MenuButtonUser';
 
 function MenuAppBar() {
 	const [open, setOpen] = useState(false);

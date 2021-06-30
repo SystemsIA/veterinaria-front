@@ -1,6 +1,6 @@
 import { clientHttp } from './config';
 
-export async function fetchLogin(user = { username: '', password: '' }) {
+export async function fetchLogin(user) {
 	try {
 		return await clientHttp.post('/api/rest-auth/login/', user);
 	} catch (error) {
