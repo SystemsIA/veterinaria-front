@@ -6,7 +6,7 @@ function MedicoMascotasPage() {
 	// TODO: Fetch Data
 
 	return (
-		<LayoutMedico container title="Medico | Mascotas">
+		<LayoutMedico container title='Mascotas'>
 			<h1>Mascotas</h1>
 			<Grid container spacing={2}>
 				{[1, 2, 3].map((item) => (

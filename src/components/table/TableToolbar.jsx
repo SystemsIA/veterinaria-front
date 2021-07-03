@@ -49,20 +49,20 @@ function TableToolbar(props) {
 			{numSelected > 0 ? (
 				<Typography
 					className={classes.title}
-					color="inherit"
-					variant="subtitle1"
+					color='inherit'
+					variant='subtitle1'
 				>
 					{numSelected} selected
 				</Typography>
 			) : (
-				<Typography className={classes.title} variant="h6" id="tableTitle">
+				<Typography className={classes.title} variant='h6' id='tableTitle'>
 					Users Create
 				</Typography>
 			)}
 
 			{numSelected > 0 ? (
-				<Tooltip title="Delete">
-					<IconButton aria-label="delete" onClick={deleteUserHandler}>
+				<Tooltip title='Delete'>
+					<IconButton aria-label='delete' onClick={deleteUserHandler}>
 						<DeleteIcon />
 					</IconButton>
 				</Tooltip>

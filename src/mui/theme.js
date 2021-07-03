@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core';
+import * as colors from '@material-ui/core/colors';
 
 export default createMuiTheme({
 	palette: {
@@ -11,6 +12,9 @@ export default createMuiTheme({
 		},
 		info: {
 			main: '#96D2D9',
+		},
+		error: {
+			main: colors.red['200'],
 		},
 	},
 

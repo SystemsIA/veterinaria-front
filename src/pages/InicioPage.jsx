@@ -14,15 +14,15 @@ function InicioPage() {
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 
 	return (
-		<Layout title="Inicio">
+		<Layout title='Inicio'>
 			<div className={classes.root}>
 				<Grid
 					container
 					spacing={2}
-					wrap="wrap"
+					wrap='wrap'
 					direction={isNotMobileSize ? 'row' : 'column'}
 					justify={isNotMobileSize ? 'space-evenly' : 'center'}
-					alignContent="center"
+					alignContent='center'
 				>
 					<Grid
 						className={classes.content}
@@ -33,8 +33,8 @@ function InicioPage() {
 						<Paper className={classes.paper}>
 							<Typography
 								variant={isNotMobileSize ? 'h2' : 'h4'}
-								align="center"
-								color="secondary"
+								align='center'
+								color='secondary'
 							>
 								Veterinaria San Lorenzo
 							</Typography>
@@ -46,17 +46,19 @@ function InicioPage() {
 						sm={isNotMobileSize ? 6 : 3}
 						className={classes.withoutFlexBasis}
 					>
-						<img src={perroMain} alt="Perrito Main" />
+						<img src={perroMain} alt='Perrito Main' />
+
+						<div className='elipse_yellow' />
 					</Grid>
 				</Grid>
 
 				<Grid
 					container
 					spacing={2}
-					wrap="wrap"
+					wrap='wrap'
 					direction={isNotMobileSize ? 'row' : 'column-reverse'}
 					justify={isNotMobileSize ? 'space-evenly' : 'flex-start'}
-					alignContent="center"
+					alignContent='center'
 				>
 					<Grid
 						item
@@ -64,8 +66,10 @@ function InicioPage() {
 						sm={isNotMobileSize ? 6 : 3}
 						className={classes.withoutFlexBasis}
 					>
-						<img src={perroTasa} alt="Perrito Main" />
+						<img src={perroTasa} alt='Perrito Main' />
+						<div className='elipse_blue' />
 					</Grid>
+
 					<Grid
 						className={classes.content}
 						item
@@ -73,7 +77,7 @@ function InicioPage() {
 						sm={isNotMobileSize ? 6 : 3}
 					>
 						<Paper className={classes.paper}>
-							<Typography variant="body1">
+							<Typography variant='body1'>
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 								Consequatur eos voluptate animi recusandae quo eaque laboriosam
 								vitae aliquid ex est? Animi recusandae aspernatur in corrupti

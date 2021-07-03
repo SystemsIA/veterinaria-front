@@ -12,10 +12,10 @@ function Footer() {
 			<div className={classes.content}>
 				<img
 					src={phone}
-					alt="Teléfono para atenciones"
-					title="Teléfono para atenciones"
+					alt='Teléfono para atenciones'
+					title='Teléfono para atenciones'
 				/>
-				<img src={plate} alt="Plato de perro 😅" title="Plato de perro 😅" />
+				<img src={plate} alt='Plato de perro 😅' title='Plato de perro 😅' />
 			</div>
 		</footer>
 	);

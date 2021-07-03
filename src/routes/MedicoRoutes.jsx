@@ -2,11 +2,14 @@ import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { AnimateSharedLayout } from 'framer-motion';
 import * as LINKS from 'routes';
 
-import MedicoHome from 'pages/medico/index';
+import MedicoInicioPage from 'pages/medico/MedicoInicioPage';
 import MedicoTareasPage from 'pages/medico/MedicoTareasPage';
 import MedicoMascotasPage from 'pages/medico/MedicoMascotasPage';
 import MedicoCatalogoPage from 'pages/medico/MedicoCatalogoPage';
 import MascotaHistorialPage from 'pages/mascotas/MascotaHistorialPage';
+import MedicoClientesPage from 'pages/medico/MedicoClientesPage';
+import MedicoCitasPage from 'pages/medico/MedicoCitasPage';
+import MedicoInventariosPage from 'pages/medico/MedicoInventariosPage';
 import NotFoundPage from 'pages/errors/NotFoundPage';
 
 function MedicoRoutes(props) {
@@ -29,14 +32,30 @@ function MedicoRoutes(props) {
 					path={`${url}${LINKS.MEDICO_MASCOTAS}`}
 					component={MedicoMascotasPage}
 				/>
+
+				<Route
+					path={`${url}${LINKS.MEDICO_CLIENTES}`}
+					component={MedicoClientesPage}
+				/>
+
+				<Route
+					path={`${url}${LINKS.MEDICO_CITAS}`}
+					component={MedicoCitasPage}
+				/>
+
+				<Route
+					path={`${url}${LINKS.MEDICO_INVENTARIO}`}
+					component={MedicoInventariosPage}
+				/>
+
 				<Route
 					path={`${url}${LINKS.MEDICO_CATALOGO}`}
 					component={MedicoCatalogoPage}
 				/>
 
-				<Route exact path={LINKS.MEDICO_INICIO} component={MedicoHome} />
+				<Route exact path={LINKS.MEDICO_INICIO} component={MedicoInicioPage} />
 
-				<Route path="/:rest*" component={NotFoundPage} />
+				<Route path='/:rest*' component={NotFoundPage} />
 				<Redirect exact to={LINKS.MEDICO_INICIO} from={LINKS.MEDICO_INICIO} />
 			</Switch>
 		</AnimateSharedLayout>

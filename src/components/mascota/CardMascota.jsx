@@ -29,12 +29,12 @@ function CardMascota(props) {
 		<Card className={classes.root}>
 			<CardHeader
 				avatar={
-					<Avatar arial-label="recipe" className={classes.avatar}>
+					<Avatar arial-label='recipe' className={classes.avatar}>
 						M
 					</Avatar>
 				}
 				action={
-					<IconButton aria-label="settings">
+					<IconButton aria-label='settings'>
 						<SettingsIconSvg />
 					</IconButton>
 				}
@@ -43,8 +43,8 @@ function CardMascota(props) {
 			/>
 			<CardContent className={classes.rootContent}>
 				<Box
-					display="flex"
-					justifyContent="space-between"
+					display='flex'
+					justifyContent='space-between'
 					className={classes.bgContent}
 				>
 					<div className={classes.contentInfoMascota}>
@@ -86,18 +86,18 @@ function CardMascota(props) {
 					/>
 				</Box>
 				<Box
-					display="flex"
-					justifyContent="space-between"
+					display='flex'
+					justifyContent='space-between'
 					className={classes.bgContent}
 				>
-					<Button className={classes.btnBg} variant="contained">
+					<Button className={classes.btnBg} variant='contained'>
 						Estado
 					</Button>
 					<Link
 						className={classes.linkBtn}
 						to={`${url}/historial/${props.dataMascota.dni}`}
 					>
-						<Button color="secondary" variant="contained">
+						<Button color='secondary' variant='contained'>
 							Historial
 						</Button>
 					</Link>

@@ -1,21 +1,71 @@
 import useAuth from 'hooks/useAuth';
-import Layout from 'components/Layout';
+import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
+import LayoutCliente from 'components/cliente/LayoutCliente';
 
-import { Typography } from '@material-ui/core';
+const useStyles = makeStyles((theme) => ({
+	paper: {
+		width: '40%',
+		padding: theme.spacing(2),
+	},
+	rowInfo: {
+		display: 'flex',
+
+		alignItems: 'center',
+		margin: theme.spacing(0.5),
+		padding: theme.spacing(0.2),
+		'& p': {
+			display: 'inline',
+		},
+		'& span': {
+			width: 70,
+			color: theme.palette.info.main,
+			borderBottom: `2px solid ${theme.palette.primary.light}`,
+			padding: theme.spacing(0.6),
+			marginRight: 10,
+		},
+	},
+}));
 
 function UserPerfilPage() {
 	const auth = useAuth();
-
+	const classes = useStyles();
 	return (
-		<Layout title={`Mi Perfil | ${auth.user?.email}`}>
-			<Typography variant="h4" align="center">
-				Mi Perfil
-			</Typography>
-			<Typography align="center" variant="h2" color="primary">
-				Bienvenido <br />
-				{auth.user?.email}
-			</Typography>
-		</Layout>
+		<LayoutCliente title={`${auth.user?.email}`}>
+			<Box display='flex' flexDirection='column' alignItems='center'>
+				<Typography variant='h4' align='center'>
+					Mi Perfil
+				</Typography>
+				<Typography align='center' variant='h2' color='primary'>
+					Bienvenido <br />
+					{auth.user?.email}
+				</Typography>
+
+				<Paper elevation={2} className={classes.paper}>
+					<Box display='flex' flexDirection='column'>
+						<div className={classes.rowInfo}>
+							<span>Telefono:</span>
+							<p>{auth.user?.telefono}</p>
+						</div>
+						<div className={classes.rowInfo}>
+							<span>Direccion:</span>
+							<p>{auth.user?.direccion}</p>
+						</div>
+						<div className={classes.rowInfo}>
+							<span>DNI: </span>
+							<p>{auth.user?.nombre}</p>
+						</div>
+						<div className={classes.rowInfo}>
+							<span>Email:</span>
+							<p>{auth.user?.email}</p>
+						</div>
+						<div className={classes.rowInfo}>
+							<span>Usuario:</span>
+							<p>{auth.user?.nombre}</p>
+						</div>
+					</Box>
+				</Paper>
+			</Box>
+		</LayoutCliente>
 	);
 }
 

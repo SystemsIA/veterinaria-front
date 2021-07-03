@@ -18,17 +18,17 @@ function Layout({ children, title = 'Inicio', open = true }) {
 
 	return (
 		<Fragment>
-			<motion.div animate="animate" exit={{ opacity: 0 }}>
-				<main
-					className={clsx(classes.content, {
-						[classes.contentShift]: open,
-					})}
-				>
-					<div className={classes.drawerHeader} />
-					{children}
-				</main>
-				<Footer />
-			</motion.div>
+			<div className={classes.drawerHeader} />
+			<motion.main
+				className={clsx(classes.content, {
+					[classes.contentShift]: open,
+				})}
+				animate='animate'
+				exit={{ opacity: 0 }}
+			>
+				{children}
+			</motion.main>
+			<Footer />
 		</Fragment>
 	);
 }

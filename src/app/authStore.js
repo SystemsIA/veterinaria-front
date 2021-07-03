@@ -1,6 +1,21 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
-import { fetchLlogout, fetchLogin, fetchUserDetail } from 'api/userApi';
+import * as apiUser from 'api/userApi';
+
+function parseUser(user) {
+	const isDoctor = user?.tipoUsuario !== 'CLIENTE';
+	const isClient = !isDoctor;
+	let u = {
+		direccion: user.direccion,
+		dni: user.dni,
+		email: user.email,
+		id: user.id,
+		nombre: user.nombre,
+		telefono: user.telefono,
+	};
+	if (isClient) return { ...u, isClient };
+	else return { ...u, isDoctor };
+}
 
 const store = persist(
 	(set, get) => ({
@@ -13,7 +28,7 @@ const store = persist(
 		// Mutations
 		async loginAction(u = { email: '', password: '' }) {
 			set({ loading: true });
-			let resLogin = await fetchLogin(u);
+			let resLogin = await apiUser.fetchLogin(u);
 
 			if (resLogin.status === 400) {
 				set({
@@ -23,11 +38,12 @@ const store = persist(
 					isError: true,
 				});
 			} else {
-				let userDetail = await fetchUserDetail(resLogin.data.key);
+				let userDetail = await apiUser.fetchUserDetail(resLogin.data.key);
 				set({
 					user: {
-						...userDetail.data,
+						...parseUser(userDetail.data),
 					},
+					token: resLogin.data.key,
 					isLogin: true,
 					message: '',
 					loading: false,
@@ -37,11 +53,12 @@ const store = persist(
 		},
 
 		async logoutAction() {
-			await fetchLlogout(get().user?.token);
+			await apiUser.fetchLogout(get().user?.token);
 			set({
 				user: {},
 				isLogin: false,
 				isError: false,
+				token: '',
 			});
 		},
 
@@ -63,6 +80,6 @@ const store = persist(
 );
 
 const useAuthStore = create(store);
-export default useAuthStore;
+export const AUTH_TOKEN = useAuthStore.getState()?.token || 'failed';
 
-export const AUTH_TOKEN = useAuthStore.getState().user?.token || '';
+export default useAuthStore;

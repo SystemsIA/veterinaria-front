@@ -4,7 +4,6 @@ import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
-import * as colors from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -13,15 +12,21 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	textColor: {
-		color: colors.red['300'],
+		color: theme.palette.getContrastText(theme.palette.error.main),
 	},
 }));
 
+/**
+	@param typeAlert = 'info',
+	@param variant = 'filled',
+	@param message = '',
+	@param handler = undefined,
+*/
 function AlertCustom({
 	typeAlert = 'info',
 	variant = 'filled',
 	message = '',
-	handler = undefined,
+	handle = undefined,
 	children,
 }) {
 	const classes = useStyles();
@@ -41,7 +46,7 @@ function AlertCustom({
 						size="small"
 						onClick={() => {
 							setOpen(!open);
-							handler?.();
+							handle?.();
 						}}
 					>
 						<CloseIcon fontSize="inherit" />

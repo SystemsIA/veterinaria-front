@@ -1,54 +1,48 @@
 import { useState } from 'react';
-import clsx from 'clsx';
-import * as LINKS from 'routes';
-
 import { motion } from 'framer-motion';
-import {
-	Container,
-	Toolbar,
-	AppBar,
-	Button,
-	Drawer,
-	List,
-	IconButton,
-	useTheme,
-} from '@material-ui/core';
-import AppLogoLink from 'components/ui/AppLogoLink';
-import MenuButtonUser from 'components/ui/MenuButtonUser';
-import ItemListLink from 'components/ui/ItemListLink';
-import ItemListCollapse from 'components/ui/ItemListCollapse';
-
-// Icons
-import MenuIcon from '@material-ui/icons/Menu';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import * as LINKS from 'routes';
+import clsx from 'clsx';
 
 // Hooks
 import useAuth from 'hooks/useAuth';
 import useDocumentTitle from 'hooks/useDocumentTitle';
 
+// Components
+import {
+	AppBar,
+	Container,
+	Drawer,
+	IconButton,
+	List,
+	Toolbar,
+	useTheme,
+} from '@material-ui/core';
+import AppLogoLink from 'components/ui/AppLogoLink';
+import ItemListLink from 'components/ui/ItemListLink';
+import MenuButtonUser from 'components/ui/MenuButtonUser';
+
+// Icons
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+
 // Images
-import imgPerroFlores from 'assets/img/perritoFlores.png';
+import imgTarea from 'assets/img/imag4.png';
 import imgMascota from 'assets/img/imag3.png';
-import imgHueso from 'assets/img/iconHuesito.png';
-import imgTareas from 'assets/img/imag4.png';
-import imgInventario from 'assets/img/imag2.png';
+import imgCasa from 'assets/img/imag1.png';
+import imgAcc from 'assets/img/imag2.png';
+import imgPerroFlores from 'assets/img/perritoFlores.png';
 
 // Styles
-import useStyles from './LayoutMedico.styles';
+import useSytles from './LayoutCliente.styles';
 
-// PropTypes
-import PropTypes from 'prop-types';
-
-function LayoutMedico({ title = '', container = false, children }) {
-	const classes = useStyles();
-	const theme = useTheme();
-	const auth = useAuth();
-
-	useDocumentTitle(`Médico | ${title}`);
-
+function LayoutCliente({ title = '', container = false, children }) {
 	const [open, setOpen] = useState(false);
+	const auth = useAuth();
+	const classes = useSytles();
+	const theme = useTheme();
+	useDocumentTitle(`Perfil | ${title}`);
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -67,11 +61,7 @@ function LayoutMedico({ title = '', container = false, children }) {
 				})}
 			>
 				<Toolbar className={classes.toolbar}>
-					<AppLogoLink
-						to={LINKS.MEDICO_INICIO}
-						nameLink='Veterinaria | Médico'
-						small
-					>
+					<AppLogoLink to={LINKS.INICIO} nameLink='Veterinaria' small>
 						<IconButton
 							color='inherit'
 							aria-label='open drawer'
@@ -84,9 +74,6 @@ function LayoutMedico({ title = '', container = false, children }) {
 					</AppLogoLink>
 
 					<div>
-						<Button className={classes.imgSize}>
-							<img src={imgHueso} alt='Hueso Imagen' />
-						</Button>
 						<MenuButtonUser as={SettingsOutlinedIcon} fontSize='large' />
 					</div>
 				</Toolbar>
@@ -122,26 +109,25 @@ function LayoutMedico({ title = '', container = false, children }) {
 						aria-labelledby='nested-list-subheader'
 						className={classes.rootList}
 					>
-						<ItemListCollapse nameItem='Tareas' image={imgTareas}>
-							<ItemListLink
-								nameItem='Citas'
-								href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CITAS}`}
-							/>
-						</ItemListCollapse>
 						<ItemListLink
-							nameItem='Clientes'
-							image={imgMascota}
-							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CLIENTES}`}
+							nameItem='Inicio'
+							image={imgCasa}
+							href={`${LINKS.USER_INICIO}/inicio`}
 						/>
 						<ItemListLink
-							nameItem='Inventario'
-							image={imgInventario}
-							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_INVENTARIO}`}
+							nameItem='Mis mascotas'
+							image={imgMascota}
+							href={`${LINKS.USER_INICIO}${LINKS.USER_MASCOTAS}`}
 						/>
 						<ItemListLink
-							nameItem='Mascotas'
-							image={imgMascota}
-							href={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_MASCOTAS}`}
+							nameItem='Catálogo'
+							image={imgAcc}
+							href={`${LINKS.USER_INICIO}${LINKS.USER_CATALOGO}`}
+						/>
+						<ItemListLink
+							nameItem='Citas'
+							image={imgTarea}
+							href={`${LINKS.USER_INICIO}${LINKS.USER_CITAS}`}
 						/>
 					</List>
 				</div>
@@ -161,9 +147,4 @@ function LayoutMedico({ title = '', container = false, children }) {
 	);
 }
 
-LayoutMedico.propTypes = {
-	title: PropTypes.string,
-	children: PropTypes.node,
-};
-
-export default LayoutMedico;
+export default LayoutCliente;

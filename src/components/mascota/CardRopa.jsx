@@ -15,20 +15,20 @@ function CardRopa({ image, content }) {
 
 	return (
 		<Card className={classes.root} elevation={3}>
-			<CardMedia className={classes.media} title="Image of animal">
-				<img src={image} alt="animal" />
+			<CardMedia className={classes.media} title='Image of animal'>
+				<img src={image} alt='animal' />
 			</CardMedia>
 
 			<CardContent className={classes.cardContent}>
-				<Typography variant="h5" color="textSecondary">
+				<Typography variant='h5' color='textSecondary'>
 					Ropa Animal
 				</Typography>
-				<Typography variant="body2" color="textSecondary" component="p">
+				<Typography variant='body2' color='textSecondary' component='p'>
 					{content}
 				</Typography>
 			</CardContent>
 			<CardActions className={classes.cardActions}>
-				<Button variant="outlined" size="small" className={classes.bgButton}>
+				<Button variant='outlined' size='small' className={classes.bgButton}>
 					Compartir
 				</Button>
 			</CardActions>

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 export default makeStyles((theme) => ({
 	root: {
 		width: 450,
-		height: 300,
+		maxHeight: 300,
 
 		backgroundColor: '#C4C4C4',
 		'& img': {

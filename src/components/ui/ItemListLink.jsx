@@ -10,21 +10,12 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		color: '#000',
 		textDecoration: 'none',
-		paddingLeft: theme.spacing(4),
 	},
 	sizeImg: {
 		'& img': {
 			maxWidth: 30,
 			minWidth: 15,
 		},
-	},
-	textSize: {
-		'& span': {
-			fontSize: 20,
-		},
-	},
-	nested: {
-		paddingLeft: theme.spacing(4),
 	},
 	activeItem: {
 		backgroundColor: theme.palette.primary.light,
@@ -41,7 +32,7 @@ function ItemListLink({ nameItem = '', href, image }) {
 			component={NavLink}
 		>
 			<ListItemIcon className={classes.sizeImg}>
-				<img src={image} alt={nameItem} />
+				{image && <img src={image} alt={nameItem} />}
 			</ListItemIcon>
 			<ListItemText primary={nameItem} />
 		</ListItem>

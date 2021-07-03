@@ -4,12 +4,14 @@ export default makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		flexDirection: 'column',
+		alignItems: 'center',
+		padding: '4px 0',
+		position: 'relative',
 		flexGrow: 1,
 	},
 	withoutFlexBasis: {
 		flexBasis: 'auto',
-		flexDirection: 'column',
-		'& > img': {
+		'& img': {
 			maxWidth: 250,
 		},
 	},

@@ -16,7 +16,7 @@ function Fallback() {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<LinearProgress color="primary" />
+			<LinearProgress color='primary' />
 		</div>
 	);
 }

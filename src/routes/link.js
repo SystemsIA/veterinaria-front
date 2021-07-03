@@ -5,7 +5,7 @@ export const INICIO = '/',
 	SERVICIOS = '/servicios',
 	LOGIN = '/login';
 
-// Links For Navbar
+// Links Navbar
 export const LINKS_NAV_APP = [
 	{ name: 'Inicio', path: INICIO },
 	{ name: 'Catálogo', path: CATALOGO },
@@ -14,14 +14,19 @@ export const LINKS_NAV_APP = [
 ];
 
 // Links User
-export const USER_HOME = '/user',
-	USER_PERFIL = '/user/perfil';
+export const USER_INICIO = '/user',
+	USER_PERFIL = '/perfil',
+	USER_MASCOTAS = '/mascotas',
+	USER_CITAS = '/citas',
+	USER_CATALOGO = '/catalogo';
 
 // Links Médico
 export const MEDICO_INICIO = '/medico',
 	MEDICO_TAREAS = '/tareas',
 	MEDICO_MASCOTAS = '/mascotas',
 	MEDICO_CATALOGO = '/catalogo',
+	MEDICO_CLIENTES = '/clientes',
+	MEDICO_INVENTARIO = '/inventarios',
 	MEDICO_CITAS = '/citas';
 
 // Links Mascotas

@@ -1,5 +1,10 @@
 import { Fragment } from 'react';
-import { FormControl, InputLabel, makeStyles } from '@material-ui/core';
+import {
+	FormControl,
+	InputLabel,
+	makeStyles,
+	FormHelperText,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
 	inputLabel: {
@@ -18,6 +23,7 @@ function InputForm({
 	color = 'primary',
 	name = '',
 	required,
+	helperText = null,
 	...rest
 }) {
 	const classes = useStyles();
@@ -39,6 +45,7 @@ function InputForm({
 					</Fragment>
 				}
 			/>
+			{helperText ? <FormHelperText error>{helperText}</FormHelperText> : null}
 		</FormControl>
 	);
 }

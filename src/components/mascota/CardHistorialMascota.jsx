@@ -20,7 +20,7 @@ function CardHistorialMascota(props) {
 			<CardHeader
 				className={classes.cardHeader}
 				avatar={
-					<Avatar arial-label="recipe" className={classes.avatar}>
+					<Avatar arial-label='recipe' className={classes.avatar}>
 						M
 					</Avatar>
 				}
@@ -28,7 +28,7 @@ function CardHistorialMascota(props) {
 				subheader={`Fecha de revisión ${dataMascota.fechaRevision}`}
 			/>
 			<CardContent className={classes.rootContent}>
-				<Box display="flex" className={classes.bgContent}>
+				<Box display='flex' className={classes.bgContent}>
 					<div className={classes.contentInfoMascota}>
 						<p>
 							<b>Descripción:</b> {dataMascota.descripcion}
@@ -40,7 +40,7 @@ function CardHistorialMascota(props) {
 							<b>Tipo de tarea realizada:</b> {dataMascota.tipoTarea}
 						</p>
 						<Divider />
-						<Typography variant="h6">DATOS DE LA MASCOTA</Typography>
+						<Typography variant='h6'>DATOS DE LA MASCOTA</Typography>
 						<p>
 							<b>Talla:</b> {dataMascota.talla}
 						</p>
@@ -62,15 +62,15 @@ function CardHistorialMascota(props) {
 					</div>
 				</Box>
 				<Box
-					display="flex"
-					justifyContent="space-between"
+					display='flex'
+					justifyContent='space-between'
 					className={classes.bgContent}
 				>
-					<Button color="secondary" variant="contained">
+					<Button color='secondary' variant='contained'>
 						Diagnostico
 					</Button>
 
-					<Button className={classes.btnBg} variant="contained">
+					<Button className={classes.btnBg} variant='contained'>
 						Receta Médica
 					</Button>
 				</Box>

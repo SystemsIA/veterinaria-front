@@ -8,14 +8,14 @@ function MascotaHistorialPage(props) {
 	// TODO: Fetch Data a History
 	return (
 		<LayoutMedico container>
-			<Box display="flex" alignItems="center" justifyContent="space-between">
-				<Typography variant="h3" component="h3" color="textPrimary">
-					{props.nameMascota}
+			<Box display='flex' alignItems='center' justifyContent='space-between'>
+				<Typography variant='h3' component='h3' color='textPrimary'>
+					{props.mascota.nameMascota}
 				</Typography>
 				<ButtonBack
-					variant="outlined"
+					variant='outlined'
 					startIcon={<ArrowBack />}
-					color="primary"
+					color='primary'
 				/>
 			</Box>
 
@@ -31,7 +31,9 @@ function MascotaHistorialPage(props) {
 }
 
 MascotaHistorialPage.defaultProps = {
-	nameMascota: `Mascota ${Math.floor(Math.random() * 100)}`,
+	mascota: {
+		nameMascota: `Mascota ${Math.floor(Math.random() * 100)}`,
+	},
 };
 
 export default MascotaHistorialPage;

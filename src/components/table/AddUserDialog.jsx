@@ -63,82 +63,82 @@ const AddUserDialog = (props) => {
 
 	return (
 		<div>
-			<Tooltip title="Add">
-				<IconButton aria-label="add" onClick={handleClickOpen}>
+			<Tooltip title='Add'>
+				<IconButton aria-label='add' onClick={handleClickOpen}>
 					<AddIcon />
 				</IconButton>
 			</Tooltip>
 			<Dialog
 				open={open}
 				onClose={handleClose}
-				aria-labelledby="form-dialog-title"
+				aria-labelledby='form-dialog-title'
 			>
-				<DialogTitle id="form-dialog-title">Add User</DialogTitle>
+				<DialogTitle id='form-dialog-title'>Add User</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Demo add item to react table.</DialogContentText>
 					<TextField
 						autoFocus
-						margin="dense"
-						label="First Name"
-						type="text"
+						margin='dense'
+						label='First Name'
+						type='text'
 						fullWidth
 						value={user.firstName}
 						onChange={handleChange('firstName')}
 					/>
 					<TextField
-						margin="dense"
-						label="Last Name"
-						type="text"
+						margin='dense'
+						label='Last Name'
+						type='text'
 						fullWidth
 						value={user.lastName}
 						onChange={handleChange('lastName')}
 					/>
 					<TextField
-						margin="dense"
-						label="Age"
-						type="number"
+						margin='dense'
+						label='Age'
+						type='number'
 						fullWidth
 						value={user.age}
 						onChange={handleChange('age')}
 					/>
 					<TextField
-						margin="dense"
-						label="Visits"
-						type="number"
+						margin='dense'
+						label='Visits'
+						type='number'
 						fullWidth
 						value={user.visits}
 						onChange={handleChange('visits')}
 					/>
 					<TextField
-						margin="dense"
-						label="Status"
-						type="text"
+						margin='dense'
+						label='Status'
+						type='text'
 						fullWidth
 						value={user.status}
 						onChange={handleChange('status')}
 					/>
 					<TextField
-						margin="dense"
-						label="Profile Progress"
-						type="number"
+						margin='dense'
+						label='Profile Progress'
+						type='number'
 						fullWidth
 						value={user.progress}
 						onChange={handleChange('progress')}
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Tooltip title="Add multiple">
+					<Tooltip title='Add multiple'>
 						<Switch
 							checked={switchState.addMultiple}
 							onChange={handleSwitchChange('addMultiple')}
-							value="addMultiple"
+							value='addMultiple'
 							inputProps={{ 'aria-label': 'secondary checkbox' }}
 						/>
 					</Tooltip>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={handleClose} color='primary'>
 						Cancel
 					</Button>
-					<Button onClick={handleAdd} color="primary">
+					<Button onClick={handleAdd} color='primary'>
 						Add
 					</Button>
 				</DialogActions>

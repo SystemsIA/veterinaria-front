@@ -1,66 +1,35 @@
-import { makeStyles } from '@material-ui/core/styles';
 //Components
 import LayoutMedico from 'components/medico/LayoutMedico';
-import RegisterUserForm from 'components/medico/RegisterUserForm';
 import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
-	Button,
 	Typography,
 } from '@material-ui/core';
 
 // Images
 import imgMore from 'assets/img/iconMas.png';
 
-const useStyles = makeStyles(() => ({
-	imgSize: {
-		'& img': {
-			maxWidth: 40,
-			minWidth: 15,
-		},
-	},
-}));
-
 function MedicoTareasPage() {
-	const classes = useStyles();
-
 	return (
-		<LayoutMedico title="Tareas">
-			<Accordion>
+		<LayoutMedico title='Tareas'>
+			<Typography variant='h3' component='h3' align='center' color='primary'>
+				Tareas del Doctor
+			</Typography>
+			<Accordion id='panel1a-header'>
 				<AccordionSummary
-					aria-controls="view-task"
-					id="view-task"
-					expandIcon={
-						<Button color="primary" className={classes.imgSize}>
-							<img src={imgMore} alt="Tareas Doctor" />
-						</Button>
-					}
+					expandIcon={<img width={40} src={imgMore} alt='Tareas Doctor 1' />}
+					aria-controls='panel1a-content'
+					id='panel1a-header'
 				>
-					<Typography variant="h6">
+					<Typography variant='h6'>
 						Buen Día Doctor <br /> Estas son sus tareas pendientes
 					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<Typography variant="h6">
+					<Typography variant='h6'>
 						Buen Día Doctor <br /> Estas son sus tareas pendientes
 					</Typography>
-				</AccordionDetails>
-			</Accordion>
-			<Accordion>
-				<AccordionSummary
-					aria-controls="create-task"
-					id="create-task"
-					expandIcon={
-						<Button color="primary" className={classes.imgSize}>
-							<img src={imgMore} alt="Tareas Doctor" />
-						</Button>
-					}
-				>
-					<Typography variant="h6">Registrar nuevo Cliente</Typography>
-				</AccordionSummary>
-				<AccordionDetails>
-					<RegisterUserForm />
 				</AccordionDetails>
 			</Accordion>
 		</LayoutMedico>

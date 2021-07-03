@@ -9,13 +9,15 @@ import Fallback from 'components/Fallback';
 // Routes
 import MedicoRoutes from 'routes/MedicoRoutes';
 import UserRoutes from 'routes/UserRoutes';
-import ProtectedRoute from 'routes/ProtectedRoute';
 import * as LINKS from 'routes';
 
 // Pages
 import NotFoundPage from 'pages/errors/NotFoundPage';
 import ForbiddenPage from 'pages/errors/ForbiddenPage';
 import UnauthorizedPage from 'pages/errors/UnauthorizedPage';
+
+// Route - Lazy
+const ProtectedRoute = lazy(() => import('routes/ProtectedRoute'));
 
 // Pages - Lazy
 const InicioPage = lazy(() => import('pages/InicioPage'));
@@ -28,8 +30,11 @@ export function AppRoutes() {
 	const location = useLocation();
 
 	return (
-		<Fragment>
-			{location.pathname.includes('/medico') ? null : <MenuAppBar />}
+		<Fragment key='app-routes'>
+			{location.pathname.includes('/medico') ||
+			location.pathname.includes('/user') ? null : (
+				<MenuAppBar />
+			)}
 			<Suspense fallback={<Fallback />}>
 				<AnimatePresence exitBeforeEnter>
 					<Switch location={location} key={location.pathname}>
@@ -39,7 +44,7 @@ export function AppRoutes() {
 						<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
 						<Route path={LINKS.SERVICIOS} component={ServicioPage} />
 
-						<ProtectedRoute path={LINKS.USER_HOME} component={UserRoutes} />
+						<ProtectedRoute path={LINKS.USER_INICIO} component={UserRoutes} />
 						<ProtectedRoute
 							options={{ isRouteDoctor: true }}
 							path={LINKS.MEDICO_INICIO}
@@ -48,7 +53,7 @@ export function AppRoutes() {
 
 						<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
 						<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
-						<Route path="/:rest*" component={NotFoundPage} />
+						<Route path='/:rest*' component={NotFoundPage} />
 					</Switch>
 				</AnimatePresence>
 			</Suspense>

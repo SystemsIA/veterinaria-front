@@ -17,18 +17,16 @@ export default makeStyles((theme) => ({
 		textAlign: 'center',
 		'& img': {
 			margin: '1rem auto',
-			maxWidth: '222px',
-			maxHeight: '212px',
+			maxWidth: 250,
 		},
 	},
 
-	form: {
-		width: '100%',
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		'& > *': {
-			margin: theme.spacing(1),
+	loginPage: {
+		maxWidth: '100%',
+		textAlign: 'center',
+		'& > img': {
+			margin: '1rem auto',
+			maxWidth: (props) => (props.isMinSize ? 800 : 200),
 		},
 	},
 }));

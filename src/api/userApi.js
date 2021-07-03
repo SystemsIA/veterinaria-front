@@ -1,4 +1,4 @@
-import { clientHttp } from './config';
+import clientHttp from 'api/config';
 
 export async function fetchLogin(user) {
 	try {
@@ -19,7 +19,7 @@ export async function fetchUserDetail(token = '') {
 	}
 }
 
-export async function fetchLlogout(token = '') {
+export async function fetchLogout(token = '') {
 	try {
 		return await clientHttp.post('/api/rest-auth/logout/', {
 			headers: {
