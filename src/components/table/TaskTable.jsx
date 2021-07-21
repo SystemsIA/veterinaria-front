@@ -89,7 +89,7 @@
 // }
 
 // export default TaskTable;
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import EnhancedTable from 'components/table/EnhancedTable';
 import makeData from 'utils/makeFakeData';
 

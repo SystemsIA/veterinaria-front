@@ -1,5 +1,4 @@
-import { useCallback, forwardRef } from 'react';
-import { Link } from 'react-router-dom';
+import { forwardRef, useCallback } from 'react';
 
 // Hooks
 import useAuth from 'hooks/useAuth';
@@ -7,8 +6,15 @@ import useAuth from 'hooks/useAuth';
 import * as LINKS from 'routes';
 
 // Components
-import { Box, Button, Card, CardContent, Typography } from '@material-ui/core';
-import { Container } from '@material-ui/core';
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Container,
+	Typography,
+} from '@material-ui/core';
+import ButtonLink from './ButtonLink';
 
 // Images
 import imgPerroFlores from 'assets/img/perritoFlores.png';
@@ -33,37 +39,40 @@ const UserCardInfo = forwardRef(({ handleClose }, ref) => {
 							<img src={imgPerroFlores} alt={auth?.user?.email} />
 						</div>
 						<Typography align='center'>{auth?.user?.email}</Typography>
-						{auth?.user?.isDoctor ? (
-							<Link
+						{auth?.user?.isDoctor && (
+							<ButtonLink
 								className={classes.linkBtn}
+								color='primary'
+								variant='contained'
 								to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_TAREAS}`}
-							>
-								<Button color='primary'>Revisar tareas</Button>
-							</Link>
-						) : null}
+								text='Revisar tareas'
+							/>
+						)}
 					</Box>
 				</Container>
-				<Box
-					className={classes.content}
-					display='flex'
-					justifyContent='space-between'
-				>
-					<Link
-						className={classes.linkBtn}
-						to={`${LINKS.USER_INICIO}${LINKS.USER_PERFIL}`}
+				<Container>
+					<Box
+						className={classes.content}
+						display='flex'
+						justifyContent='space-between'
 					>
-						<Button variant='contained' color='primary'>
-							Mi Perfil
+						<ButtonLink
+							className={classes.linkBtn}
+							to={`${LINKS.USER_INICIO}${LINKS.USER_PERFIL}`}
+							variant='contained'
+							color='primary'
+							text='Mi Perfil'
+						/>
+						<Button
+							className={classes.linkBtn}
+							onClick={handleLogoutAction}
+							color='secondary'
+							variant='contained'
+						>
+							Cerrar Sesión
 						</Button>
-					</Link>
-					<Button
-						onClick={handleLogoutAction}
-						color='secondary'
-						variant='contained'
-					>
-						Cerrar Sesión
-					</Button>
-				</Box>
+					</Box>
+				</Container>
 			</CardContent>
 		</Card>
 	);

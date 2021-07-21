@@ -31,18 +31,18 @@ function MenuButtonUser({ isUser, side = 'right', as: IC, ...rest }) {
 	return (
 		<Fragment>
 			<IconButton
-				aria-label="account of current user"
-				aria-controls="menu-user"
-				aria-haspopup="true"
+				aria-label='account of current user'
+				aria-controls='menu-user'
+				aria-haspopup='true'
 				onClick={handleMenu}
-				color="inherit"
+				color='inherit'
 			>
 				{isUser ? <AccountCircleIcon /> : IC ? <IC {...rest} /> : <MenuIcon />}
 			</IconButton>
 
 			<Menu
 				className={classes.ulMenu}
-				id="menu-user"
+				id='menu-user'
 				anchorEl={anchorEl}
 				anchorOrigin={{
 					vertical: 'top',

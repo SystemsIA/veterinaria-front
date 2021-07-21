@@ -1,15 +1,17 @@
 import clientHttp from 'api/config';
+import { AUTH_TOKEN } from 'app/authStore';
 
 export async function fetchLogin(user) {
 	try {
-		return await clientHttp.post('/api/rest-auth/login/', user);
+		return await clientHttp.post('/rest-auth/login/', user);
 	} catch (error) {
 		return error.response;
 	}
 }
+
 export async function fetchUserDetail(token = '') {
 	try {
-		return await clientHttp.get('/api/rest-auth/user/', {
+		return await clientHttp.get('/rest-auth/user/', {
 			headers: {
 				Authorization: `token ${token}`,
 			},
@@ -19,13 +21,26 @@ export async function fetchUserDetail(token = '') {
 	}
 }
 
-export async function fetchLogout(token = '') {
+export async function fetchLogout() {
 	try {
-		return await clientHttp.post('/api/rest-auth/logout/', {
+		return await clientHttp.post('/rest-auth/logout/', {
 			headers: {
-				Authorization: `token ${token}`,
+				Authorization: `token ${AUTH_TOKEN}`,
 			},
 		});
+	} catch (error) {
+		return error.response;
+	}
+}
+
+
+export async function cambioPassword(data) {
+	try {
+		return await clientHttp.post('/rest-auth/password/',data, {
+			headers: {
+					Authorization: `token ${AUTH_TOKEN}`,
+				},
+			});
 	} catch (error) {
 		return error.response;
 	}

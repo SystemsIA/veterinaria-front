@@ -9,7 +9,6 @@ export const INICIO = '/',
 export const LINKS_NAV_APP = [
 	{ name: 'Inicio', path: INICIO },
 	{ name: 'Catálogo', path: CATALOGO },
-	{ name: 'Veterinaria San Lorenzo', path: VETSANLOR },
 	{ name: 'Nuestros Servicios', path: SERVICIOS },
 ];
 
@@ -18,7 +17,8 @@ export const USER_INICIO = '/user',
 	USER_PERFIL = '/perfil',
 	USER_MASCOTAS = '/mascotas',
 	USER_CITAS = '/citas',
-	USER_CATALOGO = '/catalogo';
+	USER_CATALOGO = '/catalogo',
+	USER_RESET_PASSWORD = '/cambio-password';
 
 // Links Médico
 export const MEDICO_INICIO = '/medico',

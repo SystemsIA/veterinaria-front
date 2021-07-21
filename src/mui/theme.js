@@ -1,7 +1,7 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 
-export default createMuiTheme({
+export default createTheme({
 	palette: {
 		primary: {
 			main: '#ffca28',

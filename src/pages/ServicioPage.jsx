@@ -1,4 +1,4 @@
-import { Container, Typography, makeStyles } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 import Layout from 'components/Layout';
 
 const useStyles = makeStyles((theme) => ({

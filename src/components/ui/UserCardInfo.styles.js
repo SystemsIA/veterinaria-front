@@ -22,6 +22,7 @@ export default makeStyles((theme) => ({
 
 	linkBtn: {
 		width: '45%',
+		margin: theme.spacing(1),
 		textDecoration: 'none',
 		'& > button': {
 			width: '100%',

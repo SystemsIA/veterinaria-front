@@ -2,22 +2,28 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
 	root: {
-		maxWidth: 345,
+		width: 345,
+		height: 370,
+		position: 'relative',
 	},
 	media: {
 		height: 140,
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		margin: '1.8rem 1.5rem',
+		margin: '1rem 1.5rem',
 		'& > img': {
-			maxWidth: 280,
+			maxWidth: 180,
+			maxHeight: 150,
 			minWidth: 120,
 			borderRadius: '12px',
 			padding: '0 1rem',
 		},
 	},
 	cardActions: {
+		position: 'absolute',
+		bottom: 10,
+		left: 110,
 		marginBottom: '1rem',
 		display: 'flex',
 		flexDirection: 'column',

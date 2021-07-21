@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || '';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
+	? process.env.REACT_APP_API_URL + '/api'
+	: '';
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const clientHttp = axios.create({});

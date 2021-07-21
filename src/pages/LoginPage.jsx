@@ -44,7 +44,7 @@ function LoginPage() {
 					xs={12}
 					sm={isNotMobileSize ? 12 : 6}
 					direction={isNotMobileSize ? 'row' : 'column-reverse'}
-					justify='center'
+					justifyContent='center'
 				>
 					<Grid
 						item

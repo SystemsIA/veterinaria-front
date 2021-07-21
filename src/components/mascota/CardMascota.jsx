@@ -1,13 +1,15 @@
-import { Link, useRouteMatch } from 'react-router-dom';
-
+import { Fragment, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 // Components
 import {
 	Box,
+	Button,
+	Card,
 	CardContent,
 	CardHeader,
 	CardMedia,
-	Card,
-	Button,
+	Menu,
+	MenuItem,
 } from '@material-ui/core';
 
 // Icons
@@ -15,104 +17,169 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIconSvg from 'components/icons/SettingsIconSvg';
 
-import PropTypes from 'prop-types';
-
 // Styles
 import useStyles from './CardMascota.styles';
+import ButtonLink from 'components/ui/ButtonLink';
+import TransitionsModal from 'components/ui/TransitionsModal';
+import HistoriaForm from './HistoriaForm';
+import useAuth from 'hooks/useAuth';
+import { useModalTransition } from 'contexts/ModalTransitionContext';
 
-function CardMascota(props) {
-	let dataMascota = props?.dataMascota;
+function CardMascota({ dataMascota, ownerMascota, isBtnHistory = true }) {
+	const auth = useAuth();
 	const url = useRouteMatch().url;
 	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = useState(null);
 
+	const modal = useModalTransition();
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 	return (
-		<Card className={classes.root}>
-			<CardHeader
-				avatar={
-					<Avatar arial-label='recipe' className={classes.avatar}>
-						M
-					</Avatar>
-				}
-				action={
-					<IconButton aria-label='settings'>
-						<SettingsIconSvg />
-					</IconButton>
-				}
-				title={props.nameMascota}
-				subheader={props.ownerMascota}
-			/>
-			<CardContent className={classes.rootContent}>
-				<Box
-					display='flex'
-					justifyContent='space-between'
-					className={classes.bgContent}
-				>
-					<div className={classes.contentInfoMascota}>
-						<p>
-							<b>Sexo:</b> {dataMascota.sexo}
-						</p>
-						<p>
-							<b>Edad:</b> {dataMascota.edad}
-						</p>
-						<p>
-							<b>Especie:</b> {dataMascota.especie}
-						</p>
-						<p>
-							<b>Raza:</b> {dataMascota.raza}
-						</p>
-						<p>
-							<b>Color:</b> {dataMascota.color}
-						</p>
-						<p>
-							<b>Alergias:</b> {dataMascota.alergias}
-						</p>
-						<p>
-							<b>EstadoReproductivo:</b> {dataMascota.estadoReproductivo}
-						</p>
-						<p>
-							<b>Dueño:</b> {dataMascota.duenio}
-						</p>
-						<p>
-							<b>Dni:</b> {dataMascota.dni}
-						</p>
-						<p>
-							<b>Vacunas:</b> {dataMascota.vacunas}
-						</p>
-					</div>
-					<CardMedia
-						className={classes.media}
-						image={props.srcImage}
-						title={props.nameMascota}
-					/>
-				</Box>
-				<Box
-					display='flex'
-					justifyContent='space-between'
-					className={classes.bgContent}
-				>
-					<Button className={classes.btnBg} variant='contained'>
-						Estado
-					</Button>
-					<Link
-						className={classes.linkBtn}
-						to={`${url}/historial/${props.dataMascota.dni}`}
+		<Fragment>
+			<Card className={classes.root}>
+				<CardHeader
+					avatar={
+						<Avatar arial-label='recipe' className={classes.avatar}>
+							{dataMascota.nombre[0].toUpperCase()}
+						</Avatar>
+					}
+					action={
+						<div>
+							{auth.user?.isDoctor ? (
+								<Fragment>
+									<IconButton
+										aria-label='settings'
+										aria-controls='simple-menu'
+										aria-haspopup='true'
+										onClick={handleClick}
+									>
+										<SettingsIconSvg />
+									</IconButton>
+									<div>
+										<Menu
+											id='simple-menu'
+											anchorEl={anchorEl}
+											keepMounted
+											open={Boolean(anchorEl)}
+											onClose={handleClose}
+										>
+											<MenuItem
+												onClick={() => {
+													handleClose();
+													modal.handleOpen();
+												}}
+											>
+												Añadir un historial
+											</MenuItem>
+										</Menu>
+									</div>
+									<TransitionsModal>
+										<HistoriaForm mascotaId={dataMascota.id} width='100%' />
+									</TransitionsModal>
+								</Fragment>
+							) : null}
+						</div>
+					}
+					title={dataMascota.nombre.toUpperCase()}
+					subheader={ownerMascota}
+				/>
+				<CardContent className={classes.rootContent}>
+					<Box
+						display='flex'
+						justifyContent='space-between'
+						className={classes.bgContent}
 					>
-						<Button color='secondary' variant='contained'>
-							Historial
+						<div className={classes.contentInfoMascota}>
+							<p>
+								<b>Sexo:</b> {dataMascota.sexo}
+							</p>
+							<p>
+								<b>Edad:</b> {dataMascota.edad}
+							</p>
+							<p>
+								<b>Especie:</b> {dataMascota.especie.tipo}
+							</p>
+							<p>
+								<b>Raza:</b> {dataMascota.raza}
+							</p>
+							<p>
+								<b>Color:</b> {dataMascota.color}
+							</p>
+							<p>
+								<b>Alergias:</b> {dataMascota.alergias}
+							</p>
+							<p>
+								<b>EstadoReproductivo:</b> {dataMascota.estadoReproductivo}
+							</p>
+							<p>
+								<b>Dueño:</b> {ownerMascota}
+							</p>
+							<p>
+								<b>Dni:</b> {dataMascota.dni}
+							</p>
+							<p>
+								<b>Vacunas:</b> {dataMascota.vacunas}
+							</p>
+							<p>
+								<b>Esterilizado:</b> {dataMascota.esterilizado ? 'Si' : 'No'}
+							</p>
+							<p>
+								<b>Entero:</b> {dataMascota.entero ? 'Si' : 'No'}
+							</p>
+							<p>
+								<b>Gestación:</b> {dataMascota.gestacion ? 'Si' : 'No'}
+							</p>
+							<p>
+								<b>Lactancia:</b> {dataMascota.lactancia ? 'Si' : 'No'}
+							</p>
+						</div>
+						<CardMedia
+							className={classes.media}
+							image={dataMascota.especie.imagen}
+							title={dataMascota.nombre}
+						/>
+					</Box>
+					<Box
+						display='flex'
+						justifyContent='space-between'
+						className={classes.bgContent}
+					>
+						<Button className={classes.btnBg} variant='contained'>
+							Estado
 						</Button>
-					</Link>
-				</Box>
-			</CardContent>
-		</Card>
+						{isBtnHistory ? (
+							<ButtonLink
+								text='Historial'
+								className={classes.linkBtn}
+								to={`${url}/historial/${dataMascota.id}`}
+								color='secondary'
+								variant='contained'
+							/>
+						) : (
+							<ButtonLink
+								text='Más Información'
+								className={classes.linkBtn}
+								to={`${url}/historial/${dataMascota.id}`}
+								variant='contained'
+							/>
+						)}
+					</Box>
+				</CardContent>
+			</Card>
+		</Fragment>
 	);
 }
 
 CardMascota.defaultProps = {
-	srcImage:
-		'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
-	nameMascota: 'Mascota Nombre',
-	ownerMascota: 'Mascota Dueño',
+	ownerMascota: '',
 	dataMascota: {
+		id: 0,
 		sexo: 'Mascota Sexo',
 		edad: 'Mascota edad',
 		especie: 'Mascota especie',
@@ -123,14 +190,11 @@ CardMascota.defaultProps = {
 		duenio: 'Dueño Mascota',
 		dni: 'ewqewqe2e',
 		vacunas: 'Mascota Vacunas[]',
+		esterilizado: false,
+		entero: false,
+		gestacion: false,
+		lactancia: false,
 	},
-};
-
-CardMascota.typeProps = {
-	srcImage: PropTypes.string.isRequired,
-	nameMascota: PropTypes.string.isRequired,
-	ownerMascota: PropTypes.string.isRequired,
-	dataMascota: PropTypes.object.isRequired,
 };
 
 export default CardMascota;

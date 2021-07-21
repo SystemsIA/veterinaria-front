@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout } from 'framer-motion';
 import * as LINKS from 'routes';
 
@@ -11,9 +11,10 @@ import MedicoClientesPage from 'pages/medico/MedicoClientesPage';
 import MedicoCitasPage from 'pages/medico/MedicoCitasPage';
 import MedicoInventariosPage from 'pages/medico/MedicoInventariosPage';
 import NotFoundPage from 'pages/errors/NotFoundPage';
+import MascotaClientePage from 'pages/mascotas/MascotaClientePage';
 
 function MedicoRoutes(props) {
-	const location = useLocation();
+	const location = props.location;
 	let url = props.match.url;
 
 	return (
@@ -25,12 +26,25 @@ function MedicoRoutes(props) {
 					component={MascotaHistorialPage}
 				/>
 				<Route
-					path={`${url}${LINKS.MEDICO_TAREAS}`}
-					component={MedicoTareasPage}
+					exact
+					path={`${url}/clientes/:clientId${LINKS.MEDICO_MASCOTAS}`}
+					component={MascotaClientePage}
 				/>
 				<Route
+					exact
+					path={`${url}/clientes/:clientId${LINKS.MEDICO_MASCOTAS}${LINKS.MASCOTA_HISTORIAL}`}
+					component={MascotaHistorialPage}
+				/>
+
+				<Route
+					exact
 					path={`${url}${LINKS.MEDICO_MASCOTAS}`}
 					component={MedicoMascotasPage}
+				/>
+
+				<Route
+					path={`${url}${LINKS.MEDICO_TAREAS}`}
+					component={MedicoTareasPage}
 				/>
 
 				<Route

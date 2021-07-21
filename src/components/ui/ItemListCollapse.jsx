@@ -54,8 +54,8 @@ function ItemListCollapse({ nameItem = '', image, children }) {
 					<ExpandMore onClick={handleOpenClick} />
 				)}
 			</ListItem>
-			<Collapse in={open} timeout="auto" unmountOnExit>
-				<List component="div" disablePadding ref={wrapperRef}>
+			<Collapse in={open} timeout='auto' unmountOnExit>
+				<List component='div' disablePadding ref={wrapperRef}>
 					{children}
 				</List>
 			</Collapse>

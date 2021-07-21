@@ -80,7 +80,7 @@ function LoginForm(props) {
 				{auth.loading ? (
 					<CircularProgress className={classes.loader} size='1.5rem' />
 				) : null}
-				Ingresar
+				{auth.loading ? 'Cargando' : 'Ingresar'}
 			</Button>
 		</form>
 	);

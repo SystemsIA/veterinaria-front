@@ -2,6 +2,7 @@
 import { Grid, Paper, Typography, useMediaQuery } from '@material-ui/core';
 import Layout from 'components/Layout';
 
+// Images
 import perroMain from 'assets/img/perroMain.png';
 import perroTasa from 'assets/img/perritoTasa.png';
 
@@ -21,7 +22,7 @@ function InicioPage() {
 					spacing={2}
 					wrap='wrap'
 					direction={isNotMobileSize ? 'row' : 'column'}
-					justify={isNotMobileSize ? 'space-evenly' : 'center'}
+					justifyContent={isNotMobileSize ? 'space-evenly' : 'center'}
 					alignContent='center'
 				>
 					<Grid
@@ -57,7 +58,7 @@ function InicioPage() {
 					spacing={2}
 					wrap='wrap'
 					direction={isNotMobileSize ? 'row' : 'column-reverse'}
-					justify={isNotMobileSize ? 'space-evenly' : 'flex-start'}
+					justifyContent={isNotMobileSize ? 'space-evenly' : 'flex-start'}
 					alignContent='center'
 				>
 					<Grid

@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.getContrastText(theme.palette.primary.light),
 	},
 }));
+
 function ButtonBack({ text = 'Regresar', ...rest }) {
 	const history = useHistory();
 	const classes = useStyles();

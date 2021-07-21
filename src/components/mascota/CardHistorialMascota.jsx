@@ -25,7 +25,7 @@ function CardHistorialMascota(props) {
 					</Avatar>
 				}
 				title={props.nameMascota}
-				subheader={`Fecha de revisión ${dataMascota.fechaRevision}`}
+				subheader={`Fecha de revisión`}
 			/>
 			<CardContent className={classes.rootContent}>
 				<Box display='flex' className={classes.bgContent}>
@@ -34,10 +34,7 @@ function CardHistorialMascota(props) {
 							<b>Descripción:</b> {dataMascota.descripcion}
 						</p>
 						<p>
-							<b>Médico:</b> {dataMascota.medico}
-						</p>
-						<p>
-							<b>Tipo de tarea realizada:</b> {dataMascota.tipoTarea}
+							<b>Tipo de tarea realizada:</b> {dataMascota.tarea}
 						</p>
 						<Divider />
 						<Typography variant='h6'>DATOS DE LA MASCOTA</Typography>
@@ -48,16 +45,14 @@ function CardHistorialMascota(props) {
 							<b>Peso:</b> {dataMascota.peso}
 						</p>
 						<p>
-							<b>Edad:</b> {dataMascota.edad}
-						</p>
-						<p>
 							<b>Pulso:</b> {dataMascota.pulso}
 						</p>
 						<p>
-							<b>Estado de la mascota:</b> {dataMascota.estado}
+							<b>Estado de la mascota:</b>
+							{dataMascota.internado ? 'Internado' : 'Listo'}
 						</p>
 						<p>
-							<b>Exámenes realizados:</b> {dataMascota.examenes}
+							<b>Exámen realizados:</b> {dataMascota.examen}
 						</p>
 					</div>
 				</Box>
@@ -78,20 +73,21 @@ function CardHistorialMascota(props) {
 		</Card>
 	);
 }
+
 CardHistorialMascota.defaultProps = {
 	nameMascota: 'Mascota Nombre',
 	ownerMascota: 'Mascota Dueño',
 	dataMascota: {
-		fechaRevision: new Date().toUTCString(),
-		descripcion: 'Descripción de la mascota',
-		medico: 'Dr. Doctor',
-		tipoTarea: 'Tarea realizada',
-		talla: '25.52cm',
-		peso: '20kg',
-		edad: '3',
-		pulso: '123',
-		estado: 'Vegetal',
-		examenes: 'Examenes[]',
+		descripcion: '',
+		talla: '',
+		peso: '',
+		tarea: '',
+		internado: '',
+		temperatura: '',
+		pulso: '',
+		diagnostico: '',
+		examen: '',
+		recetaMedica: '',
 	},
 };
 export default CardHistorialMascota;

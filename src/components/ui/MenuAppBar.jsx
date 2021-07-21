@@ -50,14 +50,14 @@ function MenuAppBar() {
 
 	return (
 		<Fragment>
-			<AppBar position="fixed" color="default" elevation={0}>
+			<AppBar position='fixed' color='default' elevation={0}>
 				<Toolbar className={classes.navMobile}>
 					{isNotQueryMobile ? null : (
 						<IconButton
-							color="inherit"
-							aria-label="open drawer"
+							color='inherit'
+							aria-label='open drawer'
 							onClick={handleDrawerOpen}
-							edge="start"
+							edge='start'
 							className={clsx(classes.menuButton, open && classes.hide)}
 						>
 							<MenuIcon />
@@ -67,7 +67,7 @@ function MenuAppBar() {
 					<AppLogoLink
 						small={!isNotQueryMobile}
 						to={INICIO}
-						nameLink="Veterinaria San Lorenzo"
+						nameLink='Veterinaria San Lorenzo'
 					/>
 
 					<div className={classes.navMobile}>
@@ -76,9 +76,9 @@ function MenuAppBar() {
 								{LINKS_NAV_APP.map((link, index) => (
 									<Button
 										key={`${link.name}-${index}`}
-										display="inline"
-										align="center"
-										size="medium"
+										display='inline'
+										align='center'
+										size='medium'
 										activeClassName={classes.activeClassName}
 										className={classes.linkNav}
 										exact
@@ -96,15 +96,15 @@ function MenuAppBar() {
 			</AppBar>
 			<Drawer
 				className={classes.drawer}
-				variant="persistent"
-				anchor="left"
+				variant='persistent'
+				anchor='left'
 				open={open}
 				classes={{
 					paper: classes.drawerPaper,
 				}}
 			>
 				<div className={classes.drawerHeader}>
-					<AppLogoLink small={true} to={INICIO} nameLink="Veterinaria" />
+					<AppLogoLink small={true} to={INICIO} nameLink='Veterinaria' />
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === 'ltr' ? (
 							<ChevronLeftIcon />

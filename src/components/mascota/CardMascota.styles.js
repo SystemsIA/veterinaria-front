@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 export default makeStyles((theme) => ({
 	root: {
 		maxWidth: 536,
-		maxHeight: 532,
+		maxHeight: 680,
 		backgroundColor: theme.palette.primary.light,
 	},
 	media: {
@@ -15,6 +15,8 @@ export default makeStyles((theme) => ({
 		backgroundColor: theme.palette.primary.light,
 	},
 	rootContent: {
+		height: 700,
+		position: 'relative',
 		padding: '2px',
 		'&:last-child': {
 			paddingBottom: 2,
@@ -31,6 +33,7 @@ export default makeStyles((theme) => ({
 	},
 
 	bgContent: {
+		maxHeight: 680,
 		backgroundColor: '#fff',
 		padding: '5px 0.5rem',
 

@@ -1,4 +1,4 @@
-import { lazy, Suspense, Fragment } from 'react';
+import { Fragment, lazy, Suspense } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 

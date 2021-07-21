@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Grid, useMediaQuery } from '@material-ui/core';
 import Layout from 'components/Layout';
 import CardRopa from 'components/mascota/CardRopa';
@@ -7,10 +8,18 @@ import gatoLibro from 'assets/img/gatitoLibro.png';
 
 // Styles
 import useStyles from './CatalogoPage.styles';
+import useGeneralState from 'hooks/useGeneralState';
 
 function CatalogoPage() {
+	const state = useGeneralState();
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 	const classes = useStyles({ isNotMobileSize });
+
+	useEffect(() => {
+		state.getProductos();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<Layout title='Catálogo'>
 			<div className='elipse_yellow' />
@@ -20,29 +29,18 @@ function CatalogoPage() {
 					spacing={2}
 					direction={isNotMobileSize ? 'row-reverse' : 'column'}
 					wrap='wrap'
-					justify='space-evenly'
+					justifyContent='space-evenly'
 					alignItems={isNotMobileSize ? 'stretch' : 'center'}
 				>
-					{[...Array(6).keys()].map((index) => (
+					{state.productos.map((producto, index) => (
 						<Grid
 							item
-							key={`p-${index}`}
+							key={`catalogo-${index}`}
 							xs={isNotMobileSize ? 12 : 6}
 							sm={isNotMobileSize ? 6 : 3}
 							className={classes.withoutFlexBasis}
 						>
-							<CardRopa />
-						</Grid>
-					))}
-					{[...Array(8).keys()].map((index) => (
-						<Grid
-							item
-							key={`s-${index}`}
-							xs={isNotMobileSize ? 12 : 6}
-							sm={isNotMobileSize ? 6 : 3}
-							className={classes.withoutFlexBasis}
-						>
-							<CardRopa />
+							<CardRopa producto={producto} />
 						</Grid>
 					))}
 					<Grid

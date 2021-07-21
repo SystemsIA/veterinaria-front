@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 // Hooks
 import useAuth from 'hooks/useAuth';
 
@@ -7,11 +5,19 @@ import useAuth from 'hooks/useAuth';
 import * as LINKS from 'routes';
 
 // Components
-import { Button } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import LayoutCliente from 'components/cliente/LayoutCliente';
-
+import ButtonLink from 'components/ui/ButtonLink';
+const useStyles = makeStyles((theme) => ({
+	content: {
+		width: '100%',
+		'& > *': {
+			margin: theme.spacing(2),
+		},
+	},
+}));
 function UserInicioPage() {
+	const classes = useStyles();
 	const auth = useAuth();
 	return (
 		<LayoutCliente title='Inicio'>
@@ -21,9 +27,25 @@ function UserInicioPage() {
 				</p>
 				{auth.user?.email}
 			</Typography>
-			<Link to={`${LINKS.USER_INICIO}${LINKS.USER_PERFIL}`}>
-				<Button>Ver mi información</Button>
-			</Link>
+			<Box
+				className={classes.content}
+				display='flex'
+				flexDirection='column'
+				alignItems='center'
+			>
+				<ButtonLink
+					to={`${LINKS.USER_INICIO}${LINKS.USER_PERFIL}`}
+					text='Ver mi información'
+					variant='contained'
+				/>
+
+				<ButtonLink
+					to={`${LINKS.USER_INICIO}${LINKS.USER_RESET_PASSWORD}`}
+					variant='outlined'
+					color='secondary'
+					text='Cambiar contraseña'
+				/>
+			</Box>
 		</LayoutCliente>
 	);
 }

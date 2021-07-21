@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout } from 'framer-motion';
 import UserPerfilPage from 'pages/user/UserPerfilPage';
 import * as LINKS from 'routes';
@@ -7,10 +7,11 @@ import UserMascotasPage from 'pages/user/UserMascotasPage';
 import UserCitasPage from 'pages/user/UserCitasPage';
 import MascotaHistorialPage from 'pages/mascotas/MascotaHistorialPage';
 import UserInicioPage from 'pages/user/UserInicioPage';
+import ResetPasswordPage from 'pages/user/ResetPasswordPage';
 
 function UserRoutes(props) {
 	const url = props.match.url;
-	const location = useLocation();
+	const location = props.location;
 
 	return (
 		<AnimateSharedLayout>
@@ -20,6 +21,7 @@ function UserRoutes(props) {
 					path={`${url}${LINKS.USER_MASCOTAS}${LINKS.MASCOTA_HISTORIAL}`}
 					component={MascotaHistorialPage}
 				/>
+
 				<Route path={`${url}${LINKS.USER_PERFIL}`} component={UserPerfilPage} />
 
 				<Route
@@ -34,6 +36,11 @@ function UserRoutes(props) {
 					exact
 					path={`${LINKS.USER_INICIO}/inicio`}
 					component={UserInicioPage}
+				/>
+
+				<Route
+					path={`${url}${LINKS.USER_RESET_PASSWORD}`}
+					component={ResetPasswordPage}
 				/>
 
 				<Route path='/:rest*' component={NotFoundPage} />

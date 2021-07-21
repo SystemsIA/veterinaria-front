@@ -1,11 +1,13 @@
-import { memo, useReducer, useCallback } from 'react';
+import { memo, useCallback, useReducer } from 'react';
 
 // Hooks
 import useFormInput from 'hooks/useFormInput';
 import useClient from 'hooks/useClient';
+import { useRegexEmail } from 'hooks/useRegexInput';
 
 // Components
-import { Box, TextField, Button } from '@material-ui/core';
+import { Box, Button, OutlinedInput } from '@material-ui/core';
+import InputForm from 'components/ui/InputForm';
 import AlertCustom from 'components/AlertCustom';
 
 // Styles
@@ -21,15 +23,16 @@ const initState = {
 	isValidDNI: true,
 	isValidPhone: true,
 };
+
 function reducer(state = initState, action) {
 	switch (action.type) {
 		case 'valid':
 			let dni = validNumberInput(action.dni);
-			let phone = validNumberInput(action.phone, false);
+			let telefono = validNumberInput(action.telefono, false);
 			return {
 				...state,
 				isValidDNI: dni,
-				isValidPhone: phone,
+				isValidPhone: telefono,
 			};
 		case 'reset-phone':
 			return {
@@ -47,15 +50,17 @@ function reducer(state = initState, action) {
 }
 
 function RegisterUserForm({ width }) {
-	const client = useClient();
+	const cliente = useClient();
 	const classes = useStyles({ width });
 	const [state, dispatch] = useReducer(reducer, initState);
 
+	const emailRegx = useRegexEmail();
 	const { formData, handleChange } = useFormInput({
-		name: '',
+		nombre: '',
 		dni: '',
-		address: '',
-		phone: '',
+		email: '',
+		direccion: '',
+		telefono: '',
 	});
 
 	const handleRegisterSubmit = useCallback(
@@ -64,16 +69,16 @@ function RegisterUserForm({ width }) {
 			dispatch({
 				type: 'valid',
 				dni: formData.dni,
-				phone: formData.phone,
+				telefono: formData.telefono,
 			});
 
 			if (state.isValidDNI && state.isValidPhone) {
-				client.registerAction(formData);
+				cliente.registerAction(formData);
 			} else {
 				console.log('Invalid');
 			}
 		},
-		[formData, state, client]
+		[formData, state, cliente]
 	);
 
 	return (
@@ -82,59 +87,80 @@ function RegisterUserForm({ width }) {
 			onSubmit={handleRegisterSubmit}
 			className={classes.form}
 		>
-			<Box display='flex' flexDirection='column' justifyContent='space-between'>
-				{client.isError ? (
+			<Box
+				className={classes.content}
+				display='flex'
+				flexDirection='column'
+				justifyContent='space-between'
+			>
+				{cliente.isError ? (
 					<AlertCustom
 						typeAlert='error'
-						message={client.message}
-						handle={client.resetAction}
+						message={cliente.message}
+						handle={cliente.resetAction}
 					/>
 				) : null}
-				<TextField
-					required
-					id='name-user'
-					name='name'
+				{cliente?.isSuccess ? (
+					<AlertCustom typeAlert='success' handle={cliente.resetAction}>
+						{cliente.message}
+					</AlertCustom>
+				) : null}
+
+				<InputForm
+					as={OutlinedInput}
 					label='Nombre del cliente'
-					variant='outlined'
-					className={classes.textField}
-				/>
-				<TextField
+					name='nombre'
+					id='name-user'
+					idName='name'
 					required
-					error={!state.isValidDNI}
-					// onChange={() => dispatch({ type: 'reset-dni' })}
-					id='dni-user'
+				/>
+				<InputForm
+					as={OutlinedInput}
+					label='Correo del cliente'
+					name='email'
+					id='email-user'
+					idName='email'
+					type='email'
+					onChange={emailRegx.onChange}
+					error={!emailRegx.isValid}
+					helperText={
+						!emailRegx.isValid ? 'Por favor Ingrese un correo válido' : null
+					}
+					required
+				/>
+				<InputForm
+					as={OutlinedInput}
+					label='Dni del cliente'
 					name='dni'
-					maxlenght={8}
-					label='DNI del cliente'
-					variant='outlined'
+					id='dni-user'
+					idName='dni'
+					required
 					helperText={
 						!state.isValidDNI ? 'Por favor el corriga el número de DNI.' : null
 					}
-					className={classes.textField}
 				/>
 
-				<TextField
-					required
-					id='address-user'
-					name='address'
+				<InputForm
+					as={OutlinedInput}
 					label='Dirección del cliente'
-					variant='outlined'
-					className={classes.textField}
-				/>
-				<TextField
+					name='direccion'
+					id='address-user'
+					idName='address'
 					required
-					error={!state.isValidPhone}
-					// onChange={() => dispatch({ type: 'reset-phone' })}
-					id='phone-user'
-					name='phone'
+				/>
+
+				<InputForm
+					as={OutlinedInput}
 					label='Teléfono del cliente'
-					variant='outlined'
+					name='telefono'
+					id='phone-user'
+					idName='phone'
+					required
 					helperText={
 						!state.isValidPhone
 							? 'Por favor el corriga el número de teléfono.'
 							: null
 					}
-					className={classes.textField}
 				/>
 				<Box display='flex' justifyContent='space-between'>
 					<Button

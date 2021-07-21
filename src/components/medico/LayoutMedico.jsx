@@ -4,13 +4,12 @@ import * as LINKS from 'routes';
 
 import { motion } from 'framer-motion';
 import {
-	Container,
-	Toolbar,
 	AppBar,
-	Button,
+	Container,
 	Drawer,
-	List,
 	IconButton,
+	List,
+	Toolbar,
 	useTheme,
 } from '@material-ui/core';
 import AppLogoLink from 'components/ui/AppLogoLink';
@@ -40,6 +39,7 @@ import useStyles from './LayoutMedico.styles';
 
 // PropTypes
 import PropTypes from 'prop-types';
+import ButtonLink from 'components/ui/ButtonLink';
 
 function LayoutMedico({ title = '', container = false, children }) {
 	const classes = useStyles();
@@ -84,9 +84,12 @@ function LayoutMedico({ title = '', container = false, children }) {
 					</AppLogoLink>
 
 					<div>
-						<Button className={classes.imgSize}>
+						<ButtonLink
+							to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CLIENTES}`}
+							className={classes.imgSize}
+						>
 							<img src={imgHueso} alt='Hueso Imagen' />
-						</Button>
+						</ButtonLink>
 						<MenuButtonUser as={SettingsOutlinedIcon} fontSize='large' />
 					</div>
 				</Toolbar>

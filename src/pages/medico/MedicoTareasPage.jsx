@@ -9,6 +9,7 @@ import {
 
 // Images
 import imgMore from 'assets/img/iconMas.png';
+import HistoriaForm from 'components/mascota/HistoriaForm';
 
 function MedicoTareasPage() {
 	return (
@@ -26,10 +27,18 @@ function MedicoTareasPage() {
 						Buen Día Doctor <br /> Estas son sus tareas pendientes
 					</Typography>
 				</AccordionSummary>
+				<AccordionDetails></AccordionDetails>
+			</Accordion>
+			<Accordion id='tarea-header'>
+				<AccordionSummary
+					expandIcon={<img width={40} src={imgMore} alt='Tareas Doctor 2' />}
+					aria-controls='tarea-content'
+					id='tarea-header'
+				>
+					<Typography variant='h6'>Crear tareas para una mascota</Typography>
+				</AccordionSummary>
 				<AccordionDetails>
-					<Typography variant='h6'>
-						Buen Día Doctor <br /> Estas son sus tareas pendientes
-					</Typography>
+					<HistoriaForm />
 				</AccordionDetails>
 			</Accordion>
 		</LayoutMedico>

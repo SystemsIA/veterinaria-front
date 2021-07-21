@@ -1,49 +1,50 @@
 import { Fragment } from 'react';
 import {
 	FormControl,
+	FormHelperText,
 	InputLabel,
 	makeStyles,
-	FormHelperText,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 	inputLabel: {
 		display: 'flex',
 		alignItems: 'center',
+	},
+	spanText: {
+		fontSize: (props) => theme.typography.pxToRem(props.fontSize || 14),
 	},
 }));
 
 function InputForm({
 	icon: Icon,
 	as: IC,
-	type = 'text',
 	label = '',
 	idName = '',
 	variant = 'outlined',
 	color = 'primary',
-	name = '',
 	required,
 	helperText = null,
+	fontSize = 14,
 	...rest
 }) {
-	const classes = useStyles();
+	const classes = useStyles({ fontSize });
 	return (
 		<FormControl required={required} variant={variant} color={color}>
 			<InputLabel htmlFor={idName} className={classes.inputLabel}>
-				{Icon ? <Icon /> : null} <span>{label}</span>
+				{Icon ? <Icon /> : null}
+				<span className={classes.spanText}>{label}</span>
 			</InputLabel>
 			<IC
 				id={idName}
 				aria-describedby={label}
-				name={name}
-				type={type}
-				{...rest}
 				label={
 					<Fragment>
 						{Icon ? <Icon /> : null}
-						{label}
+						<span className={classes.spanText}>{label}</span>
 					</Fragment>
 				}
+				{...rest}
 			/>
 			{helperText ? <FormHelperText error>{helperText}</FormHelperText> : null}
 		</FormControl>

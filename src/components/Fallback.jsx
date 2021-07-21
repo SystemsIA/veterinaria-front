@@ -1,4 +1,4 @@
-import { makeStyles, LinearProgress } from '@material-ui/core';
+import { LinearProgress, makeStyles } from '@material-ui/core';
 
 // Custom Styles
 const useStyles = makeStyles((theme) => ({

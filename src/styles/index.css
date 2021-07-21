@@ -6,11 +6,6 @@
 	font-family: 'Assistant', sans-serif;
 }
 
-.body {
-	height: 100vh;
-	background: #f3f3f3;
-}
-
 .elipse_yellow {
 	position: absolute;
 	top: 0;
@@ -51,6 +46,7 @@
 		bottom: 0.5rem;
 		left: 0;
 	}
+
 	.elipse_yellow {
 		height: 300px;
 		width: 228px;
@@ -77,4 +73,25 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: #f2d852;
+}
+
+.list__select {
+	display: flex;
+	justify-content: space-between;
+}
+
+.list__item-content {
+	width: 100%;
+	padding: 5px 10px;
+	border-bottom:1px solid #888;
+	transition: .2s ease all;
+}
+.list__item-content:hover {
+	background-color: #888;
+	color: whitesmoke;
+}
+
+
+.list__item {
+	margin: 1rem;
 }

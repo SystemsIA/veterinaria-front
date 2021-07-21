@@ -52,6 +52,7 @@ export default makeStyles((theme) => ({
 		}),
 		marginLeft: -drawerWidth,
 		backgroundColor: '#E5E5E5',
+		height: '100',
 	},
 	contentShift: {
 		transition: theme.transitions.create('margin', {

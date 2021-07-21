@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import {
 	Button,
 	Card,
@@ -10,26 +11,29 @@ import {
 // Styles
 import useStyles from './CardRopa.styles';
 
-function CardRopa({ image, content }) {
-	const classes = useStyles();
+const ImageLazy = lazy(() => import('components/ImageLazy'));
 
+function CardRopa({ producto }) {
+	const classes = useStyles();
+	const { imagenPrincipal, nombre, precio, stock } = producto;
 	return (
 		<Card className={classes.root} elevation={3}>
 			<CardMedia className={classes.media} title='Image of animal'>
-				<img src={image} alt='animal' />
+				<ImageLazy src={imagenPrincipal} alt={nombre} />
 			</CardMedia>
 
 			<CardContent className={classes.cardContent}>
-				<Typography variant='h5' color='textSecondary'>
-					Ropa Animal
+				<Typography variant='h5' color='textSecondary' component='h5'>
+					{nombre}
 				</Typography>
 				<Typography variant='body2' color='textSecondary' component='p'>
-					{content}
+					S/{precio}
 				</Typography>
+				<Typography variant='body2'>Disponible: {stock} unidades</Typography>
 			</CardContent>
 			<CardActions className={classes.cardActions}>
 				<Button variant='outlined' size='small' className={classes.bgButton}>
-					Compartir
+					Ver Producto
 				</Button>
 			</CardActions>
 		</Card>
@@ -37,10 +41,14 @@ function CardRopa({ image, content }) {
 }
 
 CardRopa.defaultProps = {
-	image:
-		'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
-	content:
-		'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica',
+	producto: {
+		imagenPrincipal: '',
+		imagenes: [],
+		marca: { imagen: null, nombre: '' },
+		nombre: '',
+		precio: 0,
+		stock: 0,
+	},
 };
 
 export default CardRopa;
