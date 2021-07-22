@@ -2,8 +2,6 @@ import Layout from 'components/Layout';
 import { Box, Typography } from '@material-ui/core';
 import ButtonBack from 'components/ui/ButtonBack';
 
-import lucasImage from 'assets/img/lucas.png';
-
 function NotFoundPage(props) {
 	let { rest } = props.match.params;
 	return (
@@ -23,16 +21,6 @@ function NotFoundPage(props) {
 					Ups parece que la dirección que buscas no esta disponible o no existe!
 					😅
 				</Typography>
-				{/* <Box
-					display='flex'
-					flexDirection='column'
-					justifyContent='center'
-					alignItems='center'
-					style={{ margin: 20 }}
-				>
-					<img src={lucasImage} alt='Lucas' width='50%' />
-					<Typography align='center'>No te vayas 😘</Typography>
-				</Box> */}
 				<ButtonBack color='secondary' variant='contained' />
 			</Box>
 		</Layout>
