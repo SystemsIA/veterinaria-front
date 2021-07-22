@@ -12,9 +12,10 @@ import {
 	Radio,
 	RadioGroup,
 } from '@material-ui/core';
-import ListClienteSelect from 'components/ui/ListClienteSelect';
 import ListEspecieSelect from 'components/ui/ListEspecieSelect';
 import AlertCustom from 'components/AlertCustom';
+import AutocompleteInput from 'components/ui/AutocompleteInput';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
 	form: {
@@ -40,12 +41,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function MascotaForm() {
+function MascotaForm({ activeListUser, clientId }) {
 	const cliente = useClient();
 	const classes = useStyles();
 
+	const [valueCliente, setValueCliente] = useState(null);
+
 	const form = useForm({
-		clientId: '',
 		nombre: '',
 		especie: 0,
 		edad: '',
@@ -64,11 +66,22 @@ function MascotaForm() {
 		e.preventDefault();
 
 		(async () => {
-			await cliente.registrarMascotaAction(form.fields.clientId, form.fields);
+			await cliente.registrarMascotaAction(
+				valueCliente ? valueCliente?.id : clientId,
+				form.fields
+			);
+			clientId || valueCliente?.id
+				? await cliente.fetchClientAction(clientId || valueCliente?.id)
+				: await cliente.listClientesAction();
 		})();
-		console.log(form.fields);
 	};
 
+	useEffect(() => {
+		(async () => {
+			await cliente.listClientesAction();
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
 			{cliente.isError && (
@@ -91,7 +104,6 @@ function MascotaForm() {
 				required
 				{...form.getInput('nombre')}
 			/>
-
 			<div className={classes.row}>
 				<InputForm
 					as={OutlinedInput}
@@ -164,7 +176,16 @@ function MascotaForm() {
 					)
 				)}
 			</div>
-			<ListClienteSelect classes={classes} {...form.getSelect('clientId')} />
+			{activeListUser && (
+				<AutocompleteInput
+					field='nombre'
+					data={cliente.clientes}
+					value={valueCliente}
+					setValue={setValueCliente}
+					label='Buscar al cliente'
+				/>
+			)}
+
 			<Button type='submit' variant='contained' color='primary'>
 				Registrar
 			</Button>

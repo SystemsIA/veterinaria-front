@@ -1,13 +1,22 @@
 import { useEffect } from 'react';
-import { Box, Grid, Typography } from '@material-ui/core';
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Box,
+	Grid,
+	Typography,
+} from '@material-ui/core';
 import CardMascota from 'components/mascota/CardMascota';
 import LayoutMedico from 'components/medico/LayoutMedico';
 import useClient from 'hooks/useClient';
 import ButtonBack from 'components/ui/ButtonBack';
 import ArrowBack from 'components/icons/ArrowBack';
-
+import MascotaForm from 'components/mascota/MascotaForm';
+import imgMore from 'assets/img/iconMas.png';
 function MascotaClientePage(props) {
 	let { clientId } = props.match.params;
+
 	const cliente = useClient();
 
 	useEffect(() => {
@@ -35,6 +44,24 @@ function MascotaClientePage(props) {
 					color='primary'
 				/>
 			</Box>
+			<br />
+			<Box>
+				<Accordion>
+					<AccordionSummary
+						expandIcon={
+							<img width={40} src={imgMore} alt='Registrar nueva mascota' />
+						}
+						aria-controls='panel3a-content'
+						id='panel3a-header'
+					>
+						<Typography variant='h6'>Registrar su mascota</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<MascotaForm clientId={clientId} />
+					</AccordionDetails>
+				</Accordion>
+			</Box>
+			<br />
 			<Grid container spacing={2}>
 				{cliente?.c?.mascotas.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>

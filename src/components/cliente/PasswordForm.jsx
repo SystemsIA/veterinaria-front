@@ -34,6 +34,7 @@ function PasswordForm() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
 		(async () => {
 			await cliente.cambioPasswordAction(form.fields);
 		})();
@@ -49,20 +50,20 @@ function PasswordForm() {
 				alignItems='center'
 				justifyContent='space-between'
 			>
-				{cliente.isError ? (
+				{cliente.isError && (
 					<AlertCustom
 						typeAlert='error'
 						message={cliente.message}
 						handle={cliente.resetAction}
 					/>
-				) : null}
-				{cliente.isSuccess ? (
+				)}
+				{cliente.isSuccess && (
 					<AlertCustom
 						typeAlert='success'
 						message={cliente.message}
 						handle={cliente.resetAction}
 					/>
-				) : null}
+				)}
 
 				<InputForm
 					as={OutlinedInput}

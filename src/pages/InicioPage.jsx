@@ -78,18 +78,37 @@ function InicioPage() {
 						sm={isNotMobileSize ? 6 : 3}
 					>
 						<Paper className={classes.paper}>
-							<Typography variant='body1'>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Consequatur eos voluptate animi recusandae quo eaque laboriosam
-								vitae aliquid ex est? Animi recusandae aspernatur in corrupti
-								nulla fugit! Nam veniam architecto fugiat optio corrupti nulla
-								similique nisi, rem doloremque illum deleniti perspiciatis ad
-								dolores. Lorem ipsum dolor sit amet consectetur adipisicing
-								elit. Itaque ea nulla quisquam sit in deleniti non dolor quidem
-								accusantium, incidunt assumenda odit, eius quae illo a labore
-								ullam consequatur! Maxime consequatur distinctio animi sint
-								placeat! Praesentium consequuntur eum cupiditate nesciunt nemo
-								unde exercitationem!
+							<Typography variant='overline'>
+								<p>Misión</p>
+								<ul>
+									<li>
+										Ofrecer a nuestros pacientes el mejor tratamiento médico,
+										trato humano y excelencia en el servicio.
+									</li>
+									<li>
+										La efectividad de las actuaciones profesionales como
+										principal compromiso.
+									</li>
+									<li>Asegurar la innovación tecnológica y científica.</li>
+									<li>
+										Mantener la voluntad constante de mejora de los servicios
+										prestados.
+									</li>
+								</ul>
+							</Typography>
+						</Paper>
+						<br />
+						<Paper className={classes.paper}>
+							<Typography variant='overline'>
+								<p>Visión</p>
+								<ul>
+									<li>
+										Ofrecer y realizar servicios veterinarios de gran calidad y
+										alto nivel técnico y científico, dirigidos a nuestros
+										clientes y a sus mascotas para satisfacer con excelencia sus
+										necesidades.
+									</li>
+								</ul>
 							</Typography>
 						</Paper>
 					</Grid>

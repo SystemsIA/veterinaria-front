@@ -18,7 +18,7 @@ function parseUser(user) {
 }
 
 const store = persist(
-	(set, _, userApi) => ({
+	(set, get) => ({
 		user: {},
 		loading: false,
 		isLogin: false,
@@ -53,14 +53,14 @@ const store = persist(
 		},
 
 		async logoutAction() {
-			await apiUser.fetchLogout();
+			await apiUser.fetchLogout(get()?.token);
+			delete get()?.token;
 			set({
 				user: {},
 				isLogin: false,
 				isError: false,
 				token: '',
 			});
-			userApi.destroy();
 		},
 
 		resetAction() {
@@ -76,6 +76,7 @@ const store = persist(
 	{
 		version: 1,
 		name: 'STATE_AUTH',
+		getStorage: () => localStorage,
 	}
 );
 

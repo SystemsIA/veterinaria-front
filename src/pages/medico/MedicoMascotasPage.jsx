@@ -56,7 +56,7 @@ function MedicoMascotasPage() {
 					<Typography variant='h6'>Registrar nueva mascota</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<MascotaForm />
+					<MascotaForm activeListUser />
 				</AccordionDetails>
 			</Accordion>
 			<h1>Mascotas de la veterinaria</h1>

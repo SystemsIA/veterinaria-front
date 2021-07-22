@@ -9,9 +9,13 @@ import gatoLibro from 'assets/img/gatitoLibro.png';
 // Styles
 import useStyles from './CatalogoPage.styles';
 import useGeneralState from 'hooks/useGeneralState';
+import BuscarField from 'components/ui/BuscarField';
+import useSearch from 'hooks/useSearch';
 
 function CatalogoPage() {
 	const state = useGeneralState();
+	const search = useSearch('nombre', state?.productos);
+
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 	const classes = useStyles({ isNotMobileSize });
 
@@ -24,6 +28,10 @@ function CatalogoPage() {
 		<Layout title='Catálogo'>
 			<div className='elipse_yellow' />
 			<div className={classes.root}>
+				<BuscarField
+					placeholder='Buscar Productos...'
+					onChange={search.handleSearch}
+				/>
 				<Grid
 					container
 					spacing={2}
@@ -32,7 +40,7 @@ function CatalogoPage() {
 					justifyContent='space-evenly'
 					alignItems={isNotMobileSize ? 'stretch' : 'center'}
 				>
-					{state.productos.map((producto, index) => (
+					{search.data.map((producto, index) => (
 						<Grid
 							item
 							key={`catalogo-${index}`}

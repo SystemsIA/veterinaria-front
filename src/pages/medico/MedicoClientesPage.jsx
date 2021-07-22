@@ -43,6 +43,7 @@ function MedicoClientesPage() {
 				</AccordionDetails>
 			</Accordion>
 			<br />
+
 			<TableCliente />
 		</LayoutMedico>
 	);

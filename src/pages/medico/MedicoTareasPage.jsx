@@ -1,5 +1,7 @@
 //Components
 import LayoutMedico from 'components/medico/LayoutMedico';
+import HistoriaForm from 'components/mascota/HistoriaForm';
+import TaskTable from 'components/table/TaskTable';
 import {
 	Accordion,
 	AccordionDetails,
@@ -9,7 +11,6 @@ import {
 
 // Images
 import imgMore from 'assets/img/iconMas.png';
-import HistoriaForm from 'components/mascota/HistoriaForm';
 
 function MedicoTareasPage() {
 	return (
@@ -17,18 +18,7 @@ function MedicoTareasPage() {
 			<Typography variant='h3' component='h3' align='center' color='primary'>
 				Tareas del Doctor
 			</Typography>
-			<Accordion id='panel1a-header'>
-				<AccordionSummary
-					expandIcon={<img width={40} src={imgMore} alt='Tareas Doctor 1' />}
-					aria-controls='panel1a-content'
-					id='panel1a-header'
-				>
-					<Typography variant='h6'>
-						Buen Día Doctor <br /> Estas son sus tareas pendientes
-					</Typography>
-				</AccordionSummary>
-				<AccordionDetails></AccordionDetails>
-			</Accordion>
+
 			<Accordion id='tarea-header'>
 				<AccordionSummary
 					expandIcon={<img width={40} src={imgMore} alt='Tareas Doctor 2' />}
@@ -38,9 +28,11 @@ function MedicoTareasPage() {
 					<Typography variant='h6'>Crear tareas para una mascota</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<HistoriaForm />
+					<HistoriaForm width='100%' />
 				</AccordionDetails>
 			</Accordion>
+			<br />
+			<TaskTable />
 		</LayoutMedico>
 	);
 }

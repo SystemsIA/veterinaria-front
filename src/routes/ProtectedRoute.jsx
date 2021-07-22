@@ -19,6 +19,7 @@ function ProtectedRoute({ options = { isRouteDoctor: false }, ...rest }) {
 	} else if (!verifyUser(auth?.user?.id)) {
 		return <Redirect exact to={LINKS.UNAUTHORIZED} />;
 	}
+
 	return <Route {...rest} />;
 }
 

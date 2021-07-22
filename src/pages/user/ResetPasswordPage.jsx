@@ -13,6 +13,7 @@ function ResetPasswordPage() {
 				</p>
 				{auth?.user?.nombre}-{auth.user?.email}
 			</Typography>
+			<br />
 			<Box display='flex' flexDirection='column'>
 				<PasswordForm />
 			</Box>

@@ -6,12 +6,15 @@ import {
 	makeStyles,
 	OutlinedInput,
 	TextareaAutosize,
-	Typography,
+	// Typography,
 } from '@material-ui/core';
 import InputForm from 'components/ui/InputForm';
 import ListTareasSelect from 'components/ui/ListTareasSelect';
 import useClient from 'hooks/useClient';
 import { useModalTransition } from 'contexts/ModalTransitionContext';
+import AutocompleteInput from 'components/ui/AutocompleteInput';
+import { useEffect, useState } from 'react';
+import AlertCustom from 'components/AlertCustom';
 const useStyles = makeStyles((theme) => ({
 	form: {
 		width: (props) => (props.width ? props.width : '70%'),
@@ -37,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function HistoriaForm({ mascotaId, width }) {
-	const client = useClient();
+	const cliente = useClient();
 	const modal = useModalTransition();
 	const classes = useStyles({ width });
+	const [valueMascota, setValueMascota] = useState(null);
 	const form = useForm({
 		description: '',
 		talla: '',
@@ -56,16 +60,40 @@ function HistoriaForm({ mascotaId, width }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		(async () => {
-			modal.hanleClose();
-			await client.crearHistoriaAction(mascotaId, form.fields);
+			if (!valueMascota?.id) modal.handleClose();
+			await cliente.crearHistoriaAction(
+				mascotaId || valueMascota?.id,
+				form.fields
+			);
 		})();
 	};
 
+	useEffect(() => {
+		(async () => {
+			await cliente.listMascotaAction();
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
-			<Typography align='center' variant='h5'>
+			{/* <Typography align='center' variant='h5'>
 				Registrar un historial
-			</Typography>
+			</Typography> */}
+
+			{cliente.isError && (
+				<AlertCustom
+					typeAlert='error'
+					message={cliente.message}
+					handle={cliente.resetAction}
+				/>
+			)}
+			{cliente.isSuccess && (
+				<AlertCustom
+					typeAlert='success'
+					message={cliente.message}
+					handle={cliente.resetAction}
+				/>
+			)}
 			<div className={classes.row}>
 				<InputForm
 					as={OutlinedInput}
@@ -139,6 +167,13 @@ function HistoriaForm({ mascotaId, width }) {
 					minRows={3}
 					placeholder='Diagnosito de la mascota...'
 					{...form.getInput('diagnostico')}
+				/>
+				<AutocompleteInput
+					field='nombre'
+					data={cliente?.mascotas}
+					value={valueMascota}
+					setValue={setValueMascota}
+					label='Buscar la mascota'
 				/>
 			</div>
 			<Button type='submit' variant='contained' color='primary'>

@@ -1,6 +1,8 @@
 import useAuth from 'hooks/useAuth';
 import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
 import LayoutCliente from 'components/cliente/LayoutCliente';
+import ButtonLink from 'components/ui/ButtonLink';
+import * as LINKS from 'routes';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -64,6 +66,20 @@ function UserPerfilPage() {
 						</div>
 					</Box>
 				</Paper>
+			</Box>
+			<br />
+			<Box
+				className={classes.content}
+				display='flex'
+				flexDirection='column'
+				alignItems='center'
+			>
+				<ButtonLink
+					to={`${LINKS.USER_INICIO}${LINKS.USER_RESET_PASSWORD}`}
+					variant='outlined'
+					color='secondary'
+					text='Cambiar mi contraseña'
+				/>
 			</Box>
 		</LayoutCliente>
 	);

@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function BuscarField({ onChange }) {
+function BuscarField({ onChange, placeholder = 'Buscar...' }) {
 	const classes = useStyles();
 	return (
 		<div className={classes.search}>
@@ -52,7 +52,7 @@ function BuscarField({ onChange }) {
 				<SearchIcon />
 			</div>
 			<InputBase
-				placeholder='Buscar...'
+				placeholder={placeholder}
 				classes={{
 					root: classes.inputRoot,
 					input: classes.inputInput,

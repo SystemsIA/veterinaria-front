@@ -15,6 +15,7 @@ const useClientStore = create((set, get) => ({
 	clientes: [],
 	mascotas: [],
 	historial: [],
+	tareas: [],
 
 	async registerAction(user) {
 		set({ loading: true });
@@ -77,18 +78,21 @@ const useClientStore = create((set, get) => ({
 
 	async crearHistoriaAction(mascotaId, data) {
 		const res = await crearHistoria(mascotaId, data);
-		if (res.status !== 201) {
+		if (res.status !== 200) {
 			set({
 				message: Object.values(res?.data),
 				isError: true,
 				loading: false,
 			});
 		} else {
-			set({
-				message: 'Se creo la historia de la mascota',
-				isError: false,
-				isSuccess: true,
-				loading: false,
+			set((state) => {
+				return {
+					message: 'Se creo la tarea de la mascota',
+					tareas: [...state.tareas, res.data],
+					isError: false,
+					isSuccess: true,
+					loading: false,
+				};
 			});
 		}
 	},
@@ -116,6 +120,16 @@ const useClientStore = create((set, get) => ({
 				isError: false,
 			});
 		}
+	},
+
+	async historiasListAction() {
+		const res = await apiCliente.getHistoriasList();
+
+		set((state) => {
+			return {
+				tareas: [...res.data, ...state.tareas],
+			};
+		});
 	},
 
 	resetAction() {

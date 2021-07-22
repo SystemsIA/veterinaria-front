@@ -1,7 +1,7 @@
 // Components
 import LayoutMedico from 'components/medico/LayoutMedico';
-import { Box, Button, Typography, useMediaQuery } from '@material-ui/core';
-
+import { Box, Typography, useMediaQuery } from '@material-ui/core';
+import ButtonLink from 'components/ui/ButtonLink';
 //Routes
 import * as LINKS from 'routes';
 
@@ -28,13 +28,12 @@ function MedicoInicioPage(props) {
 					Bienvenido Doctor
 				</Typography>
 
-				<Button
+				<ButtonLink
 					color='secondary'
 					variant='contained'
-					href={`${url}${LINKS.MEDICO_TAREAS}`}
-				>
-					Revisar tareas
-				</Button>
+					to={`${url}${LINKS.MEDICO_TAREAS}`}
+					text='Revisar tareas'
+				/>
 			</Box>
 		</LayoutMedico>
 	);

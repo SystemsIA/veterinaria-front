@@ -24,7 +24,6 @@ export async function getClienteList() {
 	});
 }
 
-
 export async function getCliente(clientId) {
 	return await clientHttp.get(`/clientes/${clientId}/`, {
 		headers: {
@@ -33,3 +32,10 @@ export async function getCliente(clientId) {
 	});
 }
 
+export async function getHistoriasList() {
+	return await clientHttp.get('/historias/', {
+		headers: {
+			Authorization: `token ${AUTH_TOKEN}`,
+		},
+	});
+}
