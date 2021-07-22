@@ -23,7 +23,7 @@ function NotFoundPage(props) {
 					Ups parece que la dirección que buscas no esta disponible o no existe!
 					😅
 				</Typography>
-				<Box
+				{/* <Box
 					display='flex'
 					flexDirection='column'
 					justifyContent='center'
@@ -32,7 +32,7 @@ function NotFoundPage(props) {
 				>
 					<img src={lucasImage} alt='Lucas' width='50%' />
 					<Typography align='center'>No te vayas 😘</Typography>
-				</Box>
+				</Box> */}
 				<ButtonBack color='secondary' variant='contained' />
 			</Box>
 		</Layout>
