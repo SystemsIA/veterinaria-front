@@ -7,7 +7,7 @@ const useGeneralStore = create((set) => ({
 
 	async getProductosAction() {
 		const { data } = await getProductsList();
-		set((state) => ({ productos: [...state.productos, ...data] }));
+		set(() => ({ productos: [...data] }));
 	},
 
 	async getProductoAction(productoId) {
