@@ -21,11 +21,11 @@ export async function fetchUserDetail(token = '') {
 	}
 }
 
-export async function fetchLogout(token) {
+export async function fetchLogout() {
 	try {
 		return await clientHttp.post('/rest-auth/logout/', {
 			headers: {
-				Authorization: `token ${token}`,
+				Authorization: `token ${AUTH_TOKEN}`,
 			},
 		});
 	} catch (error) {

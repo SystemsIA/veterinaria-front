@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useClient from 'hooks/useClient';
 import useSearch from 'hooks/useSearch';
+import { ModalProvider } from 'contexts/ModalTransitionContext';
 import {
 	Accordion,
 	AccordionDetails,
@@ -9,15 +10,16 @@ import {
 	Grid,
 	Typography,
 } from '@material-ui/core';
+
+import ButtonBack from 'components/ui/ButtonBack';
+import ArrowBack from 'components/icons/ArrowBack';
+import SearchField from 'components/ui/SearchField';
 import CardMascota from 'components/mascota/CardMascota';
 import LayoutMedico from 'components/medico/LayoutMedico';
 import MascotaForm from 'components/mascota/MascotaForm';
 
 // Images
 import imgMore from 'assets/img/iconMas.png';
-import ButtonBack from 'components/ui/ButtonBack';
-import ArrowBack from 'components/icons/ArrowBack';
-import BuscarField from 'components/ui/BuscarField';
 
 function MedicoMascotasPage() {
 	const cliente = useClient();
@@ -60,11 +62,18 @@ function MedicoMascotasPage() {
 				</AccordionDetails>
 			</Accordion>
 			<h1>Mascotas de la veterinaria</h1>
-			<BuscarField onChange={mascotas.handleSearch} />
+
+			<SearchField
+				placeholder='Buscar mascota por nombre...'
+				onChange={mascotas.handleSearch}
+			/>
+
 			<Grid container spacing={2}>
 				{mascotas.data.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>
-						<CardMascota dataMascota={mascota} isBtnHistory={false} />
+						<ModalProvider>
+							<CardMascota dataMascota={mascota} isBtnHistory={false} />
+						</ModalProvider>
 					</Grid>
 				))}
 			</Grid>

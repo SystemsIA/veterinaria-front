@@ -25,6 +25,7 @@ const CatalogoPage = lazy(() => import('pages/CatalogoPage'));
 const VeterinariaPage = lazy(() => import('pages/VeterinariaPage'));
 const ServicioPage = lazy(() => import('pages/ServicioPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const ProductoPage = lazy(() => import('pages/ProductoPage'));
 
 export function AppRoutes() {
 	const location = useLocation();
@@ -39,6 +40,7 @@ export function AppRoutes() {
 				<AnimatePresence exitBeforeEnter>
 					<Switch location={location} key={location.pathname}>
 						<Route exact path={LINKS.INICIO} component={InicioPage} />
+						<Route exact path={LINKS.PRODUCTO} component={ProductoPage} />
 						<Route path={LINKS.CATALOGO} component={CatalogoPage} />
 						<Route path={LINKS.LOGIN} component={LoginPage} />
 						<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />

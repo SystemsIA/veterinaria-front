@@ -53,13 +53,12 @@ const store = persist(
 		},
 
 		async logoutAction() {
-			await apiUser.fetchLogout(get()?.token);
+			await apiUser.fetchLogout();
 			delete get()?.token;
 			set({
 				user: {},
 				isLogin: false,
 				isError: false,
-				token: '',
 			});
 		},
 
@@ -81,6 +80,12 @@ const store = persist(
 );
 
 const useAuthStore = create(store);
-export const AUTH_TOKEN = useAuthStore.getState()?.token || 'failed';
+
+let AUTH_TOKEN = '';
+useAuthStore.subscribe((state) => {
+	AUTH_TOKEN = state?.token || '';
+});
+AUTH_TOKEN = useAuthStore.getState()?.token;
+export { AUTH_TOKEN };
 
 export default useAuthStore;

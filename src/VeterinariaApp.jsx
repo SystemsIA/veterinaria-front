@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes, INICIO } from 'routes';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import ErrorBoundary from 'boundary/ErrorBoundary';
-import { ModalProvider } from 'contexts/ModalTransitionContext';
 
 import theme from 'mui/theme';
 
@@ -15,9 +14,7 @@ function VeterinariaApp() {
 			<ThemeProvider theme={themeMui}>
 				<CssBaseline />
 				<ErrorBoundary>
-					<ModalProvider>
-						<AppRoutes />
-					</ModalProvider>
+					<AppRoutes />
 				</ErrorBoundary>
 			</ThemeProvider>
 		</BrowserRouter>

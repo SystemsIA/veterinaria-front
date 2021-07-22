@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 function useSearch(field, data) {
 	const dataMemo = useMemo(() => data, [data]);
@@ -6,11 +6,11 @@ function useSearch(field, data) {
 	const handleSearch = (e) => {
 		setSearch(e.target.value);
 	};
-	const filterData = () => {
+	const filterData = useCallback(() => {
 		return dataMemo.filter((d) =>
 			d[field].toLowerCase().includes(search.toLowerCase())
 		);
-	};
+	}, [dataMemo, field, search]);
 	return {
 		handleSearch,
 		data: filterData(),

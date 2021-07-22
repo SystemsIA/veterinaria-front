@@ -3,7 +3,8 @@ export const INICIO = '/',
 	CATALOGO = '/catalogo',
 	VETSANLOR = '/veterinaria-san-lorenzo',
 	SERVICIOS = '/servicios',
-	LOGIN = '/login';
+	LOGIN = '/login',
+	PRODUCTO = '/producto/:idProducto';
 
 // Links Navbar
 export const LINKS_NAV_APP = [

@@ -2,15 +2,17 @@ import { useEffect } from 'react';
 import { Grid, useMediaQuery } from '@material-ui/core';
 import Layout from 'components/Layout';
 import CardRopa from 'components/mascota/CardRopa';
+import SearchField from 'components/ui/SearchField';
+
+// Hooks
+import useGeneralState from 'hooks/useGeneralState';
+import useSearch from 'hooks/useSearch';
 
 // Images
 import gatoLibro from 'assets/img/gatitoLibro.png';
 
 // Styles
 import useStyles from './CatalogoPage.styles';
-import useGeneralState from 'hooks/useGeneralState';
-import BuscarField from 'components/ui/BuscarField';
-import useSearch from 'hooks/useSearch';
 
 function CatalogoPage() {
 	const state = useGeneralState();
@@ -20,15 +22,15 @@ function CatalogoPage() {
 	const classes = useStyles({ isNotMobileSize });
 
 	useEffect(() => {
-		state.getProductos();
+		state.getProductosAction();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
-		<Layout title='Catálogo'>
+		<Layout title='Catálogo de Productos'>
 			<div className='elipse_yellow' />
 			<div className={classes.root}>
-				<BuscarField
+				<SearchField
 					placeholder='Buscar Productos...'
 					onChange={search.handleSearch}
 				/>

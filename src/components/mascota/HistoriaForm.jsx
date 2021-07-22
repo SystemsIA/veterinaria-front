@@ -6,7 +6,7 @@ import {
 	makeStyles,
 	OutlinedInput,
 	TextareaAutosize,
-	// Typography,
+	Typography,
 } from '@material-ui/core';
 import InputForm from 'components/ui/InputForm';
 import ListTareasSelect from 'components/ui/ListTareasSelect';
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function HistoriaForm({ mascotaId, width }) {
+function HistoriaForm({ mascotaId, width, title = '' }) {
 	const cliente = useClient();
 	const modal = useModalTransition();
 	const classes = useStyles({ width });
@@ -76,9 +76,11 @@ function HistoriaForm({ mascotaId, width }) {
 	}, []);
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
-			{/* <Typography align='center' variant='h5'>
-				Registrar un historial
-			</Typography> */}
+			{title.length !== 0 && (
+				<Typography align='center' variant='h6'>
+					{title}
+				</Typography>
+			)}
 
 			{cliente.isError && (
 				<AlertCustom
@@ -106,6 +108,7 @@ function HistoriaForm({ mascotaId, width }) {
 					as={OutlinedInput}
 					label='Talla de la mascota'
 					id='talla-mascota'
+					required
 					idName='talla'
 					{...form.getInput('talla')}
 				/>
@@ -116,6 +119,7 @@ function HistoriaForm({ mascotaId, width }) {
 					label='Peso de la mascota'
 					id='peso-mascota'
 					idName='peso'
+					required
 					{...form.getInput('peso')}
 				/>
 				<InputForm
@@ -138,6 +142,7 @@ function HistoriaForm({ mascotaId, width }) {
 					as={OutlinedInput}
 					label='Exámen de la mascota'
 					id='examen-mascota'
+					required
 					idName='examen'
 					{...form.getInput('examen')}
 				/>
@@ -149,6 +154,7 @@ function HistoriaForm({ mascotaId, width }) {
 					label='Receta Médica de la mascota'
 					id='recetaMedica-mascota'
 					idName='recetaMedica'
+					required
 					{...form.getInput('recetaMedica')}
 				/>
 				<ListTareasSelect classes={classes} {...form.getSelect('tarea')} />

@@ -11,6 +11,8 @@ import TableRow from '@material-ui/core/TableRow';
 // // utils
 import { columns, parseListCliente } from 'utils/makeData';
 import useClient from 'hooks/useClient';
+import useSearch from 'hooks/useSearch';
+import SearchField from 'components/ui/SearchField';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 function TableCliente() {
 	const classes = useStyles();
 	const cliente = useClient();
+	const search = useSearch('dni', cliente?.clientes);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -48,6 +51,10 @@ function TableCliente() {
 	return (
 		<Paper className={classes.root} elevation={2}>
 			<TableContainer className={classes.container}>
+				<SearchField
+					onChange={search.handleSearch}
+					placeholder='Buscar cliente por número de DNI'
+				/>
 				<Table stickyHeader aria-label='sticky table'>
 					<TableHead>
 						<TableRow>
@@ -64,7 +71,7 @@ function TableCliente() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{parseListCliente(cliente?.clientes)
+						{parseListCliente(search.data)
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => (
 								<TableRow hover role='checkbox' tabIndex={-1} key={row.id}>

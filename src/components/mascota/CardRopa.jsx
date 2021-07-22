@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import {
-	Button,
 	Card,
 	CardActions,
 	CardContent,
@@ -10,6 +9,7 @@ import {
 
 // Styles
 import useStyles from './CardRopa.styles';
+import ButtonLink from 'components/ui/ButtonLink';
 
 const ImageLazy = lazy(() => import('components/ImageLazy'));
 
@@ -32,9 +32,14 @@ function CardRopa({ producto }) {
 				<Typography variant='body2'>Disponible: {stock} unidades</Typography>
 			</CardContent>
 			<CardActions className={classes.cardActions}>
-				<Button variant='outlined' size='small' className={classes.bgButton}>
+				<ButtonLink
+					to={`/producto/${producto?.id}`}
+					variant='outlined'
+					size='small'
+					className={classes.bgButton}
+				>
 					Ver Producto
-				</Button>
+				</ButtonLink>
 			</CardActions>
 		</Card>
 	);

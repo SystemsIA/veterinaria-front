@@ -2,9 +2,8 @@ import { AUTH_TOKEN } from 'app/authStore';
 import clientHttp from './config';
 
 export async function registrarMascota(clientId, data) {
-	// TODO: Fallo en crear el especieID
 	try {
-		return await clientHttp.post(`/clientes/${clientId}/mascotas/`,data, {
+		return await clientHttp.post(`/clientes/${clientId}/mascotas/`, data, {
 			headers: {
 				Authorization: `token ${AUTH_TOKEN}`,
 			},

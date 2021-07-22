@@ -80,7 +80,11 @@ function CardMascota({ dataMascota, ownerMascota, isBtnHistory = true }) {
 										</Menu>
 									</div>
 									<TransitionsModal>
-										<HistoriaForm mascotaId={dataMascota.id} width='100%' />
+										<HistoriaForm
+											title='Registrar una tarea'
+											mascotaId={dataMascota.id}
+											width='100%'
+										/>
 									</TransitionsModal>
 								</Fragment>
 							) : null}

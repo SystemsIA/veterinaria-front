@@ -8,10 +8,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import useClient from 'hooks/useClient';
 
 // utils
 import { columnsTareas, parseListTarea } from 'utils/makeData';
-import useClient from 'hooks/useClient';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 function TaskTable() {
 	const classes = useStyles();
 	const cliente = useClient();
+
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 

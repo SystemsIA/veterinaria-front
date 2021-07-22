@@ -1,12 +1,20 @@
-import { getProductsList } from 'api/productosApi';
+import { getProduct, getProductsList } from 'api/productosApi';
 import create from 'zustand';
 
 const useGeneralStore = create((set) => ({
 	productos: [],
+	producto: {},
 
-	async getProductos() {
+	async getProductosAction() {
 		const { data } = await getProductsList();
 		set((state) => ({ productos: [...state.productos, ...data] }));
+	},
+
+	async getProductoAction(productoId) {
+		const res = await getProduct(productoId);
+		set({
+			producto: res.data,
+		});
 	},
 }));
 
