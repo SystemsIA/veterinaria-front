@@ -46,15 +46,20 @@ export function AppRoutes() {
 						<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
 						<Route path={LINKS.SERVICIOS} component={ServicioPage} />
 
-						<ProtectedRoute path={LINKS.USER_INICIO} component={UserRoutes} />
 						<ProtectedRoute
 							options={{ isRouteDoctor: true }}
+							path={LINKS.USER_INICIO}
+							component={UserRoutes}
+						/>
+						<ProtectedRoute
 							path={LINKS.MEDICO_INICIO}
 							component={MedicoRoutes}
 						/>
 
 						<ProtectedRoute path={LINKS.FORBIDDEN} component={ForbiddenPage} />
+
 						<Route path={LINKS.UNAUTHORIZED} component={UnauthorizedPage} />
+
 						<Route path='/:rest*' component={NotFoundPage} />
 					</Switch>
 				</AnimatePresence>

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-const modalContext = createContext();
+const modalContext = createContext({});
 modalContext.displayName = 'Modal';
 
 export function ModalProvider(props) {

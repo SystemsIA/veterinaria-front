@@ -8,7 +8,6 @@ import {
 	Typography,
 } from '@material-ui/core';
 import CardMascota from 'components/mascota/CardMascota';
-import { ModalProvider } from 'contexts/ModalTransitionContext';
 import LayoutMedico from 'components/medico/LayoutMedico';
 import useClient from 'hooks/useClient';
 import ButtonBack from 'components/ui/ButtonBack';
@@ -66,12 +65,10 @@ function MascotaClientePage(props) {
 			<Grid container spacing={2}>
 				{cliente?.c?.mascotas.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>
-						<ModalProvider>
-							<CardMascota
-								dataMascota={mascota}
-								ownerMascota={cliente?.c?.nombre}
-							/>
-						</ModalProvider>
+						<CardMascota
+							dataMascota={mascota}
+							ownerMascota={cliente?.c?.nombre}
+						/>
 					</Grid>
 				))}
 			</Grid>

@@ -14,7 +14,7 @@ import useStyles from './LoginForm.styles';
 
 function LoginForm(props) {
 	const auth = props.auth;
-	const { formData, handleChange } = useFormInput({
+	const form = useFormInput({
 		email: '',
 		password: '',
 	});
@@ -24,7 +24,9 @@ function LoginForm(props) {
 
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
-		auth.loginAction(formData);
+		(async () => {
+			await auth.loginAction(form.formData);
+		})();
 	};
 
 	return (
@@ -32,16 +34,16 @@ function LoginForm(props) {
 			autoComplete='off'
 			className={classes.form}
 			onSubmit={handleLoginSubmit}
-			onChange={handleChange}
+			onChange={form.handleChange}
 		>
-			{auth.isError ? (
+			{auth.isError && (
 				<AlertCustom
 					typeAlert='error'
 					variant='outlined'
 					message={auth.message}
 					handle={auth.resetAction}
 				/>
-			) : null}
+			)}
 
 			<InputForm
 				as={OutlinedInput}

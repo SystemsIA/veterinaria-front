@@ -1,19 +1,21 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-function useSearch(field, data) {
-	const dataMemo = useMemo(() => data, [data]);
+function useSearch(fieldSearch = '', dataSearch = []) {
 	const [search, setSearch] = useState('');
 	const handleSearch = (e) => {
 		setSearch(e.target.value);
 	};
-	const filterData = useCallback(() => {
-		return dataMemo.filter((d) =>
-			d[field].toLowerCase().includes(search.toLowerCase())
-		);
-	}, [dataMemo, field, search]);
+
+	const filterData = useMemo(
+		() =>
+			dataSearch.filter((d) =>
+				d[fieldSearch].toLowerCase().includes(search.toLowerCase())
+			),
+		[dataSearch, fieldSearch, search]
+	);
 	return {
 		handleSearch,
-		data: filterData(),
+		data: filterData,
 	};
 }
 export default useSearch;
