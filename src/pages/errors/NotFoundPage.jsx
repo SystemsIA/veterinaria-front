@@ -21,6 +21,19 @@ function NotFoundPage(props) {
 					Ups parece que la dirección que buscas no esta disponible o no existe!
 					😅
 				</Typography>
+<<<<<<< HEAD
+=======
+				<Box
+					display='flex'
+					flexDirection='column'
+					justifyContent='center'
+					alignItems='center'
+					style={{ margin: 20 }}
+				>
+					<img src={lucasImage} alt='Lucas' width='50%' />
+					<Typography align='center'>No te vayas 😘</Typography>
+				</Box>
+>>>>>>> iss87
 				<ButtonBack color='secondary' variant='contained' />
 			</Box>
 		</Layout>

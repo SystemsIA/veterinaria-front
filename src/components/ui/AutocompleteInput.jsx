@@ -20,7 +20,6 @@ function AutocompleteInput({
 						field: newValue,
 					});
 				} else if (newValue && newValue.inputValue) {
-					// Create a new value from the user input
 					setValue({
 						field: newValue.inputValue,
 					});
@@ -31,7 +30,6 @@ function AutocompleteInput({
 			filterOptions={(options, params) => {
 				const filtered = filter(options, params);
 
-				// Suggest the creation of a new value
 				if (params.inputValue !== '') {
 					filtered.push({
 						inputValue: params.inputValue,
@@ -47,11 +45,9 @@ function AutocompleteInput({
 			id='free-solo-with-text-demo'
 			options={data}
 			getOptionLabel={(option) => {
-				// Value selected with enter, right from the input
 				if (typeof option === 'string') {
 					return option;
 				}
-				// Add "xxx" option created dynamically
 				if (option.inputValue) {
 					return option.inputValue;
 				}

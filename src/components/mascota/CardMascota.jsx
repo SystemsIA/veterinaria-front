@@ -16,7 +16,7 @@ import {
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIconSvg from 'components/icons/SettingsIconSvg';
-
+import withModal from 'withHOC/withModal';
 // Styles
 import useStyles from './CardMascota.styles';
 import ButtonLink from 'components/ui/ButtonLink';
@@ -201,4 +201,4 @@ CardMascota.defaultProps = {
 	},
 };
 
-export default CardMascota;
+export default withModal(CardMascota);

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import useClient from 'hooks/useClient';
 import useSearch from 'hooks/useSearch';
-import { ModalProvider } from 'contexts/ModalTransitionContext';
 import {
 	Accordion,
 	AccordionDetails,
@@ -71,9 +70,7 @@ function MedicoMascotasPage() {
 			<Grid container spacing={2}>
 				{mascotas.data.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>
-						<ModalProvider>
-							<CardMascota dataMascota={mascota} isBtnHistory={false} />
-						</ModalProvider>
+						<CardMascota dataMascota={mascota} isBtnHistory={false} />
 					</Grid>
 				))}
 			</Grid>

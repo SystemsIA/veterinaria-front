@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { ModalProvider } from 'contexts/ModalTransitionContext';
 import useClient from 'hooks/useClient';
 import { Grid, Typography } from '@material-ui/core';
 import LayoutCliente from 'components/cliente/LayoutCliente';
@@ -21,9 +20,7 @@ function UserMascotasPage() {
 			<Grid container spacing={2}>
 				{cliente?.c?.mascotas.map((mascota) => (
 					<Grid key={`masc-${mascota.id}`} item xs={12} sm={6}>
-						<ModalProvider>
-							<CardMascota dataMascota={mascota} />
-						</ModalProvider>
+						<CardMascota dataMascota={mascota} />
 					</Grid>
 				))}
 			</Grid>
