@@ -1,6 +1,6 @@
 import create from 'zustand';
-import { persist } from 'zustand/middleware';
 import * as apiUser from 'api/userApi';
+import { getToken, setToken } from 'utils';
 
 function parseUser(user) {
 	const isDoctor = user?.tipoUsuario !== 'CLIENTE';
@@ -17,75 +17,64 @@ function parseUser(user) {
 	else return { ...u, isDoctor };
 }
 
-const store = persist(
-	(set, get) => ({
-		user: {},
-		loading: false,
-		isLogin: false,
-		isError: false,
-		message: '',
+const store = (set, get) => ({
+	user: null,
+	loading: false,
+	isLogin: false,
+	isError: false,
+	message: '',
 
-		// Mutations
-		async loginAction(u = { email: '', password: '' }) {
-			set({ loading: true });
-			let resLogin = await apiUser.fetchLogin(u);
+	// Mutations
+	async loginAction(data = { email: '', password: '' }) {
+		set({ loading: true });
+		let resLogin = await apiUser.fetchLogin(data);
 
-			if (resLogin.status === 400) {
-				set({
-					isLogin: false,
-					message: resLogin.data?.nonFieldErrors[0],
-					loading: false,
-					isError: true,
-				});
-			} else {
-				let userDetail = await apiUser.fetchUserDetail(resLogin.data.key);
-				set({
-					user: {
-						...parseUser(userDetail.data),
-					},
-					token: resLogin.data.key,
-					isLogin: true,
-					message: '',
-					loading: false,
-					isError: false,
-				});
-			}
-		},
-
-		async logoutAction() {
-			await apiUser.fetchLogout();
-			delete get()?.token;
+		if (resLogin.status === 400) {
 			set({
-				user: {},
 				isLogin: false,
-				isError: false,
-			});
-		},
-
-		resetAction() {
-			set({
-				user: {},
+				message: resLogin.data?.nonFieldErrors[0],
 				loading: false,
-				isLogin: false,
-				isError: false,
-				message: '',
+				isError: true,
 			});
-		},
-	}),
-	{
-		version: 1,
-		name: 'STATE_AUTH',
-		getStorage: () => localStorage,
-	}
-);
+		} else {
+			this.resetAction();
+			setToken(resLogin.data.key);
+			await this.userDetailAction();
+		}
+	},
+
+	async userDetailAction() {
+		let key = getToken();
+		let userDetail = await apiUser.fetchUserDetail(key);
+
+		let user = parseUser(userDetail.data);
+		set({
+			user,
+			isLogin: Boolean(userDetail.data),
+		});
+	},
+
+	async logoutAction() {
+		await apiUser.fetchLogout();
+		setToken('');
+		set({
+			user: null,
+			isLogin: false,
+			isError: false,
+		});
+	},
+
+	resetAction() {
+		set({
+			user: null,
+			loading: false,
+			isLogin: false,
+			isError: false,
+			message: '',
+		});
+	},
+});
 
 const useAuthStore = create(store);
-
-let AUTH_TOKEN = '';
-useAuthStore.subscribe((state) => {
-	AUTH_TOKEN = state?.token || '';
-});
-AUTH_TOKEN = useAuthStore.getState()?.token;
-export { AUTH_TOKEN };
 
 export default useAuthStore;

@@ -16,7 +16,7 @@ import {
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIconSvg from 'components/icons/SettingsIconSvg';
-import withModal from 'withHOC/withModal';
+import withModalTransition from 'hocs/withModalTransition';
 // Styles
 import useStyles from './CardMascota.styles';
 import ButtonLink from 'components/ui/ButtonLink';
@@ -186,7 +186,7 @@ CardMascota.defaultProps = {
 		id: 0,
 		sexo: 'Mascota Sexo',
 		edad: 'Mascota edad',
-		especie: 'Mascota especie',
+		especie: { tipo: 'Mascota especie' },
 		raza: 'Mascota raza',
 		color: 'Mascota color',
 		alergias: 'Mascota alergias[]',
@@ -201,4 +201,4 @@ CardMascota.defaultProps = {
 	},
 };
 
-export default withModal(CardMascota);
+export default withModalTransition(CardMascota);

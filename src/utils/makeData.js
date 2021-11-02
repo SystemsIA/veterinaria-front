@@ -68,6 +68,7 @@ function createData({ id, email, nombre, direccion, telefono, dni }) {
 		),
 	};
 }
+
 export function parseListCliente(clientes) {
 	return clientes.map((cli) => createData({ ...cli }));
 }
@@ -160,6 +161,7 @@ function createDataTarea({
 		),
 	};
 }
+
 export function parseListTarea(tareas) {
 	return tareas.map((tar) => createDataTarea({ ...tar }));
 }

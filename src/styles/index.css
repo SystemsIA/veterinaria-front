@@ -83,9 +83,10 @@
 .list__item-content {
 	width: 100%;
 	padding: 5px 10px;
-	border-bottom:1px solid #888;
+	border-bottom: 1px solid #888;
 	transition: .2s ease all;
 }
+
 .list__item-content:hover {
 	background-color: #888;
 	color: whitesmoke;

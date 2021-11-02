@@ -8,6 +8,7 @@ import * as LINKS from 'routes';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 import ButtonLink from 'components/ui/ButtonLink';
+
 const useStyles = makeStyles((theme) => ({
 	content: {
 		width: '100%',
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 }));
+
 function UserInicioPage() {
 	const classes = useStyles();
 	const auth = useAuth();

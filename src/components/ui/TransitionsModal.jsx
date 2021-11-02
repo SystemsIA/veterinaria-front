@@ -42,4 +42,5 @@ function TransitionsModal({ children }) {
 		</Modal>
 	);
 }
+
 export default TransitionsModal;

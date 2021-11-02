@@ -15,7 +15,7 @@ function InicioPage() {
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 
 	return (
-		<Layout title='Inicio'>
+		<Layout>
 			<div className={classes.root}>
 				<Grid
 					container

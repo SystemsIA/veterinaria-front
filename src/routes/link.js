@@ -10,7 +10,7 @@ export const INICIO = '/',
 export const LINKS_NAV_APP = [
 	{ name: 'Inicio', path: INICIO },
 	{ name: 'Catálogo', path: CATALOGO },
-	{ name: 'Nuestros Servicios', path: SERVICIOS },
+	{ name: 'Nuestros Servicios', path: SERVICIOS }
 ];
 
 // Links User

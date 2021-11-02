@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from 'app/authStore';
+import { AUTH_TOKEN } from 'utils';
 import clientHttp from './config';
 
 export async function registrarMascota(clientId, data) {

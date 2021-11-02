@@ -1,12 +1,16 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src"
+		"baseUrl": "src",
+		"target": "ESNext",
+		"allowJs": true,
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true,
+		"allowUmdGlobalAccess": true,
+		"alwaysStrict": true,
+		"jsx": "react-jsx",
+		"isolatedModules": true,
+		"lib": ["ESNext", "ES2016", "ES6", "DOM"]
 	},
-	"include": [
-		"src"
-	],
-	"exclude": [
-		"node_modules",
-		"public"
-	]
+	"include": ["src"],
+	"exclude": ["node_modules", "public"]
 }

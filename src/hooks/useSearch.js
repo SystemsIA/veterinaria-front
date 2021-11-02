@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 function useSearch(fieldSearch = '', dataSearch = []) {
 	const [search, setSearch] = useState('');
-	const handleSearch = (e) => {
+	const handleSearch = useCallback((e) => {
 		setSearch(e.target.value);
-	};
+	}, []);
 
 	const filterData = useMemo(
 		() =>
@@ -18,4 +18,5 @@ function useSearch(fieldSearch = '', dataSearch = []) {
 		data: filterData,
 	};
 }
+
 export default useSearch;

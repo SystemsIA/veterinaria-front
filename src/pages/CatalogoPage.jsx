@@ -15,14 +15,14 @@ import gatoLibro from 'assets/img/gatitoLibro.png';
 import useStyles from './CatalogoPage.styles';
 
 function CatalogoPage() {
-	const state = useGeneralState();
-	const search = useSearch('nombre', state?.productos);
+	const generalState = useGeneralState();
+	const search = useSearch('nombre', generalState?.productos);
 
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 	const classes = useStyles({ isNotMobileSize });
 
 	useEffect(() => {
-		state.getProductosAction();
+		generalState.getProductosAction();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

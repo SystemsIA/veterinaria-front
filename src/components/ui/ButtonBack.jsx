@@ -1,6 +1,9 @@
 import { Button, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+// Icons
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 const useStyles = makeStyles((theme) => ({
 	button: {
 		margin: theme.spacing(1),
@@ -8,11 +11,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function ButtonBack({ text = 'Regresar', ...rest }) {
+function ButtonBack({ text = 'Regresar', ...restProps }) {
 	const history = useHistory();
 	const classes = useStyles();
 	return (
-		<Button {...rest} onClick={history.goBack} className={classes.button}>
+		<Button
+			startIcon={<ArrowBackIcon />}
+			{...restProps}
+			onClick={history.goBack}
+			className={classes.button}
+		>
 			{text}
 		</Button>
 	);

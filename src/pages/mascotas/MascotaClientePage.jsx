@@ -14,6 +14,7 @@ import ButtonBack from 'components/ui/ButtonBack';
 import ArrowBack from 'components/icons/ArrowBack';
 import MascotaForm from 'components/mascota/MascotaForm';
 import imgMore from 'assets/img/iconMas.png';
+
 function MascotaClientePage(props) {
 	let { clientId } = props.match.params;
 

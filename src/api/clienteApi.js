@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from 'app/authStore';
+import { AUTH_TOKEN } from 'utils';
 import clientHttp from './config';
 
 export async function registerCliente(cliente) {
@@ -16,6 +16,7 @@ export async function registerCliente(cliente) {
 		return error.response;
 	}
 }
+
 export async function getClienteList() {
 	return await clientHttp.get('/clientes/', {
 		headers: {

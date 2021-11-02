@@ -1,5 +1,5 @@
 import clientHttp from 'api/config';
-import { AUTH_TOKEN } from 'app/authStore';
+import { AUTH_TOKEN } from 'utils';
 
 export async function fetchLogin(user) {
 	try {

@@ -8,12 +8,14 @@ class ErrorBoundary extends Component {
 			hasError: false,
 		};
 	}
+
 	componentDidCatch(error, errorInfo) {
 		this.setState({
 			hasError: true,
 			messageError: `${error.message} ${errorInfo}`,
 		});
 	}
+
 	componentWillUnmount() {
 		this.setState({
 			hasError: false,

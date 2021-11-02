@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -91,7 +91,7 @@ function TableCliente() {
 			<TablePagination
 				rowsPerPageOptions={[5, 15, 25, 100]}
 				component='div'
-				count={cliente.clientes.length}
+				count={search.data.length}
 				rowsPerPage={rowsPerPage}
 				page={page}
 				onPageChange={handleChangePage}
