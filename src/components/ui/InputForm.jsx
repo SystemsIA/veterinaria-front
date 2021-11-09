@@ -1,10 +1,8 @@
 import { Fragment } from 'react';
-import {
-	FormControl,
-	FormHelperText,
-	InputLabel,
-	makeStyles,
-} from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	inputLabel: {

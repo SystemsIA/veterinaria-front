@@ -1,4 +1,5 @@
-import { Box, Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import ArrowBack from 'components/icons/ArrowBack';
 import LayoutMedico from 'components/medico/LayoutMedico';
 import ButtonBack from 'components/ui/ButtonBack';

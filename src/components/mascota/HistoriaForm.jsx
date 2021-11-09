@@ -1,20 +1,24 @@
+// Hooks
+import { useState } from 'react';
+import { useModalTransition } from 'contexts/ModalTransitionContext';
 import { useForm } from 'hooks/useFormInput';
-import {
-	Button,
-	Checkbox,
-	FormControlLabel,
-	makeStyles,
-	OutlinedInput,
-	TextareaAutosize,
-	Typography,
-} from '@material-ui/core';
+import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
+
+// Components
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Typography from '@material-ui/core/Typography';
 import InputForm from 'components/ui/InputForm';
 import ListTareasSelect from 'components/ui/ListTareasSelect';
-import useClient from 'hooks/useClient';
-import { useModalTransition } from 'contexts/ModalTransitionContext';
 import AutocompleteInput from 'components/ui/AutocompleteInput';
-import { useEffect, useState } from 'react';
 import AlertCustom from 'components/AlertCustom';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	form: {
@@ -69,12 +73,10 @@ function HistoriaForm({ mascotaId, width, title = '' }) {
 		})();
 	};
 
-	useEffect(() => {
-		(async () => {
-			await cliente.listMascotaAction();
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.listMascotaAction();
+	});
+
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
 			{title.length !== 0 && (
@@ -87,14 +89,14 @@ function HistoriaForm({ mascotaId, width, title = '' }) {
 				<AlertCustom
 					typeAlert='error'
 					message={cliente.message}
-					handle={cliente.resetAction}
+					onClick={cliente.resetAction}
 				/>
 			)}
 			{cliente.isSuccess && (
 				<AlertCustom
 					typeAlert='success'
 					message={cliente.message}
-					handle={cliente.resetAction}
+					onClick={cliente.resetAction}
 				/>
 			)}
 			<div className={classes.row}>

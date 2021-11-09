@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -21,7 +21,7 @@ function AlertCustom({
 	typeAlert = 'info',
 	variant = 'filled',
 	message,
-	handle = undefined,
+	onClick = undefined,
 	children,
 }) {
 	const classes = useStyles();
@@ -40,7 +40,7 @@ function AlertCustom({
 						size='small'
 						onClick={() => {
 							setOpen(!open);
-							handle?.();
+							onClick?.();
 						}}
 					>
 						<CloseIcon fontSize='inherit' />

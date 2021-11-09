@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Grid, useMediaQuery } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import Layout from 'components/Layout';
 import CardRopa from 'components/mascota/CardRopa';
 import SearchField from 'components/ui/SearchField';
@@ -7,11 +6,13 @@ import SearchField from 'components/ui/SearchField';
 // Hooks
 import useGeneralState from 'hooks/useGeneralState';
 import useSearch from 'hooks/useSearch';
+import useMounted from 'hooks/useMounted';
 
 // Images
 import gatoLibro from 'assets/img/gatitoLibro.png';
 
 // Styles
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './CatalogoPage.styles';
 
 function CatalogoPage() {
@@ -21,10 +22,9 @@ function CatalogoPage() {
 	const isNotMobileSize = useMediaQuery('(min-width:520px)');
 	const classes = useStyles({ isNotMobileSize });
 
-	useEffect(() => {
-		generalState.getProductosAction();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await generalState.getProductosAction();
+	});
 
 	return (
 		<Layout title='Catálogo de Productos'>

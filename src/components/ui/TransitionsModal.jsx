@@ -1,8 +1,12 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { useModalTransition } from 'contexts/ModalTransitionContext';
+import Fade from '@material-ui/core/Fade';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+
+// Hooks
+import { useModalTransition } from 'contexts/ModalTransitionContext';
+
+//Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	modal: {

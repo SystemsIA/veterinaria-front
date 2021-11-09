@@ -1,4 +1,5 @@
-import { alpha, makeStyles } from '@material-ui/core';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import { alpha } from '@material-ui/core/styles/colorManipulator';
 
 export default makeStyles((theme) => ({
 	search: {

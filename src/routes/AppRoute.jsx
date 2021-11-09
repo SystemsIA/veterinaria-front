@@ -7,9 +7,9 @@ import MenuAppBar from 'components/ui/MenuAppBar';
 import Fallback from 'components/Fallback';
 
 // Routes
-import MedicoRoutes from 'routes/MedicoRoutes';
-import UserRoutes from 'routes/UserRoutes';
-import * as LINKS from 'routes';
+import MedicoRoutes from './MedicoRoutes';
+import UserRoutes from './UserRoutes';
+import * as LINKS from './link';
 
 // Pages
 import NotFoundPage from 'pages/errors/NotFoundPage';
@@ -17,7 +17,7 @@ import ForbiddenPage from 'pages/errors/ForbiddenPage';
 import UnauthorizedPage from 'pages/errors/UnauthorizedPage';
 
 // Route - Lazy
-const ProtectedRoute = lazy(() => import('routes/ProtectedRoute'));
+const ProtectedRoute = lazy(() => import('components/ProtectedRoute'));
 
 // Pages - Lazy
 const InicioPage = lazy(() => import('pages/InicioPage'));
@@ -27,7 +27,7 @@ const ServicioPage = lazy(() => import('pages/ServicioPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ProductoPage = lazy(() => import('pages/ProductoPage'));
 
-export function AppRoutes() {
+export function AppRoute() {
 	const location = useLocation();
 
 	return (

@@ -1,5 +1,11 @@
-import { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// Hooks
+import { useState } from 'react';
+import useClient from 'hooks/useClient';
+import useSearch from 'hooks/useSearch';
+import SearchField from 'components/ui/SearchField';
+import useMounted from 'hooks/useMounted';
+
+// Components
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,11 +14,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+
 // // utils
 import { columns, parseListCliente } from 'utils/makeData';
-import useClient from 'hooks/useClient';
-import useSearch from 'hooks/useSearch';
-import SearchField from 'components/ui/SearchField';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -43,10 +50,9 @@ function TableCliente() {
 		setPage(0);
 	};
 
-	useEffect(() => {
-		cliente.listClientesAction();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.listClientesAction();
+	});
 
 	return (
 		<Paper className={classes.root} elevation={2}>

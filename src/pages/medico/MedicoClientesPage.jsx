@@ -1,10 +1,9 @@
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Typography,
-} from '@material-ui/core';
+// Components
+import Box from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Accordion from '@material-ui/core/Accordion';
 import ButtonBack from 'components/ui/ButtonBack';
 import ArrowBack from 'components/icons/ArrowBack';
 import LayoutMedico from 'components/medico/LayoutMedico';

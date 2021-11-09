@@ -9,11 +9,11 @@ function useMounted(fn) {
 	const isMountedRef = useRef(true);
 
 	const callback = useCallback(() => {
-		fn(isMountedRef.current);
+		fn?.();
 	}, [fn]);
 
 	useEffect(() => {
-		callback();
+		isMountedRef.current && callback();
 		return () => {
 			isMountedRef.current = false;
 		};

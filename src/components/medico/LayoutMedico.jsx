@@ -1,17 +1,19 @@
+// Hooks
 import { useState } from 'react';
-import clsx from 'clsx';
+import useAuth from 'hooks/useAuth';
+import useDocumentTitle from 'hooks/useDocumentTitle';
+
 import * as LINKS from 'routes';
 
 import { motion } from 'framer-motion';
-import {
-	AppBar,
-	Container,
-	Drawer,
-	IconButton,
-	List,
-	Toolbar,
-	useTheme,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import Toolbar from '@material-ui/core/Toolbar';
+import clsx from 'clsx';
+
 import AppLogoLink from 'components/ui/AppLogoLink';
 import MenuButtonUser from 'components/ui/MenuButtonUser';
 import ItemListLink from 'components/ui/ItemListLink';
@@ -23,10 +25,6 @@ import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-// Hooks
-import useAuth from 'hooks/useAuth';
-import useDocumentTitle from 'hooks/useDocumentTitle';
-
 // Images
 import imgPerroFlores from 'assets/img/perritoFlores.png';
 import imgMascota from 'assets/img/imag3.png';
@@ -35,6 +33,7 @@ import imgTareas from 'assets/img/imag4.png';
 import imgInventario from 'assets/img/imag2.png';
 
 // Styles
+import useTheme from '@material-ui/core/styles/useTheme';
 import useStyles from './LayoutMedico.styles';
 
 // PropTypes

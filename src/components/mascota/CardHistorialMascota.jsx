@@ -1,13 +1,13 @@
-import {
-	Avatar,
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CardHeader,
-	Divider,
-	Typography,
-} from '@material-ui/core';
+// Components
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+
 // Styles
 import useStyles from './CardHistorialMascota.styles';
 

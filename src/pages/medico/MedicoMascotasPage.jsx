@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+// Hooks
+import useMounted from 'hooks/useMounted';
 import useClient from 'hooks/useClient';
 import useSearch from 'hooks/useSearch';
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Grid,
-	Typography,
-} from '@material-ui/core';
 
+// Components
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ButtonBack from 'components/ui/ButtonBack';
 import ArrowBack from 'components/icons/ArrowBack';
 import SearchField from 'components/ui/SearchField';
@@ -25,12 +25,9 @@ function MedicoMascotasPage() {
 
 	const mascotas = useSearch('nombre', cliente?.mascotas);
 
-	useEffect(() => {
-		(async () => {
-			await cliente.listMascotaAction();
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.listMascotaAction();
+	});
 	return (
 		<LayoutMedico container title='Mascotas'>
 			<Box display='flex' alignItems='center' justifyContent='space-between'>

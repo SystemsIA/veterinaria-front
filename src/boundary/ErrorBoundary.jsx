@@ -1,11 +1,15 @@
-import { Box, Paper, Typography } from '@material-ui/core';
 import { Component } from 'react';
+
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 class ErrorBoundary extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			hasError: false,
+			messageError: '',
 		};
 	}
 
@@ -19,6 +23,7 @@ class ErrorBoundary extends Component {
 	componentWillUnmount() {
 		this.setState({
 			hasError: false,
+			messageError: '',
 		});
 	}
 

@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import createTheme from '@material-ui/core/styles/createTheme';
 import * as colors from '@material-ui/core/colors';
 
 export default createTheme({

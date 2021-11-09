@@ -1,12 +1,16 @@
 // Components
-import { Grid, Paper, Typography, useMediaQuery } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Layout from 'components/Layout';
 
 // Images
 import perroMain from 'assets/img/perroMain.png';
 import perroDucha from 'assets/img/perritoDucha.png';
 import CheckIcon from '@material-ui/icons/Check';
+
 // Styles
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './InicioPage.styles';
 
 function InicioPage() {

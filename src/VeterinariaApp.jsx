@@ -1,12 +1,15 @@
-import { AppRoutes } from 'routes';
-import GeneralProvider from 'provider';
+import { AppRoute } from 'routes';
+import { GeneralProvider } from 'provider';
 import ErrorBoundary from 'boundary/ErrorBoundary';
+import AppRoot from 'components/AppRoot';
 
 function VeterinariaApp() {
 	return (
 		<GeneralProvider>
 			<ErrorBoundary>
-				<AppRoutes />
+				<AppRoot>
+					<AppRoute />
+				</AppRoot>
 			</ErrorBoundary>
 		</GeneralProvider>
 	);

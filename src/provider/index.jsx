@@ -1,11 +1,12 @@
 import { Fragment, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { INICIO } from 'routes';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
 import theme from 'mui/theme';
 
-function GeneralProvider({ children }) {
+export function GeneralProvider({ children }) {
 	const themeMui = useMemo(() => theme, []);
 	return (
 		<Fragment>
@@ -18,5 +19,3 @@ function GeneralProvider({ children }) {
 		</Fragment>
 	);
 }
-
-export default GeneralProvider;

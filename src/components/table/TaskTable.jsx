@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// Hooks
+import { useState } from 'react';
+import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
+
+// Components
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,10 +12,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import useClient from 'hooks/useClient';
 
 // utils
 import { columnsTareas, parseListTarea } from 'utils/makeData';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -42,12 +46,9 @@ function TaskTable() {
 		setPage(0);
 	};
 
-	useEffect(() => {
-		(async () => {
-			await cliente.historiasListAction();
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.historiasListAction();
+	});
 
 	return (
 		<Paper className={classes.root} elevation={2}>

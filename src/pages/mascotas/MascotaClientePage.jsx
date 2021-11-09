@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Grid,
-	Typography,
-} from '@material-ui/core';
+// Hooks
+import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
+
+// Components
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import CardMascota from 'components/mascota/CardMascota';
 import LayoutMedico from 'components/medico/LayoutMedico';
-import useClient from 'hooks/useClient';
-import ButtonBack from 'components/ui/ButtonBack';
 import ArrowBack from 'components/icons/ArrowBack';
+import ButtonBack from 'components/ui/ButtonBack';
 import MascotaForm from 'components/mascota/MascotaForm';
 import imgMore from 'assets/img/iconMas.png';
 
@@ -20,13 +21,9 @@ function MascotaClientePage(props) {
 
 	const cliente = useClient();
 
-	useEffect(() => {
-		(async () => {
-			await cliente.fetchClientAction(clientId);
-		})();
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.fetchClientAction(clientId);
+	});
 	return (
 		<LayoutMedico container title={`Mascotas - ${cliente?.c?.nombre}`}>
 			<Box display='flex' alignItems='center' justifyContent='space-between'>

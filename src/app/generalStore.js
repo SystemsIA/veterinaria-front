@@ -1,7 +1,7 @@
 import { getProduct, getProductsList } from 'api/productosApi';
 import create from 'zustand';
 
-const useGeneralStore = create((set) => ({
+let store = (set) => ({
 	productos: [],
 	producto: {},
 
@@ -16,6 +16,8 @@ const useGeneralStore = create((set) => ({
 			producto: res.data,
 		});
 	},
-}));
+});
+
+const useGeneralStore = create(store);
 
 export default useGeneralStore;

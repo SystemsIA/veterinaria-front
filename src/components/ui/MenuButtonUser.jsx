@@ -9,8 +9,12 @@ import * as LINKS from 'routes';
 // Components
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import UserCardInfo from './UserCardInfo';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+// Icons
 import MenuIcon from '@material-ui/icons/Menu';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
 // Styles
 import useStyles from './MenuButtonUser.styles';

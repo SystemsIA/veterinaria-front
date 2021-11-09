@@ -1,27 +1,29 @@
 import { Fragment, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 // Components
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CardHeader,
-	CardMedia,
-	Menu,
-	MenuItem,
-} from '@material-ui/core';
+
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 // Icons
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIconSvg from 'components/icons/SettingsIconSvg';
 import withModalTransition from 'hocs/withModalTransition';
+
 // Styles
 import useStyles from './CardMascota.styles';
 import ButtonLink from 'components/ui/ButtonLink';
 import TransitionsModal from 'components/ui/TransitionsModal';
 import HistoriaForm from './HistoriaForm';
+
+// Hooks
 import useAuth from 'hooks/useAuth';
 import { useModalTransition } from 'contexts/ModalTransitionContext';
 

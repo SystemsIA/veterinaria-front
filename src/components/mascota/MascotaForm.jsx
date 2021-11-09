@@ -1,21 +1,25 @@
+//Hooks
+import { useState } from 'react';
 import { useForm } from 'hooks/useFormInput';
 import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
+
+// Components
 import InputForm from 'components/ui/InputForm';
-import {
-	Button,
-	Checkbox,
-	FormControl,
-	FormControlLabel,
-	FormLabel,
-	makeStyles,
-	OutlinedInput,
-	Radio,
-	RadioGroup,
-} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 import ListEspecieSelect from 'components/ui/ListEspecieSelect';
 import AlertCustom from 'components/AlertCustom';
 import AutocompleteInput from 'components/ui/AutocompleteInput';
-import { useEffect, useState } from 'react';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	form: {
@@ -76,23 +80,20 @@ function MascotaForm({ activeListUser, clientId }) {
 		})();
 	};
 
-	useEffect(() => {
-		(async () => {
-			await cliente.listClientesAction();
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.listClientesAction();
+	});
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
 			{cliente.isError && (
 				<AlertCustom
 					typeAlert='error'
 					message={cliente.message}
-					handle={cliente.resetAction}
+					onClick={cliente.resetAction}
 				/>
 			)}
 			{cliente?.isSuccess && (
-				<AlertCustom typeAlert='success' handle={cliente.resetAction}>
+				<AlertCustom typeAlert='success' onClick={cliente.resetAction}>
 					{cliente.message}
 				</AlertCustom>
 			)}

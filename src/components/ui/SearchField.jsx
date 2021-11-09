@@ -1,4 +1,5 @@
-import { Box, InputBase } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import InputBase from '@material-ui/core/InputBase';
 
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './SearchField.styles';

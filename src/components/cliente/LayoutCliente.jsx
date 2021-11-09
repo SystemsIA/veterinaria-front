@@ -8,15 +8,12 @@ import useAuth from 'hooks/useAuth';
 import useDocumentTitle from 'hooks/useDocumentTitle';
 
 // Components
-import {
-	AppBar,
-	Container,
-	Drawer,
-	IconButton,
-	List,
-	Toolbar,
-	useTheme,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import Toolbar from '@material-ui/core/Toolbar';
 import AppLogoLink from 'components/ui/AppLogoLink';
 import ItemListLink from 'components/ui/ItemListLink';
 import MenuButtonUser from 'components/ui/MenuButtonUser';
@@ -35,6 +32,7 @@ import imgAcc from 'assets/img/imag2.png';
 import imgPerroFlores from 'assets/img/perritoFlores.png';
 
 // Styles
+import useTheme from '@material-ui/core/styles/useTheme';
 import useSytles from './LayoutCliente.styles';
 
 function LayoutCliente({ title = '', container = false, children }) {

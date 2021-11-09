@@ -1,27 +1,13 @@
 import create from 'zustand';
 import * as apiUser from 'api/userApi';
-import { getToken, setToken } from 'utils';
-
-function parseUser(user) {
-	const isDoctor = user?.tipoUsuario !== 'CLIENTE';
-	const isClient = !isDoctor;
-	let u = {
-		direccion: user.direccion,
-		dni: user.dni,
-		email: user.email,
-		id: user.id,
-		nombre: user.nombre,
-		telefono: user.telefono,
-	};
-	if (isClient) return { ...u, isClient };
-	else return { ...u, isDoctor };
-}
+import { getToken, parseUser, setToken } from 'utils';
 
 const store = (set, get) => ({
 	user: null,
 	loading: false,
 	isLogin: false,
 	isError: false,
+	isReady: false,
 	message: '',
 
 	// Mutations
@@ -47,20 +33,31 @@ const store = (set, get) => ({
 		let key = getToken();
 		let userDetail = await apiUser.fetchUserDetail(key);
 
-		let user = parseUser(userDetail.data);
-		set({
-			user,
-			isLogin: Boolean(userDetail.data),
-		});
+		// TODO: resolve consumer api
+		if (!userDetail) {
+			set({
+				user: null,
+				isLogin: false,
+			});
+		} else {
+			let user = parseUser(userDetail.data);
+			set({
+				user,
+				isLogin: Boolean(userDetail.data),
+			});
+		}
 	},
 
 	async logoutAction() {
 		await apiUser.fetchLogout();
 		setToken('');
+		this.resetAction();
+	},
+
+	setReadyAppAction(v = true) {
 		set({
-			user: null,
-			isLogin: false,
-			isError: false,
+			...get(),
+			isReady: v,
 		});
 	},
 
@@ -75,6 +72,6 @@ const store = (set, get) => ({
 	},
 });
 
-const useAuthStore = create(store);
+let useAuthStore = create(store);
 
 export default useAuthStore;

@@ -5,9 +5,13 @@ import useAuth from 'hooks/useAuth';
 import * as LINKS from 'routes';
 
 // Components
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 import ButtonLink from 'components/ui/ButtonLink';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	content: {

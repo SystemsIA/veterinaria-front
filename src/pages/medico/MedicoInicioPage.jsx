@@ -1,9 +1,14 @@
 // Components
 import LayoutMedico from 'components/medico/LayoutMedico';
-import { Box, Typography, useMediaQuery } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import ButtonLink from 'components/ui/ButtonLink';
+
 //Routes
 import * as LINKS from 'routes';
+
+// Styles
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MedicoInicioPage(props) {
 	const url = props.match.url;

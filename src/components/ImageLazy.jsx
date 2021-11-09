@@ -1,5 +1,5 @@
-function ImageLazy({ image, alt, ...rest }) {
-	return <img src={image} {...rest} alt={alt} />;
+function ImageLazy({ image, alt, ...restProps }) {
+	return <img src={image} {...restProps} alt={alt} />;
 }
 
 export default ImageLazy;

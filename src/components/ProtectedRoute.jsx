@@ -3,7 +3,7 @@ import useAuth from 'hooks/useAuth';
 import * as LINKS from 'routes';
 import verifyUser from 'utils/verifiyUser';
 
-function ProtectedRoute({ options = { isRouteDoctor: false }, ...rest }) {
+function ProtectedRoute({ options = { isRouteDoctor: false }, ...restProps }) {
 	const auth = useAuth();
 
 	if (!auth.isLogin) {
@@ -20,7 +20,7 @@ function ProtectedRoute({ options = { isRouteDoctor: false }, ...rest }) {
 		return <Redirect exact to={LINKS.UNAUTHORIZED} />;
 	}
 
-	return <Route {...rest} />;
+	return <Route {...restProps} />;
 }
 
 export default ProtectedRoute;

@@ -6,10 +6,12 @@ import useAuth from 'hooks/useAuth';
 
 // Components
 import Layout from 'components/Layout';
-import { Container, Grid, useMediaQuery } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 // Styles
 import useStyles from './LoginPage.styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // Images
 import perroFlower from 'assets/img/perritoFlores.png';

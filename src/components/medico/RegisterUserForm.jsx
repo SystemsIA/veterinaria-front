@@ -6,7 +6,9 @@ import useClient from 'hooks/useClient';
 import { useRegexEmail } from 'hooks/useRegexInput';
 
 // Components
-import { Box, Button, OutlinedInput } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputForm from 'components/ui/InputForm';
 import AlertCustom from 'components/AlertCustom';
 
@@ -97,11 +99,11 @@ function RegisterUserForm({ width }) {
 					<AlertCustom
 						typeAlert='error'
 						message={cliente.message}
-						handle={cliente.resetAction}
+						onClick={cliente.resetAction}
 					/>
 				) : null}
 				{cliente?.isSuccess ? (
-					<AlertCustom typeAlert='success' handle={cliente.resetAction}>
+					<AlertCustom typeAlert='success' onClick={cliente.resetAction}>
 						{cliente.message}
 					</AlertCustom>
 				) : null}

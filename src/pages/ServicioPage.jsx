@@ -1,5 +1,10 @@
-import { Container, makeStyles, Typography } from '@material-ui/core';
+// Components
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import Layout from 'components/Layout';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	content: {

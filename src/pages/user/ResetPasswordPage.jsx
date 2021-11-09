@@ -1,5 +1,9 @@
+// Hooks
 import useAuth from 'hooks/useAuth';
-import { Box, Typography } from '@material-ui/core';
+
+// Components
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 import PasswordForm from 'components/cliente/PasswordForm';
 

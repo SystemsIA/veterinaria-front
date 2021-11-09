@@ -1,8 +1,17 @@
+// Hooks
 import useAuth from 'hooks/useAuth';
-import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
+
+// Components
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 import ButtonLink from 'components/ui/ButtonLink';
+
 import * as LINKS from 'routes';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {

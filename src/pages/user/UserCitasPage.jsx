@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 
 function UserCitasPage() {

@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
 import Layout from 'components/Layout';
 import CardRopa from 'components/mascota/CardRopa';
+
+// Hooks
 import useGeneralState from 'hooks/useGeneralState';
+import useMounted from 'hooks/useMounted';
 
 function ProductoPage(props) {
 	const { idProducto } = props.match.params;
 	const state = useGeneralState();
 
-	useEffect(() => {
-		state.getProductoAction(idProducto);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [idProducto]);
+	useMounted(async () => {
+		await state.getProductoAction(idProducto);
+	});
+
 	return (
 		<Layout title={`Producto - ${state.producto?.nombre}`}>
 			<CardRopa producto={state?.producto} />

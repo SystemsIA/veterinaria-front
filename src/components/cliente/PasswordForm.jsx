@@ -1,14 +1,16 @@
-import {
-	Box,
-	Button,
-	CircularProgress,
-	makeStyles,
-	OutlinedInput,
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import AlertCustom from 'components/AlertCustom';
 import InputForm from 'components/ui/InputForm';
+
+// Hooks
 import useClient from 'hooks/useClient';
 import { useForm } from 'hooks/useFormInput';
+
+// Styles
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 	fields: {
@@ -54,14 +56,14 @@ function PasswordForm() {
 					<AlertCustom
 						typeAlert='error'
 						message={cliente.message}
-						handle={cliente.resetAction}
+						onClick={cliente.resetAction}
 					/>
 				)}
 				{cliente.isSuccess && (
 					<AlertCustom
 						typeAlert='success'
 						message={cliente.message}
-						handle={cliente.resetAction}
+						onClick={cliente.resetAction}
 					/>
 				)}
 

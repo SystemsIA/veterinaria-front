@@ -8,7 +8,7 @@ import {
 import { crearHistoria } from 'api/medicoApi';
 import { cambioPassword } from 'api/userApi';
 
-const useClientStore = create((set, get) => ({
+let store = (set, get) => ({
 	loading: false,
 	isError: false,
 	message: '',
@@ -143,5 +143,8 @@ const useClientStore = create((set, get) => ({
 			};
 		});
 	},
-}));
+});
+
+const useClientStore = create(store);
+
 export default useClientStore;

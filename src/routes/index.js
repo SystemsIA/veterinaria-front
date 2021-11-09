@@ -1,2 +1,2 @@
-export { AppRoutes } from './AppRoutes';
+export * from './AppRoute';
 export * from './link';

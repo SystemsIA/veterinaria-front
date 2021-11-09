@@ -1,6 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 
-const modalContext = createContext({});
+const modalContext = createContext({
+	handleClose() {},
+	handleOpen() {},
+	open: false,
+});
 modalContext.displayName = 'Modal';
 
 export function ModalProvider(props) {
@@ -18,6 +22,8 @@ export function ModalProvider(props) {
 		</modalContext.Provider>
 	);
 }
+
+export const ModalConsumer = modalContext.Consumer;
 
 export function useModalTransition() {
 	return useContext(modalContext);

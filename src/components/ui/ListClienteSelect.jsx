@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
+//Hooks
 import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
 
 function ListClienteSelect({ classes, ...rest }) {
 	const cliente = useClient();
 
-	useEffect(() => {
-		(async () => {
-			await cliente.listClientesAction();
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.listClientesAction();
+	});
 
 	return (
 		<FormControl className={classes.formControl}>

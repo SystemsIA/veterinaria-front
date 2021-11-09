@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
-import useClient from 'hooks/useClient';
 import { Box, Grid, Typography } from '@material-ui/core';
 import LayoutMedico from 'components/medico/LayoutMedico';
 import CardHistorialMascota from 'components/mascota/CardHistorialMascota';
 import ArrowBack from 'components/icons/ArrowBack';
 import ButtonBack from 'components/ui/ButtonBack';
 
+// Hook
+import useClient from 'hooks/useClient';
+import useMounted from 'hooks/useMounted';
+
 function MascotaHistorialPage(props) {
 	let { idMascota } = props.match.params;
 
 	const cliente = useClient();
 
-	useEffect(() => {
-		cliente.mascotaHistorialAction(idMascota);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useMounted(async () => {
+		await cliente.mascotaHistorialAction(idMascota);
+	});
 
 	return (
 		<LayoutMedico container title='Historial'>

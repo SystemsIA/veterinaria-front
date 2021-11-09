@@ -1,10 +1,11 @@
 {
 	"compilerOptions": {
 		"baseUrl": "src",
+		"allowSyntheticDefaultImports": true,
 		"target": "ESNext",
+		"jsxImportSource": "react",
 		"allowJs": true,
 		"moduleResolution": "Node",
-		"allowSyntheticDefaultImports": true,
 		"allowUmdGlobalAccess": true,
 		"alwaysStrict": true,
 		"jsx": "react-jsx",

@@ -1,17 +1,22 @@
-import { useEffect } from 'react';
+// Hooks
 import useClient from 'hooks/useClient';
-import { Grid, Typography } from '@material-ui/core';
+import useAuth from 'hooks/useAuth';
+import useMounted from 'hooks/useMounted';
+
+// Components
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import LayoutCliente from 'components/cliente/LayoutCliente';
 import CardMascota from 'components/mascota/CardMascota';
-import useAuth from 'hooks/useAuth';
 
 function UserMascotasPage() {
 	const auth = useAuth();
 	const cliente = useClient();
-	useEffect(() => {
-		cliente.fetchClientAction(auth.user?.id);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+
+	useMounted(async () => {
+		await cliente.fetchClientAction(auth.user?.id);
+	});
+
 	return (
 		<LayoutCliente title='Mis Masctoas'>
 			<Typography variant='h3' component='h3' align='center'>
