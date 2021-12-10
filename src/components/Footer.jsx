@@ -10,12 +10,10 @@ function Footer() {
 	return (
 		<footer className={classes.footer}>
 			<div className={classes.content}>
-				<div>
-					<b>Clínica Veterinaria "San Lorenzo"</b>
-					<div className={classes.content}>
-						<FacebookIcon />
-						<p>@clinicaveterinariasanlorenzo · Veterinario</p>
-					</div>
+				<b>Clínica Veterinaria "San Lorenzo"</b>
+				<div className={classes.content}>
+					<FacebookIcon />
+					<p>@clinicaveterinariasanlorenzo · Veterinario</p>
 				</div>
 				<img src={plate} alt='Plato de perro 😅' title='Plato de perro 😅' />
 			</div>

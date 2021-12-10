@@ -11,17 +11,17 @@ import useTitleDocument from 'hooks/useDocumentTitle';
 // Styles
 import useStyles from './Layout.styles';
 
-function Layout({ children, title = 'Inicio', open = true }) {
+function Layout({ title = 'Inicio', open = true, children }) {
 	const classes = useStyles();
-
+	
 	useTitleDocument(title);
-
+	
 	return (
 		<Fragment>
 			<div className={classes.drawerHeader} />
 			<motion.main
 				className={clsx(classes.content, {
-					[classes.contentShift]: open,
+					[classes.contentShift]: open
 				})}
 				animate='animate'
 				exit={{ opacity: 0 }}

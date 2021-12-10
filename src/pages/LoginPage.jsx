@@ -8,14 +8,15 @@ import useAuth from 'hooks/useAuth';
 import Layout from 'components/Layout';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 // Styles
 import useStyles from './LoginPage.styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // Images
-import perroFlower from 'assets/img/perritoFlores.png';
-import gatoPensativo from 'assets/img/gatitoPensativo.png';
+// import perroFlower from 'assets/img/perritoFlores.png';
+// import gatoPensativo from 'assets/img/gatitoPensativo.png';
 import LoginForm from 'components/ui/LoginForm';
 
 function LoginPage() {
@@ -54,7 +55,10 @@ function LoginPage() {
 						sm={isNotMobileSize ? 6 : 3}
 						className={classes.loginPage}
 					>
-						<img src={gatoPensativo} alt='Gato Pensativo' />
+						<img
+							src='https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80'
+							alt='Gato Pensativo'
+						/>
 					</Grid>
 					<Grid
 						className={classes.loginContent}
@@ -62,9 +66,14 @@ function LoginPage() {
 						xs={isNotMobileSize ? 12 : 6}
 						sm={isNotMobileSize ? 6 : 3}
 					>
-						<img src={perroFlower} alt='Perro con flores' />
-
 						<Container>
+							<Typography
+								variant='h2'
+								component='h2'
+								align={isNotMobileSize ? 'left' : 'center'}
+							>
+								Iniciar Sesión
+							</Typography>
 							<LoginForm auth={auth} />
 						</Container>
 					</Grid>

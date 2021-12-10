@@ -13,7 +13,7 @@ function AppRoot({ children }) {
 	useDocumentTitle('Cargando...');
 	useMounted(async () => {
 		await auth.userDetailAction();
-		auth.setReadyAppAction();
+		await Promise.resolve(auth.setReadyAppAction(true));
 	});
 
 	if (!auth.isReady) {

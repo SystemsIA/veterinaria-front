@@ -24,7 +24,7 @@ const store = (set, get) => ({
 			});
 		} else {
 			this.resetAction();
-			setToken(resLogin.data.key);
+			await setToken(resLogin.data.token);
 			await this.userDetailAction();
 		}
 	},
@@ -34,7 +34,7 @@ const store = (set, get) => ({
 		let userDetail = await apiUser.fetchUserDetail(key);
 
 		// TODO: resolve consumer api
-		if (!userDetail) {
+		if (!Boolean(userDetail)) {
 			set({
 				user: null,
 				isLogin: false,
@@ -54,7 +54,7 @@ const store = (set, get) => ({
 		this.resetAction();
 	},
 
-	setReadyAppAction(v = true) {
+	setReadyAppAction(v = false) {
 		set({
 			...get(),
 			isReady: v,
