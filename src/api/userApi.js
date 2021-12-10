@@ -9,11 +9,11 @@ export async function fetchLogin(user) {
 	}
 }
 
-export async function fetchUserDetail(token = '') {
+export async function fetchUserDetail() {
 	try {
 		return await clientHttp.get('/rest-auth/user/', {
 			headers: {
-				Authorization: `token ${token}`,
+				Authorization: `Bearer ${AUTH_TOKEN}`,
 			},
 		});
 	} catch (error) {
@@ -23,11 +23,7 @@ export async function fetchUserDetail(token = '') {
 
 export async function fetchLogout() {
 	try {
-		return await clientHttp.post('/rest-auth/logout/', {
-			headers: {
-				Authorization: `token ${AUTH_TOKEN}`,
-			},
-		});
+		return await clientHttp.post('/rest-auth/logout/');
 	} catch (error) {
 		return error.response;
 	}
@@ -35,11 +31,7 @@ export async function fetchLogout() {
 
 export async function cambioPassword(data) {
 	try {
-		return await clientHttp.post('/rest-auth/password/', data, {
-			headers: {
-				Authorization: `token ${AUTH_TOKEN}`,
-			},
-		});
+		return await clientHttp.post('/rest-auth/password/', data);
 	} catch (error) {
 		return error.response;
 	}

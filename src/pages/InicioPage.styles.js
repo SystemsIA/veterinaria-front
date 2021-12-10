@@ -42,4 +42,10 @@ export default makeStyles((theme) => ({
 		backgroundColor: theme.palette.secondary.main,
 		color: theme.palette.getContrastText(theme.palette.secondary.main),
 	},
+
+	lineSeparator: {
+		backgroundColor: theme.palette.primary.main,
+		maxWidth: theme.breakpoints.values.xl,
+		height: '2em',
+	},
 }));

@@ -18,6 +18,7 @@ import AppLogoLink from 'components/ui/AppLogoLink';
 import MenuButtonUser from 'components/ui/MenuButtonUser';
 import ItemListLink from 'components/ui/ItemListLink';
 import ItemListCollapse from 'components/ui/ItemListCollapse';
+import ButtonLink from 'components/ui/ButtonLink';
 
 // Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -38,7 +39,6 @@ import useStyles from './LayoutMedico.styles';
 
 // PropTypes
 import PropTypes from 'prop-types';
-import ButtonLink from 'components/ui/ButtonLink';
 
 function LayoutMedico({ title = '', container = false, children }) {
 	const classes = useStyles();

@@ -12,6 +12,6 @@
 		"isolatedModules": true,
 		"lib": ["ESNext", "ES2016", "ES6", "DOM"]
 	},
-	"include": ["src"],
+	"include": ["src", "assets"],
 	"exclude": ["node_modules", "public"]
 }
