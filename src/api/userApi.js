@@ -1,5 +1,5 @@
 import clientHttp from 'api/config';
-import { AUTH_TOKEN } from 'utils';
+import { getToken } from 'utils';
 
 export async function fetchLogin(user) {
 	try {
@@ -9,11 +9,11 @@ export async function fetchLogin(user) {
 	}
 }
 
-export async function fetchUserDetail() {
+export async function fetchUserDetail(token) {
 	try {
 		return await clientHttp.get('/rest-auth/user/', {
 			headers: {
-				Authorization: `Bearer ${AUTH_TOKEN}`,
+				Authorization: `token ${token}`,
 			},
 		});
 	} catch (error) {
@@ -31,7 +31,11 @@ export async function fetchLogout() {
 
 export async function cambioPassword(data) {
 	try {
-		return await clientHttp.post('/rest-auth/password/', data);
+		return await clientHttp.post('/rest-auth/password/', data, {
+			headers: {
+				Authorization: `token ${getToken()}`,
+			},
+		});
 	} catch (error) {
 		return error.response;
 	}

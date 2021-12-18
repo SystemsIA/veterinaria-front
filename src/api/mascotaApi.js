@@ -1,11 +1,11 @@
-import { AUTH_TOKEN } from 'utils';
+import { getToken } from 'utils';
 import clientHttp from './config';
 
 export async function registrarMascota(clientId, data) {
 	try {
 		return await clientHttp.post(`/clientes/${clientId}/mascotas/`, data, {
 			headers: {
-				Authorization: `token ${AUTH_TOKEN}`,
+				Authorization: `token ${getToken()}`,
 			},
 		});
 	} catch (error) {
@@ -16,7 +16,7 @@ export async function registrarMascota(clientId, data) {
 export async function getMascotaList() {
 	return await clientHttp.get('/mascotas/', {
 		headers: {
-			Authorization: `token ${AUTH_TOKEN}`,
+			Authorization: `token ${getToken()}`,
 		},
 	});
 }
@@ -24,7 +24,7 @@ export async function getMascotaList() {
 export async function getMascotaHistorialList(mascotaId) {
 	return await clientHttp.get(`/mascotas/${mascotaId}/historias/`, {
 		headers: {
-			Authorization: `token ${AUTH_TOKEN}`,
+			Authorization: `token ${getToken()}`,
 		},
 	});
 }

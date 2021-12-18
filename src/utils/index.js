@@ -8,8 +8,6 @@ export function getToken() {
 	return token || '';
 }
 
-export const AUTH_TOKEN = getToken();
-
 export function parseUser(user) {
 	const isDoctor = user?.tipoUsuario !== 'CLIENTE';
 	const isClient = !isDoctor;
