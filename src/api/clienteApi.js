@@ -3,10 +3,18 @@ import clientHttp from './config';
 
 export async function registerCliente(cliente) {
 	try {
-		return await clientHttp.post('/clientes/', {
-			...cliente,
-			password: cliente.dni,
-		});
+		return await clientHttp.post(
+			'/clientes/',
+			{
+				...cliente,
+				password: cliente.dni,
+			},
+			{
+				headers: {
+					Authorization: `token ${getToken()}`,
+				},
+			}
+		);
 	} catch (error) {
 		return error.response;
 	}

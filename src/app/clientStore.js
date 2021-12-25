@@ -16,6 +16,7 @@ let store = (set, get) => ({
 	mascotas: [],
 	historial: [],
 	tareas: [],
+	clientPets: [],
 
 	async registerAction(user) {
 		set({ loading: true });
@@ -44,6 +45,7 @@ let store = (set, get) => ({
 		set((state) => ({
 			...state,
 			c: { nombre: data.nombre, mascotas: data.mascotas },
+			clientPets: data.mascotas,
 		}));
 	},
 
@@ -54,9 +56,9 @@ let store = (set, get) => ({
 
 	async registrarMascotaAction(clientId, data) {
 		const res = await registrarMascota(clientId, data);
-		if (res.status !== 201) {
+		if (res.status !== 200) {
 			set({
-				message: Object.values(res?.data),
+				message: Object.values(res?.data.detail),
 				isError: true,
 				loading: false,
 			});
