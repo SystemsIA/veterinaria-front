@@ -18,12 +18,12 @@ import imgMore from 'assets/img/iconMas.png';
 
 function MascotaClientePage(props) {
 	let { clientId } = props.match.params;
-
 	const cliente = useClient();
 
 	useMounted(async () => {
 		await cliente.fetchClientAction(clientId);
 	});
+
 	return (
 		<LayoutMedico container title={`Mascotas - ${cliente?.c?.nombre}`}>
 			<Box display='flex' alignItems='center' justifyContent='space-between'>
@@ -61,7 +61,7 @@ function MascotaClientePage(props) {
 			</Box>
 			<br />
 			<Grid container spacing={2}>
-				{cliente?.c?.mascotas.map((mascota) => (
+				{cliente.clientPets.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>
 						<CardMascota
 							dataMascota={mascota}

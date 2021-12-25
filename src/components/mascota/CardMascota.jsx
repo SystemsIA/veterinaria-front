@@ -145,11 +145,13 @@ function CardMascota({ dataMascota, ownerMascota, isBtnHistory = true }) {
 								<b>Lactancia:</b> {dataMascota.lactancia ? 'Si' : 'No'}
 							</p>
 						</div>
-						<CardMedia
-							className={classes.media}
-							image={dataMascota.especie.imagen}
-							title={dataMascota.nombre}
-						/>
+						{dataMascota.especie?.imagen && (
+							<CardMedia
+								className={classes.media}
+								image={dataMascota.especie.imagen}
+								title={dataMascota.nombre}
+							/>
+						)}
 					</Box>
 					<Box
 						display='flex'
