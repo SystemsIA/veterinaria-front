@@ -65,7 +65,6 @@ export default makeStyles((theme) => ({
 			fontSize: 30,
 		},
 		position: 'absolute',
-		zIndex: theme.zIndex.tooltip,
 		left: 20,
 		top: 10,
 		color: theme.palette.primary.dark,
