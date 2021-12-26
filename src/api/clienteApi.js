@@ -1,14 +1,17 @@
-import { AUTH_TOKEN } from 'utils';
+import { getToken } from 'utils';
 import clientHttp from './config';
 
 export async function registerCliente(cliente) {
 	try {
 		return await clientHttp.post(
 			'/clientes/',
-			{ ...cliente, password: cliente.dni },
+			{
+				...cliente,
+				password: cliente.dni,
+			},
 			{
 				headers: {
-					Authorization: `token ${AUTH_TOKEN}`,
+					Authorization: `token ${getToken()}`,
 				},
 			}
 		);
@@ -20,7 +23,7 @@ export async function registerCliente(cliente) {
 export async function getClienteList() {
 	return await clientHttp.get('/clientes/', {
 		headers: {
-			Authorization: `token ${AUTH_TOKEN}`,
+			Authorization: `token ${getToken()}`,
 		},
 	});
 }
@@ -28,7 +31,7 @@ export async function getClienteList() {
 export async function getCliente(clientId) {
 	return await clientHttp.get(`/clientes/${clientId}/`, {
 		headers: {
-			Authorization: `token ${AUTH_TOKEN}`,
+			Authorization: `token ${getToken()}`,
 		},
 	});
 }
@@ -36,7 +39,7 @@ export async function getCliente(clientId) {
 export async function getHistoriasList() {
 	return await clientHttp.get('/historias/', {
 		headers: {
-			Authorization: `token ${AUTH_TOKEN}`,
+			Authorization: `token ${getToken()}`,
 		},
 	});
 }

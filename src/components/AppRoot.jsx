@@ -7,13 +7,15 @@ import useMounted from 'hooks/useMounted';
 import useAuth from 'hooks/useAuth';
 import useDocumentTitle from 'hooks/useDocumentTitle';
 
+// utils
+
 function AppRoot({ children }) {
 	const auth = useAuth();
 
 	useDocumentTitle('Cargando...');
 	useMounted(async () => {
-		await auth.userDetailAction();
-		auth.setReadyAppAction();
+		await auth.userDetailAction(auth.key);
+		await auth.setReadyAppAction(true);
 	});
 
 	if (!auth.isReady) {

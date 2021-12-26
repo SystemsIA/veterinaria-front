@@ -11,11 +11,9 @@ export default makeStyles((theme) => ({
 	drawer: {
 		width: drawerWidth,
 		flexShrink: 0,
-		backgroundColor: '#F3F3F1',
 	},
 	drawerPaper: {
 		width: drawerWidth,
-		backgroundColor: '#F3F3F1',
 	},
 	drawerHeader: {
 		display: 'flex',

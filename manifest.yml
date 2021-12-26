@@ -1,0 +1,12 @@
+applications:
+  - name: veterinaria-app
+    routes:
+      - route: veterinaria-app.us-south.cf.appdomain.cloud
+    path: build/
+    buildpacks: ["staticfile_buildpack"]
+    memory: 128M
+    env:
+      GENERATE_SOURCEMAP: false
+      REACT_APP_TITLE: Veterinaria App
+      REACT_APP_API_URL: ''
+      REACT_APP_MY_VAR: value

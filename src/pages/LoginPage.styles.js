@@ -26,7 +26,7 @@ export default makeStyles((theme) => ({
 		textAlign: 'center',
 		'& > img': {
 			margin: '1rem auto',
-			maxWidth: (props) => (props.isMinSize ? 800 : 200),
+			maxWidth: (props) => (props?.isMinSize ? 800 : 200),
 		},
 	},
 }));

@@ -1,6 +1,6 @@
 import create from 'zustand';
 import * as apiUser from 'api/userApi';
-import { getToken, parseUser, setToken } from 'utils';
+import { parseUser, setToken, getToken } from 'utils';
 
 const store = (set, get) => ({
 	user: null,
@@ -9,6 +9,7 @@ const store = (set, get) => ({
 	isError: false,
 	isReady: false,
 	message: '',
+	key: getToken(),
 
 	// Mutations
 	async loginAction(data = { email: '', password: '' }) {
@@ -18,23 +19,21 @@ const store = (set, get) => ({
 		if (resLogin.status === 400) {
 			set({
 				isLogin: false,
-				message: resLogin.data?.nonFieldErrors[0],
+				message: resLogin.data.detail?.nonFieldErrors[0],
 				loading: false,
 				isError: true,
 			});
 		} else {
 			this.resetAction();
-			setToken(resLogin.data.key);
-			await this.userDetailAction();
+			set({ key: resLogin.data.key });
+			await this.userDetailAction(resLogin.data.key);
 		}
 	},
 
-	async userDetailAction() {
-		let key = getToken();
-		let userDetail = await apiUser.fetchUserDetail(key);
+	async userDetailAction(token) {
+		let userDetail = await apiUser.fetchUserDetail(token);
 
-		// TODO: resolve consumer api
-		if (!userDetail) {
+		if (userDetail.status !== 200) {
 			set({
 				user: null,
 				isLogin: false,
@@ -49,12 +48,12 @@ const store = (set, get) => ({
 	},
 
 	async logoutAction() {
+		setToken();
 		await apiUser.fetchLogout();
-		setToken('');
 		this.resetAction();
 	},
 
-	setReadyAppAction(v = true) {
+	async setReadyAppAction(v = false) {
 		set({
 			...get(),
 			isReady: v,
@@ -68,10 +67,15 @@ const store = (set, get) => ({
 			isLogin: false,
 			isError: false,
 			message: '',
+			key: '',
 		});
 	},
 });
 
 let useAuthStore = create(store);
+
+useAuthStore.subscribe((state) => {
+	setToken(state.key);
+});
 
 export default useAuthStore;
