@@ -1,5 +1,5 @@
 applications:
-  - name: veterinaria-web
+  - name: veterinaria-app
     random-route: true
     path: build/
     buildpacks: ["staticfile_buildpack"]
