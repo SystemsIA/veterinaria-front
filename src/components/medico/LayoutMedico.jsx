@@ -25,9 +25,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 // Images
-import imgPerroFlores from 'assets/img/perritoFlores.png';
+// import imgPerroFlores from 'assets/img/perritoFlores.png';
 import imgMascota from 'assets/img/imag3.png';
 import imgHueso from 'assets/img/iconHuesito.png';
 import imgTareas from 'assets/img/imag4.png';
@@ -114,7 +115,8 @@ function LayoutMedico({ title = '', container = false, children }) {
 				<div className={classes.drawerContainer}>
 					<div className={classes.nameDoctorLogo}>
 						<div className={classes.roundedLogo}>
-							<img src={imgPerroFlores} alt='Perro Flores' />
+							{/*<img src={imgPerroFlores} alt='Perro Flores' /> */}
+							<AccountBoxIcon fontSize='large'/>
 						</div>
 						<h3>{auth.user?.email}</h3>
 					</div>

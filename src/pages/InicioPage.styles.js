@@ -7,34 +7,34 @@ export default makeStyles((theme) => ({
 		alignItems: 'center',
 		padding: '4px 0',
 		position: 'relative',
-		flexGrow: 1,
+		flexGrow: 1
 	},
 	withoutFlexBasis: {
 		flexBasis: 'auto',
 		'& img': {
 			maxWidth: 350,
 			minWidth: 100,
-			transform: 'scaleX(-1)',
-		},
+			transform: 'scaleX(-1)'
+		}
 	},
 	paper: {
 		padding: theme.spacing(2),
 		color: theme.palette.text.secondary,
-
+		
 		'& ul': {
 			listStyleType: 'none',
-			padding: theme.spacing(1, 0),
+			padding: theme.spacing(1, 0)
 		},
 		'& li': {
 			display: 'flex',
-			flexBasis: 2,
-		},
+			flexBasis: 2
+		}
 	},
 	sizeImgMobile: {
-		width: '240px',
+		width: '240px'
 	},
 	content: {
-		maxWidth: '100%',
+		maxWidth: '100%'
 	},
 	paperTitle: {
 		padding: theme.spacing(1, 1),
@@ -43,54 +43,56 @@ export default makeStyles((theme) => ({
 		backgroundColor: theme.palette.secondary.main,
 		color: theme.palette.getContrastText(theme.palette.secondary.main),
 		[theme.breakpoints.down('sm')]: {
-			fontSize: 10,
+			fontSize: 10
 		},
 		[theme.breakpoints.up('md')]: {
-			fontSize: 100,
-		},
+			fontSize: 100
+		}
 	},
-
+	
 	lineSeparator: {
 		backgroundColor: theme.palette.primary.main,
 		maxWidth: theme.breakpoints.values.xl,
-		height: '2em',
+		height: '2em'
 	},
-
+	
 	imgAndTitle: {
-		position: 'relative',
+		position: 'relative'
 	},
-
+	
 	titleLanding: {
 		[theme.breakpoints.down('md')]: {
-			fontSize: 30,
+			fontSize: 30
 		},
 		position: 'absolute',
 		left: 20,
 		top: 10,
 		color: theme.palette.primary.dark,
-		fontWeight: 'bold',
+		fontWeight: 'bold'
 	},
 	logoLanding: {
 		position: 'absolute',
 		[theme.breakpoints.down('sm')]: {
 			top: 50,
 			width: 100,
-			right: 70,
+			right: 70
 		},
 		[theme.breakpoints.up('md')]: {
 			width: 220,
 			top: 170,
-			right: 200,
+			right: 200
 		},
 		[theme.breakpoints.up('lg')]: {
 			width: 270,
 			top: 170,
-			right: 200,
-		},
+			right: 200
+		}
 	},
-
 	imgLanding: {
-		width: '100%',
-		zIndex: '100',
+		width: '98vw'
 	},
+	imageList: {
+		width: '100%',
+		height: 450
+	}
 }));

@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import ButtonLink from './ButtonLink';
 
 // Images
-import imgPerroFlores from 'assets/img/perritoFlores.png';
+// import imgPerroFlores from 'assets/img/perritoFlores.png';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 
 // Styles
 import useStyles from './UserCardInfo.styles';
@@ -23,18 +24,19 @@ import useStyles from './UserCardInfo.styles';
 const UserCardInfo = forwardRef(({ handleClose }, ref) => {
 	const auth = useAuth();
 	const classes = useStyles();
-	const handleLogoutAction = useCallback(() => {
+	const handleLogoutAction = useCallback(async () => {
 		handleClose?.();
-		auth.logoutAction();
+		await auth.logoutAction();
 	}, [auth, handleClose]);
-
+	
 	return (
 		<Card className={classes.root} ref={ref}>
 			<CardContent>
 				<Container>
 					<Box display='flex' alignItems='center' flexDirection='column'>
 						<div>
-							<img src={imgPerroFlores} alt={auth?.user?.email} />
+							{/*<img src={imgPerroFlores} alt={auth?.user?.email} />*/}
+							<PermIdentityIcon fontSize='large' fontSizeAdjust={300}/>
 						</div>
 						<Typography align='center'>{auth?.user?.email}</Typography>
 						{auth?.user?.isDoctor && (

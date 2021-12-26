@@ -22,9 +22,9 @@ import imgMore from 'assets/img/iconMas.png';
 
 function MedicoMascotasPage() {
 	const cliente = useClient();
-
-	const mascotas = useSearch('nombre', cliente?.mascotas);
-
+	
+	const mascotaSearch = useSearch('nombre', cliente?.mascotas);
+	
 	useMounted(async () => {
 		await cliente.listMascotaAction();
 	});
@@ -36,7 +36,7 @@ function MedicoMascotasPage() {
 						Gestión de Mascotas
 					</Typography>
 				</div>
-
+				
 				<ButtonBack
 					variant='outlined'
 					startIcon={<ArrowBack />}
@@ -58,14 +58,15 @@ function MedicoMascotasPage() {
 				</AccordionDetails>
 			</Accordion>
 			<h1>Mascotas de la veterinaria</h1>
-
+			
 			<SearchField
 				placeholder='Buscar mascota por nombre...'
-				onChange={mascotas.handleSearch}
+				onChange={mascotaSearch.handleSearch}
+				wInput={25}
 			/>
-
+			
 			<Grid container spacing={2}>
-				{mascotas.data.map((mascota) => (
+				{mascotaSearch.data.map((mascota) => (
 					<Grid key={mascota.id} item xs={12} sm={6}>
 						<CardMascota dataMascota={mascota} isBtnHistory={false} />
 					</Grid>

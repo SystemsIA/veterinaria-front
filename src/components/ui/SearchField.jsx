@@ -4,8 +4,8 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './SearchField.styles';
 
-function BuscarField({ onChange, placeholder = 'Buscar...' }) {
-	const classes = useStyles();
+function SearchField({ onChange, placeholder = 'Buscar...', wInput, wInputFocus = 50 }) {
+	const classes = useStyles({ wInput: wInput || (placeholder.trim().length - 3), wInputFocus });
 	return (
 		<Box display='flex'>
 			<div className={classes.search}>
@@ -16,7 +16,7 @@ function BuscarField({ onChange, placeholder = 'Buscar...' }) {
 					placeholder={placeholder}
 					classes={{
 						root: classes.inputRoot,
-						input: classes.inputInput,
+						input: classes.inputInput
 					}}
 					inputProps={{ 'aria-label': 'search' }}
 					onChange={onChange}
@@ -26,4 +26,4 @@ function BuscarField({ onChange, placeholder = 'Buscar...' }) {
 	);
 }
 
-export default BuscarField;
+export default SearchField;

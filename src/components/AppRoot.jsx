@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -11,13 +10,12 @@ import useDocumentTitle from 'hooks/useDocumentTitle';
 
 function AppRoot({ children }) {
 	const auth = useAuth();
-
+	
 	useDocumentTitle('Cargando...');
 	useMounted(async () => {
 		await auth.userDetailAction(auth.key);
-		await auth.setReadyAppAction(true);
 	});
-
+	
 	if (!auth.isReady) {
 		return (
 			<Box
@@ -27,14 +25,14 @@ function AppRoot({ children }) {
 				alignItems='center'
 				flexDirection='column'
 			>
-				<Typography variant='h1' component='h1'>
+				<Typography variant='h1' component='h1' color='primary'>
 					Cargando...
 				</Typography>
 			</Box>
 		);
 	}
-
-	return <Fragment>{children}</Fragment>;
+	
+	return children;
 }
 
 export default AppRoot;

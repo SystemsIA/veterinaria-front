@@ -1,17 +1,28 @@
 {
-	"compilerOptions": {
-		"baseUrl": "src",
-		"allowSyntheticDefaultImports": true,
-		"target": "ESNext",
-		"jsxImportSource": "react",
-		"allowJs": true,
-		"moduleResolution": "Node",
-		"allowUmdGlobalAccess": true,
-		"alwaysStrict": true,
-		"jsx": "react-jsx",
-		"isolatedModules": true,
-		"lib": ["ESNext", "ES2016", "ES6", "DOM"]
-	},
-	"include": ["src", "assets"],
-	"exclude": ["node_modules", "public"]
+  "compilerOptions": {
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "jsxImportSource": "react",
+    "allowJs": true,
+    "moduleResolution": "Node",
+    "allowUmdGlobalAccess": true,
+    "alwaysStrict": true,
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "lib": [
+      "ESNext",
+      "ES2016",
+      "ES6",
+      "DOM"
+    ]
+  },
+  "include": [
+    "src",
+    "assets"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
 }
