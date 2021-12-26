@@ -46,12 +46,10 @@ export function AppRoute() {
 						<Route path={LINKS.VETSANLOR} component={VeterinariaPage} />
 						<Route path={LINKS.SERVICIOS} component={ServicioPage} />
 
+						<ProtectedRoute path={LINKS.USER_INICIO} component={UserRoutes} />
+
 						<ProtectedRoute
 							options={{ isRouteDoctor: true }}
-							path={LINKS.USER_INICIO}
-							component={UserRoutes}
-						/>
-						<ProtectedRoute
 							path={LINKS.MEDICO_INICIO}
 							component={MedicoRoutes}
 						/>

@@ -42,9 +42,9 @@ import useStyles from './LayoutMedico.styles';
 import PropTypes from 'prop-types';
 
 function LayoutMedico({ title = '', container = false, children }) {
-	const classes = useStyles();
-	const theme = useTheme();
 	const auth = useAuth();
+	const theme = useTheme();
+	const classes = useStyles();
 
 	useDocumentTitle(`Médico | ${title}`);
 
@@ -84,12 +84,18 @@ function LayoutMedico({ title = '', container = false, children }) {
 					</AppLogoLink>
 
 					<div>
-						<ButtonLink
-							to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CLIENTES}`}
-							className={classes.imgSize}
-						>
-							<img src={imgHueso} alt='Hueso Imagen' />
-						</ButtonLink>
+						{auth.user.isDoctor && (
+							<ButtonLink
+								to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CLIENTES}`}
+								className={classes.imgSize}
+							>
+								<img
+									title='Ir a Tareas del Médico'
+									src={imgHueso}
+									alt='Ir a Tareas del Médico'
+								/>
+							</ButtonLink>
+						)}
 						<MenuButtonUser as={SettingsOutlinedIcon} fontSize='large' />
 					</div>
 				</Toolbar>
@@ -116,7 +122,7 @@ function LayoutMedico({ title = '', container = false, children }) {
 					<div className={classes.nameDoctorLogo}>
 						<div className={classes.roundedLogo}>
 							{/*<img src={imgPerroFlores} alt='Perro Flores' /> */}
-							<AccountBoxIcon fontSize='large'/>
+							<AccountBoxIcon fontSize='large' />
 						</div>
 						<h3>{auth.user?.email}</h3>
 					</div>
