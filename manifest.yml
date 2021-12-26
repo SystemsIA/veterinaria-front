@@ -1,7 +1,7 @@
 applications:
-  - name: veterinaria-app-dev
+  - name: veterinaria-app
     routes:
-      - route: veterinaria-app-dev.us-south.cf.appdomain.cloud
+      - route: veterinaria-app.us-south.cf.appdomain.cloud
     path: build/
     buildpacks: ["staticfile_buildpack"]
     memory: 150M
