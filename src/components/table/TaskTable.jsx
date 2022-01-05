@@ -72,12 +72,20 @@ function TaskTable() {
 						{parseListTarea(cliente.tareas)
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => (
-								<TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
+								<TableRow
+									hover
+									role='checkbox'
+									tabIndex={-1}
+									key={'task-row-' + row.id}
+								>
 									{columnsTareas.map((column) => {
 										const value = row[column.id];
 
 										return (
-											<TableCell key={column.id} align={column.align}>
+											<TableCell
+												key={'task-col-' + column.id}
+												align={column.align}
+											>
 												{value}
 											</TableCell>
 										);
@@ -101,75 +109,3 @@ function TaskTable() {
 }
 
 export default TaskTable;
-// import { useMemo, useState } from 'react';
-// import EnhancedTable from 'components/table/EnhancedTable';
-// import makeData from 'utils/makeFakeData';
-
-// function TaskTable() {
-// 	const columns = useMemo(
-// 		() => [
-// 			{
-// 				Header: 'First Name',
-// 				accessor: 'firstName',
-// 			},
-// 			{
-// 				Header: 'Last Name',
-// 				accessor: 'lastName',
-// 			},
-// 			{
-// 				Header: 'Age',
-// 				accessor: 'age',
-// 			},
-// 			{
-// 				Header: 'Visits',
-// 				accessor: 'visits',
-// 			},
-// 			{
-// 				Header: 'Status',
-// 				accessor: 'status',
-// 			},
-// 			// {
-// 			// 	Header: 'Profile Progress',
-// 			// 	accessor: 'progress',
-// 			// },
-// 		],
-// 		[]
-// 	);
-
-// 	const [data, setData] = useState(useMemo(() => makeData(20), []));
-// 	const [skipPageReset, setSkipPageReset] = useState(false);
-
-// 	// We need to keep the table from resetting the pageIndex when we
-// 	// Update data. So we can keep track of that flag with a ref.
-
-// 	// When our cell renderer calls updateMyData, we'll use
-// 	// the rowIndex, columnId and new value to update the
-// 	// original data
-// 	const updateMyData = (rowIndex, columnId, value) => {
-// 		// We also turn on the flag to not reset the page
-// 		setSkipPageReset(true);
-// 		setData((old) =>
-// 			old.map((row, index) => {
-// 				if (index === rowIndex) {
-// 					return {
-// 						...old[rowIndex],
-// 						[columnId]: value,
-// 					};
-// 				}
-// 				return row;
-// 			})
-// 		);
-// 	};
-
-// 	return (
-// 		<EnhancedTable
-// 			columns={columns}
-// 			data={data}
-// 			setData={setData}
-// 			updateMyData={updateMyData}
-// 			skipPageReset={skipPageReset}
-// 		/>
-// 	);
-// }
-
-// export default TaskTable;
