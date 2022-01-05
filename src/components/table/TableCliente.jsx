@@ -80,11 +80,19 @@ function TableCliente() {
 						{parseListCliente(search.data)
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => (
-								<TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
+								<TableRow
+									hover
+									role='checkbox'
+									tabIndex={-1}
+									key={'client-row-' + row.id}
+								>
 									{columns.map((column) => {
 										const value = row[column.id];
 										return (
-											<TableCell key={column.id} align={column.align}>
+											<TableCell
+												key={'client-col-' + column.id}
+												align={column.align}
+											>
 												{value}
 											</TableCell>
 										);

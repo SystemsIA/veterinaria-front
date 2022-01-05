@@ -63,13 +63,11 @@ function MenuButtonUser({ isUser, side = 'right', as: IC, ...rest }) {
 				{auth.isLogin ? (
 					<UserCardInfo handleClose={handleClose} ref={anchorEl} />
 				) : (
-					<MenuItem
-						ref={anchorEl}
-						className={classes.menuLinks}
-						onClick={handleClose}
-					>
-						<Link to={LINKS.LOGIN}>Iniciar Sesión</Link>
-					</MenuItem>
+					<Link to={LINKS.LOGIN} className={classes.menuLinks}>
+						<MenuItem ref={anchorEl} onClick={handleClose}>
+							Iniciar Sesión
+						</MenuItem>
+					</Link>
 				)}
 			</Menu>
 		</Fragment>
