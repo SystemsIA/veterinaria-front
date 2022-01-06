@@ -84,7 +84,7 @@ function LayoutMedico({ title = '', container = false, children }) {
 					</AppLogoLink>
 
 					<div>
-						{auth.user.isDoctor && (
+						{auth.user?.isDoctor && (
 							<ButtonLink
 								to={`${LINKS.MEDICO_INICIO}${LINKS.MEDICO_CLIENTES}`}
 								className={classes.imgSize}
