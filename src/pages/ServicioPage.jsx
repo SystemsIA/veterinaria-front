@@ -2,6 +2,8 @@
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Layout from 'components/Layout';
+import Box from '@material-ui/core/Box';
+
 
 // Styles
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -18,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '24px',
 		fontWeight: 600,
 		textAlign: 'center',
+	},
+	centeredContainer:{
+		display:'flex',
+		flexDirection:'column',
+		alignItems:'center',
+
 	},
 }));
 
@@ -43,14 +51,16 @@ function ServicioPage() {
 				<Typography variant='h4' align='center'>
 					Servicios
 				</Typography>
-				{SERVICIOS.map((item, index) => (
-					<Typography
-						key={`${item.split().join()}-${index}`}
-						className={classes.content}
-					>
-						{item}
-					</Typography>
-				))}
+				<Box className={classes.centeredContainer}>
+					{SERVICIOS.map((item, index) => (
+				<Typography
+              		key={`${item.split().join()}-${index}`}
+              		className={classes.content}
+            	>
+					{item}
+				</Typography>
+          		))}
+				</Box>
 				<div className='elipse_yellow_left' />
 			</Container>
 		</Layout>
